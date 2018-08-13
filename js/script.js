@@ -228,7 +228,7 @@
 	if ($('.featured-project').length) {
 		$('.featured-project').owlCarousel({
 			loop:true,
-			margin:0,
+			margin:20,
 			dots:false,
 			nav:true,
 			smartSpeed: 500,
@@ -245,10 +245,10 @@
 					items:1
 				},
 				800:{
-					items:1
+					items:2
 				},
 				1200:{
-					items:1
+					items:2
 				}
 			}
 		});    		
@@ -292,7 +292,7 @@
 	        auto: false,
 	        speed: 300,
 	        mode: 'vertical',
-	        minSlides: 3,
+	        minSlides: 2,
 	        slideMargin: 20,
 	        pager: false,
 	        prevText: '<i class="fa fa-angle-left"></i>',

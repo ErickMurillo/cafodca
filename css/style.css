@@ -606,7 +606,7 @@ ul,li{
 }
 
 .theme-overlay.overlay-deep-white::before {
-	background-color: rgba(255, 255, 255, 0.92) !important;
+	background-color: rgba(0,104,55,0.3) !important;
 }
 
 .theme-overlay.overlay-black::before {
@@ -1649,7 +1649,8 @@ ul,li{
 	font-size:72px;
 	color:#93C55E;
 	line-height:1.4em;
-	font-family:'Roboto',sans-serif;	
+	font-family:'Roboto',sans-serif;
+	font-weight: 500;	
 }
 
 .main-features .title-box h2{
@@ -1665,7 +1666,7 @@ ul,li{
 	position:relative;
 	font-size:18px;
 	font-weight:300;
-	color:#7c7c7c;
+	color:#fff;
 }
 
 .main-features .features-column{
@@ -2034,7 +2035,6 @@ ul,li{
 
 .default-featured-column h3{
 	font-size:18px;
-	text-transform:uppercase;
 	font-weight:800;
 	margin-bottom:5px;
 }
