@@ -1303,7 +1303,7 @@ ul,li{
 .header-style-two .header-top{
 	position:relative;
 	color:#677c91;
-	padding:20px 0px;
+	padding:10px 0px;
 }
 
 .header-style-two .header-top .info-outer{
@@ -1314,9 +1314,9 @@ ul,li{
 .header-style-two .header-top .info-box{
 	position:relative;
 	float:left;
-	margin-left:45px;
-	margin-top:20px;
-	padding-left:50px;
+	margin-left:30px;
+	margin-top:5px;
+	padding-left:35px;
 	line-height:24px;
 	font-family: 'Open Sans', sans-serif;	
 }
@@ -1333,7 +1333,7 @@ ul,li{
 	top:50%;
 	margin-top:-20px;
 	line-height:40px;
-	font-size:32px;
+	font-size:25px;
 	color:#ffffff;	
 }
 
@@ -1341,7 +1341,7 @@ ul,li{
 	position:relative;
 	display:block;
 	color:#ffffff;
-	font-size:13px;
+	font-size:12px;
 	text-transform:uppercase;	
 }
 
@@ -1358,7 +1358,7 @@ ul,li{
 
 .header-style-two .social-links{
 	position:relative;
-	top:5px;	
+	top:-5px;	
 }
 
 .header-style-two .social-links a{
