@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>CharityClub Nonprofit HTML5 Template | Events List View</title>
+<title>CharityClub Nonprofit HTML5 Template | Homepage Style One</title>
 <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
@@ -23,13 +23,13 @@
 
 <!-- Stylesheets -->
 <link href="css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="css/revolution-slider.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="css/bootstrap-margin-padding.css" rel="stylesheet">
-<link href="css/responsive.css" rel="stylesheet"`>
+<link href="css/responsive.css" rel="stylesheet">
 <link href="css/newstyle.css" rel="stylesheet">
 <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
@@ -135,8 +135,8 @@
     <section class="page-title" style="background-image:url(http://www.vielva.cl/img/Category/5/AGRICOLA.png);">
     	<div class="auto-container">
         	<div class="sec-title">
-                <h1>Eventos</h1>
-                <div class="bread-crumb"><a href="index.html">Inicio</a> / <a href="#" class="current">Eventos</a></div>
+                <h1>Noticias</h1>
+                <div class="bread-crumb"><a href="index.html">Inicio</a> / <a href="#" class="current">Noticias</a></div>
             </div>
         </div>
     </section>
@@ -145,27 +145,6 @@
     <!--Sidebar Page-->
     <div class="sidebar-page">
     	<div class="auto-container">
-        	<!--Filters Section-->
-            <div class="filters-section">
-            	<div class="filter-form">
-                	<form method="post" action="index.html">
-                    	<div class="row clearfix">
-                        	<div class="form-group col-md-5 col-sm-5 col-xs-12">
-                            	<div class="field-label">Fecha del evento</div>
-                                <input type="text" name="date" class="datepicker" value="" placeholder="Fecha">
-                            </div>
-                            <div class="form-group col-md-5 col-sm-5 col-xs-12">
-                            	<div class="field-label">Buscar</div>
-                                <input type="text" name="keyword" value="" placeholder="Búsqueda">
-                            </div>
-                            <div class="form-group col-md-2 col-sm-2 col-xs-12">
-                            	<div class="field-label">&nbsp;</div>
-                                <button type="button" class="theme-btn btn-style-two">Buscar eventos</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
             
         	<div class="row clearfix">
             	
@@ -173,115 +152,145 @@
                 <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                     
                     <!--Events Section / List View-->
-                    <section class="events-section events-list-section list-view pb-0 pt-0 pr-20">
-                            
-                        <!--Featured Column-->
-                        <div class="column default-featured-column style-two">
-                            <article class="inner-box">
-                            	<div class="row clearfix">
-                                	<div class="col-md-5 col-sm-5 col-xs-12">
+                    <section class="blog-news-section latest-news">
+                        <div class="auto-container">
+        
+                            <div class="row clearfix">
+                                
+                                <!--News Column-->
+                                <div class="column blog-news-column col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <article class="inner-box">
                                         <figure class="image-box">
                                             <a href="#"><img src="http://cafodca.org/uploads/fotos/30707245_1938608242816258_7960736666413432832_o.380x250.jpg" alt=""></a>
-                                            <div class="post-tag">24 Aug 2016</div>
+                                            <div class="news-date">28<span class="month">AGO</span></div>
                                         </figure>
-                                    </div>
-                                    
-                                    <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="content-box">
-                                            <h3><a href="#">Taller sobre energia renovable</a></h3>
-                                            <ul class="event-held list-inline mb-15">
-                                                <li class="theme_color "><i class="black_color fa fa-clock-o mr-5"></i> De 8:00 am - 5:30 pm</li>
-                                                <li class="theme_color "> <i class="black_color fa fa-map-marker mr-5"></i>Hotel Las Mercedes</li>
-                                            </ul>
-                                            <div class="text">Lorem ipsum dolor sit amet, eu qui modo expetendis refor midans, ex sit appetere sententiae aco modo set lieu vet eum in simul homero. Duo consul probatus...</div>
-                                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Leer más</a>
+                                            <h3><a href="#">Oficial de Proyectos visita fincas agro ecológicas en Honduras</a></h3>
+                                            <div class="post-info clearfix">
+                                                <div class="post-author">Por <span class="theme_color">Pablo Garcia</span></div>
+                                                <div class="post-options clearfix">
+                                                    <a href="#" class="comments-count"><span class="icon fa fa-eye"></span> 6</a>
+                                        
+                                                </div>
+                                            </div>
+                                            <div class="text">El oficial de Proyectos de la agencia de cooperación Cafod, en Nicaragua, Winston...</div>
+                                            <a href="#" class="theme-btn read-more">Leer más</a>
                                         </div>
-                                    </div>
-                                    
+                                    </article>
                                 </div>
-                            </article>
-                        </div>
-                            
-                        <!--Featured Column-->
-                        <div class="column default-featured-column style-two">
-                            <article class="inner-box">
-                                <div class="row clearfix">
-                                    <div class="col-md-5 col-sm-5 col-xs-12">
+
+                                <!--News Column-->
+                                <div class="column blog-news-column col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <article class="inner-box">
                                         <figure class="image-box">
                                             <a href="#"><img src="http://cafodca.org/uploads/fotos/30707245_1938608242816258_7960736666413432832_o.380x250.jpg" alt=""></a>
-                                            <div class="post-tag">24 Aug 2016</div>
+                                            <div class="news-date">28<span class="month">AGO</span></div>
                                         </figure>
-                                    </div>
-                                    
-                                    <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="content-box">
-                                            <h3><a href="#">Taller sobre energia renovable</a></h3>
-                                            <ul class="event-held list-inline mb-15">
-                                                <li class="theme_color "><i class="black_color fa fa-clock-o mr-5"></i> De 8:00 am - 5:30 pm</li>
-                                                <li class="theme_color "> <i class="black_color fa fa-map-marker mr-5"></i>Hotel Las Mercedes</li>
-                                            </ul>
-                                            <div class="text">Lorem ipsum dolor sit amet, eu qui modo expetendis refor midans, ex sit appetere sententiae aco modo set lieu vet eum in simul homero. Duo consul probatus...</div>
-                                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Leer más</a>
+                                            <h3><a href="#">Venciendo la pobreza en el Corredor Seco</a></h3>
+                                            <div class="post-info clearfix">
+                                                <div class="post-author">Por <span class="theme_color">Pablo Garcia</span></div>
+                                                <div class="post-options clearfix">
+                                                    <a href="#" class="comments-count"><span class="icon fa fa-eye"></span> 6</a>
+                                        
+                                                </div>
+                                            </div>
+                                            <div class="text">El oficial de Proyectos de la agencia de cooperación Cafod, en Nicaragua, Winston...</div>
+                                            <a href="#" class="theme-btn read-more">Leer más</a>
                                         </div>
-                                    </div>
-                                    
+                                    </article>
                                 </div>
-                            </article>
-                        </div>
-                            
-                        <!--Featured Column-->
-                        <div class="column default-featured-column style-two">
-                            <article class="inner-box">
-                                <div class="row clearfix">
-                                    <div class="col-md-5 col-sm-5 col-xs-12">
+
+                                <!--News Column-->
+                                <div class="column blog-news-column col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <article class="inner-box">
                                         <figure class="image-box">
                                             <a href="#"><img src="http://cafodca.org/uploads/fotos/30707245_1938608242816258_7960736666413432832_o.380x250.jpg" alt=""></a>
-                                            <div class="post-tag">24 Aug 2016</div>
+                                            <div class="news-date">28<span class="month">AGO</span></div>
                                         </figure>
-                                    </div>
-                                    
-                                    <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="content-box">
-                                            <h3><a href="#">Taller sobre energia renovable</a></h3>
-                                            <ul class="event-held list-inline mb-15">
-                                                <li class="theme_color "><i class="black_color fa fa-clock-o mr-5"></i> De 8:00 am - 5:30 pm</li>
-                                                <li class="theme_color "> <i class="black_color fa fa-map-marker mr-5"></i>Hotel Las Mercedes</li>
-                                            </ul>
-                                            <div class="text">Lorem ipsum dolor sit amet, eu qui modo expetendis refor midans, ex sit appetere sententiae aco modo set lieu vet eum in simul homero. Duo consul probatus...</div>
-                                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Leer más</a>
+                                            <h3><a href="#">Oficial de Proyectos visita fincas agro ecológicas en Honduras</a></h3>
+                                            <div class="post-info clearfix">
+                                                <div class="post-author">Por <span class="theme_color">Pablo Garcia</span></div>
+                                                <div class="post-options clearfix">
+                                                    <a href="#" class="comments-count"><span class="icon fa fa-eye"></span> 6</a>
+                                        
+                                                </div>
+                                            </div>
+                                            <div class="text">El oficial de Proyectos de la agencia de cooperación Cafod, en Nicaragua, Winston...</div>
+                                            <a href="#" class="theme-btn read-more">Leer más</a>
                                         </div>
-                                    </div>
-                                    
+                                    </article>
                                 </div>
-                            </article>
-                        </div>
-                            
-                        <!--Featured Column-->
-                        <div class="column default-featured-column style-two">
-                            <article class="inner-box">
-                                <div class="row clearfix">
-                                    <div class="col-md-5 col-sm-5 col-xs-12">
+
+                                <!--News Column-->
+                                <div class="column blog-news-column col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <article class="inner-box">
                                         <figure class="image-box">
                                             <a href="#"><img src="http://cafodca.org/uploads/fotos/30707245_1938608242816258_7960736666413432832_o.380x250.jpg" alt=""></a>
-                                            <div class="post-tag">24 Aug 2016</div>
+                                            <div class="news-date">28<span class="month">AGO</span></div>
                                         </figure>
-                                    </div>
-                                    
-                                    <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="content-box">
-                                            <h3><a href="#">Taller sobre energia renovable</a></h3>
-                                            <ul class="event-held list-inline mb-15">
-                                                <li class="theme_color "><i class="black_color fa fa-clock-o mr-5"></i> De 8:00 am - 5:30 pm</li>
-                                                <li class="theme_color "> <i class="black_color fa fa-map-marker mr-5"></i>Hotel Las Mercedes</li>
-                                            </ul>
-                                            <div class="text">Lorem ipsum dolor sit amet, eu qui modo expetendis refor midans, ex sit appetere sententiae aco modo set lieu vet eum in simul homero. Duo consul probatus...</div>
-                                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Leer más</a>
+                                            <h3><a href="#">Oficial de Proyectos visita fincas agro ecológicas en Honduras</a></h3>
+                                            <div class="post-info clearfix">
+                                                <div class="post-author">Por <span class="theme_color">Pablo Garcia</span></div>
+                                                <div class="post-options clearfix">
+                                                    <a href="#" class="comments-count"><span class="icon fa fa-eye"></span> 6</a>
+                                        
+                                                </div>
+                                            </div>
+                                            <div class="text">El oficial de Proyectos de la agencia de cooperación Cafod, en Nicaragua, Winston...</div>
+                                            <a href="#" class="theme-btn read-more">Leer más</a>
                                         </div>
-                                    </div>
-                                    
+                                    </article>
                                 </div>
-                            </article>
-                        </div>
+
+                                <!--News Column-->
+                                <div class="column blog-news-column col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <article class="inner-box">
+                                        <figure class="image-box">
+                                            <a href="#"><img src="http://cafodca.org/uploads/fotos/30707245_1938608242816258_7960736666413432832_o.380x250.jpg" alt=""></a>
+                                            <div class="news-date">28<span class="month">AGO</span></div>
+                                        </figure>
+                                        <div class="content-box">
+                                            <h3><a href="#">Oficial de Proyectos visita fincas agro ecológicas en Honduras</a></h3>
+                                            <div class="post-info clearfix">
+                                                <div class="post-author">Por <span class="theme_color">Pablo Garcia</span></div>
+                                                <div class="post-options clearfix">
+                                                    <a href="#" class="comments-count"><span class="icon fa fa-eye"></span> 6</a>
+                                        
+                                                </div>
+                                            </div>
+                                            <div class="text">El oficial de Proyectos de la agencia de cooperación Cafod, en Nicaragua, Winston...</div>
+                                            <a href="#" class="theme-btn read-more">Leer más</a>
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <!--News Column-->
+                                <div class="column blog-news-column col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <article class="inner-box">
+                                        <figure class="image-box">
+                                            <a href="#"><img src="http://cafodca.org/uploads/fotos/30707245_1938608242816258_7960736666413432832_o.380x250.jpg" alt=""></a>
+                                            <div class="news-date">28<span class="month">AGO</span></div>
+                                        </figure>
+                                        <div class="content-box">
+                                            <h3><a href="#">Oficial de Proyectos visita fincas agro ecológicas en Honduras</a></h3>
+                                            <div class="post-info clearfix">
+                                                <div class="post-author">Por <span class="theme_color">Pablo Garcia</span></div>
+                                                <div class="post-options clearfix">
+                                                    <a href="#" class="comments-count"><span class="icon fa fa-eye"></span> 6</a>
+                                        
+                                                </div>
+                                            </div>
+                                            <div class="text">El oficial de Proyectos de la agencia de cooperación Cafod, en Nicaragua, Winston...</div>
+                                            <a href="#" class="theme-btn read-more">Leer más</a>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>      
+
                         
                         <!-- Styled Pagination -->
                         <div class="styled-pagination mb-20">
@@ -313,7 +322,24 @@
                                 </div>
                             </form>
                             
-                        </div>                     
+                        </div>
+                        
+                        <!-- Popular Categories -->
+                        <div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="sidebar-title"><h3>Temas</h3></div>
+                            
+                            <ul class="list">
+                            	<li><a href="#" class="pdr10">Cambio climatico</a></li>
+                                    <li><a href="#" class="pdr10">Economia Solidaria</a></li>
+                                    <li><a href="#" class="pdr10">Educación</a></li>
+                                    <li><a href="#" class="pdr10">Medios de vida</a></li>
+                                    <li><a href="#" class="pdr10">Minería</a></li>
+                                    <li><a href="#" class="pdr10">Promotoria rural </a></li>
+
+                            </ul>
+                            
+                        </div>
+                        
                         
                         <!-- Recent Posts -->
                         <div class="widget recent-posts wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
