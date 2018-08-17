@@ -292,7 +292,7 @@
 	        auto: false,
 	        speed: 300,
 	        mode: 'vertical',
-	        minSlides: 2,
+	        minSlides: 3,
 	        slideMargin: 20,
 	        pager: false,
 	        prevText: '<i class="fa fa-angle-left"></i>',
