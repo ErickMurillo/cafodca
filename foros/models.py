@@ -35,10 +35,10 @@ class Imagen(models.Model):
     tags_img = TagField("Tags",help_text='Separar elementos con "," ', blank=True)
     fileDir = 'fotos/'
     class Meta:
-    	verbose_name_plural = "Imágenes"
+        verbose_name_plural = "Imágenes"
 
     def __unicode__(self):
-    	return self.nombre_img
+        return self.nombre_img
 
 class Documentos(models.Model):
     ''' Modelo generico para subir los documentos en distintos app'''
@@ -53,10 +53,10 @@ class Documentos(models.Model):
     fileDir = 'documentos/'
 
     class Meta:
-    	verbose_name_plural = "Documentos"
+        verbose_name_plural = "Documentos"
 
     def __unicode__(self):
-    	return self.nombre_doc
+        return self.nombre_doc
 
 class Videos(models.Model):
     ''' Modelo generico para subir videos en todos los app'''
@@ -69,10 +69,10 @@ class Videos(models.Model):
     tags_vid = TagField(help_text='Separar elementos con "," ', blank=True)
 
     class Meta:
-    	verbose_name_plural = "Videos"
+        verbose_name_plural = "Videos"
 
     def __unicode__(self):
-    	return self.nombre_video
+        return self.nombre_video
 
 class Audios(models.Model):
     '''' Modelo generico para subir audios en todos los demas app '''
@@ -87,10 +87,10 @@ class Audios(models.Model):
     fileDir = 'audios/'
 
     class Meta:
-    	verbose_name_plural = "Audios"
+        verbose_name_plural = "Audios"
 
     def __unicode__(self):
-    	return self.nombre_audio
+        return self.nombre_audio
 
 class Foros(models.Model):
     nombre = models.CharField(max_length=200)
@@ -107,11 +107,11 @@ class Foros(models.Model):
     audio = GenericRelation(Audios)
 
     class Meta:
-    	verbose_name_plural = "Foros"
+        verbose_name_plural = "Foros"
         ordering = ['-creacion']
 
     def __unicode__(self):
-    	return self.nombre
+        return self.nombre
 
     def __documento__(self):
         lista = []
