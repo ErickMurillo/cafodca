@@ -26,7 +26,7 @@ class AudiosInline(GenericTabularInline):
 class ForoAdmin(admin.ModelAdmin):
     inlines = [DocumentosInline, ImagenInline, 
               VideosInline, AudiosInline]
-    form = ForosForm
+    # form = ForosForm
     list_display = ['nombre','creacion','contraparte',
                     '__documento__','__fotos__', '__video__',
                     '__audio__']

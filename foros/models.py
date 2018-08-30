@@ -6,7 +6,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 from django.contrib.contenttypes.models import ContentType
 # from south.modelsinspector import add_introspection_rules
 # from tagging.models import Tag
-from taggit_autosuggest.managers import TaggableManager
+from tagging.fields import TagField
+# from taggit_autosuggest.managers import TaggableManager
 from django.contrib.auth.models import User
 #from contrapartes.models import Usuarios
 # from thumbs import ImageWithThumbsField
@@ -31,7 +32,7 @@ class Imagen(models.Model):
 
     nombre_img = models.CharField("Nombre",max_length=200, null=True, blank=True)
     foto = ImageField("Foto",upload_to=get_file_path,null=True, blank=True)
-    tags_img = TaggableManager("Tags",help_text='Separar elementos con "," ', blank=True)
+    tags_img = TagField("Tags",help_text='Separar elementos con "," ', blank=True)
     fileDir = 'fotos/'
     class Meta:
     	verbose_name_plural = "Imágenes"
@@ -47,7 +48,7 @@ class Documentos(models.Model):
 
     nombre_doc = models.CharField("Nombre",max_length=200, null=True, blank=True)
     adjunto = models.FileField("Adjunto",upload_to=get_file_path, null=True, blank=True)
-    tags_doc = TaggableManager("Tags",help_text='Separar elementos con "," ', blank=True)
+    tags_doc = TagField("Tags",help_text='Separar elementos con "," ', blank=True)
 
     fileDir = 'documentos/'
 
@@ -65,7 +66,7 @@ class Videos(models.Model):
 
     nombre_video = models.CharField(max_length=200, null=True, blank=True)
     url = EmbedVideoField(null=True, blank=True)
-    tags_vid = TaggableManager(help_text='Separar elementos con "," ', blank=True)
+    tags_vid = TagField(help_text='Separar elementos con "," ', blank=True)
 
     class Meta:
     	verbose_name_plural = "Videos"
@@ -81,7 +82,7 @@ class Audios(models.Model):
 
     nombre_audio = models.CharField(max_length=200, null=True, blank=True)
     audio = models.FileField(upload_to=get_file_path, null=True, blank=True)
-    tags_aud = TaggableManager(help_text='Separar elementos con "," ', blank=True)
+    tags_aud = TagField(help_text='Separar elementos con "," ', blank=True)
 
     fileDir = 'audios/'
 
