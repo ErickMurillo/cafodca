@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from sorl.thumbnail import ImageField
 from utils import *
 # from south.modelsinspector import add_introspection_rules
+from thumbs import ImageWithThumbsField
 from ckeditor_uploader.fields import RichTextUploadingField
 import datetime
 from django.template.defaultfilters import slugify
@@ -41,7 +41,8 @@ class Pais(models.Model):
 class Contraparte(models.Model):
     nombre = models.CharField(max_length=200)
     siglas = models.CharField("Siglas o nombre corto",help_text="Siglas o nombre corto de la oganización",max_length=200,blank=True, null=True)
-    logo = ImageField(upload_to=get_file_path,
+    logo = ImageWithThumbsField(upload_to=get_file_path,
+                                   sizes=((350,250), (70,60),(180,160)), 
                                    null=True, blank=True)
     fileDir = 'contrapartes/logos/'
     pais = models.ForeignKey(Pais)
@@ -65,12 +66,26 @@ class Contraparte(models.Model):
     def get_absolute_url(self):
         return '/contrapartes/%d/' % (self.id,)
 
+# REDES_CHOICES = (('Sitio web','Sitio web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
+#                     ('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),
+#                     ('Flickr','Flickr'),('Pinterest','Pinterest'),('Vimeo','Vimeo'),('Otra','Otra'),)
+
+# class Redes(models.Model):
+#     organizacion = models.ForeignKey(Contraparte)
+#     opcion = models.CharField(max_length=25,choices=REDES_CHOICES)
+#     url = models.URLField()
+
+#     class Meta:
+#         verbose_name = 'Red'
+#         verbose_name_plural = 'Redes'
+
 class UserProfile(models.Model):
     # This field is required.
     user = models.OneToOneField(User)
     # Other fields here
     contraparte = models.ForeignKey(Contraparte)
-    avatar = ImageField(upload_to=get_file_path,
+    avatar = ImageWithThumbsField(upload_to=get_file_path,
+                                   sizes=((350,250), (70,60),(180,160)), 
                                    null=True, blank=True)
     fileDir = 'usuario/avatar/'
 

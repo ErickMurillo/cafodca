@@ -23,7 +23,7 @@ class NotasAdmin(admin.ModelAdmin):
     #	}
 
     inlines = [ImagenInline, DocumentosInline, ]
-    list_display = ['__unicode__','fecha','user']
+    list_display = ['titulo','fecha','user']
     list_filter = ['user','fecha']
     date_hierarchy = 'fecha'
 

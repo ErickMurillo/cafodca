@@ -15,8 +15,26 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+from notas import views as notas
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-]
+    url(r'^accounts/login/$', auth_views.login, name='login'),
+    url(r'^accounts/logout/$', notas.logout_page, name='logout'),
+    url(r'^password_change/$',auth_views.password_change,
+                            {'template_name': 'registration/password_change_form.html',
+                            'post_change_redirect': '/foros/perfil/'},
+                            name='password-change'),
+    url(r'^$', notas.index),
+    url(r'^notas/', include('notas.urls')),
+    # url(r'^contrapartes/', include('contrapartes.urls')),
+    # url(r'^agendas/', include('agendas.urls')),
+    # url(r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
+    # url(r'^foros/', include('foros.urls')),
+    # url(r'^busqueda/$', include('django_google_cse.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

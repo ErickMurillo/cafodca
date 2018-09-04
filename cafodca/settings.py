@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'tagging',
-    'sorl.thumbnail',
     'ckeditor',
     'ckeditor_uploader',
     'embed_video',
@@ -104,7 +103,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(BASE_DIR, 'uploads'))
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(BASE_DIR, 'static_media/uploads/'))
 MEDIA_URL = '/uploads/'
 
 STATIC_ROOT = os.environ.get('STATIC_ROOT', os.path.join(BASE_DIR, 'static'))
@@ -115,7 +114,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_media"),
 ]
 
+THUMBNAIL_DEBUG = True
+
 CKEDITOR_MEDIA_PREFIX = '/files/media/ckeditor/'
+CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, 'static_media/uploads/')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
