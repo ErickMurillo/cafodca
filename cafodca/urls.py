@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^$', notas.index),
     url(r'^notas/', include('notas.urls')),
     # url(r'^contrapartes/', include('contrapartes.urls')),
-    # url(r'^agendas/', include('agendas.urls')),
+    url(r'^agendas/', include('agendas.urls')),
     # url(r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
     # url(r'^foros/', include('foros.urls')),
     # url(r'^busqueda/$', include('django_google_cse.urls')),

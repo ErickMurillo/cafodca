@@ -33,10 +33,12 @@ class DocumentosInline(GenericTabularInline):
 
 class AgendasAdmin(admin.ModelAdmin):
     inlines = [DocumentosInline,]
-    form = AgendaForm
+    # form = AgendaForm
     #class Media:
     #    js = ['../files/js/tiny_mce/tiny_mce.js',
     #          '../files/js/editores/textareas.js',]
     list_display = ['__unicode__','inicio','user']
     list_filter = ['user','inicio']
     date_hierarchy = 'inicio'
+
+admin.site.register(Agendas, AgendasAdmin)

@@ -8,6 +8,7 @@ from foros.models import *
 from django.template.defaultfilters import slugify
 # from south.modelsinspector import add_introspection_rules
 from ckeditor_uploader.fields import RichTextUploadingField
+from sorl.thumbnail import ImageField
 
 # add_introspection_rules ([], ["^ckeditor\.fields\.RichTextField"])
 
@@ -15,6 +16,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class Notas(models.Model):
     titulo = models.CharField(max_length=200)
+    foto = ImageField(upload_to='notas/',null=True, blank=True)
     slug = models.SlugField(max_length=200)
     fecha = models.DateField('Fecha de publicación', auto_now_add=True)
     contenido = RichTextUploadingField()

@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'embed_video',
+    'sorl.thumbnail',
+    'el_pagination',
 
     'foros',
     'notas',

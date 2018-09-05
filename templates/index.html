@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block content %}
     <section class="main-slider revolution-slider">
@@ -119,86 +120,35 @@
                             </div>
 
                             <div class="bx-event-carousel-style2">
+                                {% for evento in eventos %}
                                 <div class="link-block">
                                     <div class="default inner">
-                                        <figure class="image-thumb"><img src="http://cafodca.org/uploads/fotos/30742507_1938604222816660_8820942908413706240_o.380x250.jpg" alt=""></figure>
-                                        <h4 class="title">Visita a la comunidad Chupoj II, y III</h4>
+                                        <figure class="image-thumb">
+                                            {% if evento.foto %}
+                                                    {% thumbnail evento.foto "380x250" as im %}
+                                                        <img src="{{ im.url }}">
+                                                    {% endthumbnail %}
+                                                {% else %}
+                                                    <img src="https://via.placeholder.com/380x250">
+                                                {% endif %}
+                                        </figure>
+                                        <h4 class="title">{{evento.evento}}</h4>
                                         <ul class="event-held">
-                                            <li><i class="fa fa-clock-o"></i> de 8:00 am - 5:00 pm</li>
-                                            <li> <i class="fa fa-map-marker"></i> Hotel Las Mercedes</li>
+                                            <li><i class="fa fa-clock-o"></i> de {{evento.hora_inicio|time:"g:i a"}} - {{evento.hora_fin|time:"g:i a"}}</li>
+                                            <li> <i class="fa fa-map-marker"></i> {{evento.lugar}}</li>
                                         </ul>
                                         <ul class="event-date">
-                                            <li class="event-day">28</li>
-                                            <li class="event-month">Aug</li>
+                                            <li class="event-day">{{evento.inicio|date:'d'}}</li>
+                                            <li class="event-month">{{evento.inicio|date:'M'}}</li>
                                         </ul>
                                     </div>
                                     <div class="alternate">
-                                        <p class="desc">Visita a grupos comunitarios de promotores/as agroecologicos. </p>
+                                        <p class="desc">{{evento.descripcion|safe|striptags|truncatechars:61}} </p>
                                         <a class="theme-btn btn-style-five btn-xs mr-10" href="#">Leer más</a>
-                                        <a class="theme-btn btn-style-two btn-xs mr-10" href="#">Confirmar</a>
+                                        <!--<a class="theme-btn btn-style-two btn-xs mr-10" href="#">Confirmar</a>-->
                                     </div>
                                 </div>
-
-                                <div class="link-block">
-                                    <div class="default inner">
-                                        <figure class="image-thumb"><img src="http://cafodca.org/uploads/fotos/30714368_1938608746149541_234841377156890624_n.380x250.jpg" alt=""></figure>
-                                        <h4 class="title">Intercambio de experiencia Apicola</h4>
-                                        <ul class="event-held">
-                                            <li><i class="fa fa-clock-o"></i> de 8:00 am - 5:00 pm</li>
-                                            <li> <i class="fa fa-map-marker"></i> Hotel Las Mercedes</li>
-                                        </ul>
-                                        <ul class="event-date">
-                                            <li class="event-day">28</li>
-                                            <li class="event-month">Aug</li>
-                                        </ul>
-                                    </div>
-                                    <div class="alternate">
-                                        <p class="desc">En coordinacion con Swisscontact se desarrollara un intercambio de experiencia. </p>
-                                        <a class="theme-btn btn-style-five btn-xs mr-10" href="#">Leer más</a>
-                                        <a class="theme-btn btn-style-two btn-xs mr-10" href="#">Confirmar</a>
-                                    </div>
-                                </div>
-
-                                <div class="link-block">
-                                    <div class="default inner">
-                                        <figure class="image-thumb"><img src="http://cafodca.org/uploads/fotos/30742507_1938604222816660_8820942908413706240_o.380x250.jpg" alt=""></figure>
-                                        <h4 class="title">Taller sobre energia renovables</h4>
-                                        <ul class="event-held">
-                                            <li><i class="fa fa-clock-o"></i> de 8:00 am - 5:00 pm</li>
-                                            <li> <i class="fa fa-map-marker"></i> Hotel Las Mercedes</li>
-                                        </ul>
-                                        <ul class="event-date">
-                                            <li class="event-day">28</li>
-                                            <li class="event-month">Aug</li>
-                                        </ul>
-                                    </div>
-                                    <div class="alternate">
-                                        <p class="desc">Contribuir a la adaptación del cambio climático a través de la promoción </p>
-                                        <a class="theme-btn btn-style-five btn-xs mr-10" href="#">Leer más</a>
-                                        <a class="theme-btn btn-style-two btn-xs mr-10" href="#">Confirmar</a>
-                                    </div>
-                                </div>
-
-                                <div class="link-block">
-                                    <div class="default inner">
-                                        <figure class="image-thumb"><img src="http://cafodca.org/uploads/fotos/30704036_1938606736149742_452393324809027584_o.380x250.jpg" alt=""></figure>
-                                        <h4 class="title">Reunión CAFOD en El Progreso</h4>
-                                        <ul class="event-held">
-                                            <li><i class="fa fa-clock-o"></i> de 8:00 am - 5:00 pm</li>
-                                            <li> <i class="fa fa-map-marker"></i> Hotel Las Mercedes</li>
-                                        </ul>
-                                        <ul class="event-date">
-                                            <li class="event-day">28</li>
-                                            <li class="event-month">Aug</li>
-                                        </ul>
-                                    </div>
-                                    <div class="alternate">
-                                        <p class="desc">Winston Berrios junto al equipo técnico del Equipo de Reflexión </p>
-                                        <a class="theme-btn btn-style-five btn-xs mr-10" href="#">Leer más</a>
-                                        <a class="theme-btn btn-style-two btn-xs mr-10" href="#">Confirmar</a>
-                                    </div>
-                                </div>
-
+                                {% endfor %}
                             </div>
                             
                         </div>
@@ -213,16 +163,23 @@
                         <article class="inner-box mb-xs-60">
                             <figure class="image-box">
                                 <a href="{% url 'notas-detail' nota.id %}">
-                                    {%for thumb in nota.fotos.all|slice:"1"%}        
-                                       <img src="{{thumb.foto.url_300x200}}">
-                                       <!-- 380x250 -->  
-                                    {%endfor%}
+                                    {% if nota.foto %}
+                                        {% thumbnail nota.foto "380x250" as im %}
+                                            <img src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                    {% elif nota.fotos.all %}
+                                        {%for thumb in nota.fotos.all|slice:"1"%} 
+                                        <img src="{{thumb.foto.url_380x250}}" alt="">
+                                        {% endfor %}
+                                    {% else %}
+                                        <img src="https://via.placeholder.com/380x250">
+                                    {% endif %}
                                 </a>
                                
                                 <div class="news-date">{{nota.fecha|date:'d'}}<span class="month">{{nota.fecha|date:'M'}}</span></div>
                             </figure>
                             <div class="content-box">
-                                <h3><a href="#">{{nota.titulo}}</a></h3>
+                                <h3><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo}}</a></h3>
                                 <div class="post-info clearfix">
                                     <div class="post-author">Por <span class="theme_color">{{nota.user.get_full_name}}</span></div>
                                     <div class="post-options clearfix">

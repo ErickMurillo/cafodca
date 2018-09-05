@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block content %}
        <!--Page Title-->
@@ -7,7 +8,7 @@
             <div class="sec-title">
                 <h1>Detalles <span class="normal-font">Noticia</span></h1>
                 <div class="bread-crumb">
-                    <a href="/">Inicio</a> / <a href="">Noticias</a> /
+                    <a href="/">Inicio</a> / <a href="/notas">Noticias</a> /
                     <a href="#" class="current">Detalles Noticia</a>
                 </div>
             </div>
@@ -30,7 +31,19 @@
                         <div class="column blog-news-column">
                             <article class="inner-box">
                                 <figure class="image-box">
-                                    <a href="#"><img src="http://www.simas.org.ni/media/cache/85/9e/859e1c75aa73eca4f32b553b1268f37b.jpg" alt=""></a>
+                                    <a href="#">
+                                    {% if object.foto %}
+                                        {% thumbnail object.foto "640x480" as im %}
+                                            <img src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                    {% elif object.fotos.all %}
+                                        {%for thumb in object.fotos.all|slice:"1"%} 
+                                        <img src="{{thumb.foto.url_640x480}}" alt="">
+                                        {% endfor %}
+                                    {% else %}
+                                        <img src="https://via.placeholder.com/640x480">
+                                    {% endif %}
+                                    </a>
                                     <div class="news-date">{{object.fecha|date:'d'}}<span class="month">{{object.fecha|date:'M'}}</span></div>
                                 </figure>
                                 <div class="content-box padd-top-30">
@@ -42,7 +55,11 @@
                                         </div>
                                     </div>
                                     <div class="text">
-                                        {{object.contenido|safe}}    
+                                        {{object.contenido|safe}}  
+
+                                        {% for fotos in object.fotos.all %}
+                                             <img src="{{fotos.foto.url_380x250}}" alt="">
+                                         {% endfor %} 
                                     </div>
                                 </div>
                                 
@@ -100,23 +117,26 @@
                         <div class="widget recent-posts wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="sidebar-title"><h3>Últimas Noticias</h3></div>
                             
+                            {% for nota in ultimas_notas %}
                             <article class="post">
-                                <figure class="post-thumb"><img src="http://cafodca.org/uploads/fotos/30742507_1938604222816660_8820942908413706240_o.380x250.jpg" alt=""></figure>
-                                <h4><a href="#">Visita a la comunidad Chupoj II, y III</a></h4>
-                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por Pablo Garcia </div>
+                                <figure class="post-thumb">
+                                    {% if nota.foto %}
+                                        {% thumbnail nota.foto "380x250" as im %}
+                                            <img src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                    {% elif nota.fotos.all %}
+                                        {%for thumb in nota.fotos.all|slice:"1"%} 
+                                        <img src="{{thumb.foto.url_380x250}}" alt="">
+                                        {% endfor %}
+                                    {% else %}
+                                    <img src="https://via.placeholder.com/380x250">
+                                    {% endif %}
+                                    
+                                </figure>
+                                <h4><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo}}</a></h4>
+                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por {{nota.user.get_full_name}} </div>
                             </article>
-                            
-                             <article class="post">
-                                <figure class="post-thumb"><img src="http://cafodca.org/uploads/fotos/30742507_1938604222816660_8820942908413706240_o.380x250.jpg" alt=""></figure>
-                                <h4><a href="#">Visita a la comunidad Chupoj II, y III</a></h4>
-                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por Pablo Garcia </div>
-                            </article>
-                            
-                            <article class="post">
-                                <figure class="post-thumb"><img src="http://cafodca.org/uploads/fotos/30742507_1938604222816660_8820942908413706240_o.380x250.jpg" alt=""></figure>
-                                <h4><a href="#">Visita a la comunidad Chupoj II, y III</a></h4>
-                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por Pablo Garcia </div>
-                            </article>
+                            {% endfor %}
                             
                         </div>
                         
@@ -125,10 +145,9 @@
                             <div class="sidebar-title"><h3>Pais</h3></div>
                             
                             <ul class="list">
-                                <li><a href="#">Nicaragua</a></li>
-                                <li><a href="#">Honduras</a></li>
-                                <li><a href="#">El Salvador</a></li>
-                                <li><a href="#">Guatemala</a></li>
+                                {% for pais in paises %}
+                                    <li><a href="#">{{pais}}</a></li>
+                                {% endfor %}
                             </ul>
                             
                         </div>
