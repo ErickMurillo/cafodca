@@ -146,7 +146,7 @@
                             
                             <ul class="list">
                                 {% for pais in paises %}
-                                    <li><a href="#">{{pais}}</a></li>
+                                    <li><a href="{% url 'notas_list_pais' pais.id %}">{{pais}}</a></li>
                                 {% endfor %}
                             </ul>
                             

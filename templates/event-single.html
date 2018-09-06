@@ -1,4 +1,5 @@
 {% extends "base.html" %}   
+{% load thumbnail %}
 
 {% block content %}
 <!--Page Title-->
@@ -6,7 +7,7 @@
     	<div class="auto-container">
         	<div class="sec-title">
                 <h1>Detalle <span class="normal-font">evento</span></h1>
-                <div class="bread-crumb"><a href="/">Inicio</a> / <a href="index.html">Eventos</a> / <a href="#" class="current">Detalle del evento</a></div>
+                <div class="bread-crumb"><a href="/">Inicio</a> / <a href="/agendas">Eventos</a> / <a href="#" class="current">Detalle del evento</a></div>
             </div>
         </div>
     </section>
@@ -26,16 +27,22 @@
                         <div class="column default-featured-column style-two">
                             <article class="inner-box">
                                 <figure class="image-box">
-                                    <a href="#"><img src="http://cafodca.org/uploads/fotos/30707245_1938608242816258_7960736666413432832_o.380x250.jpg" alt=""></a>
+                                    {% if object.foto %}
+                                        {% thumbnail object.foto "640x480" as im %}
+                                            <img src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                    {% else %}
+                                        <img src="https://via.placeholder.com/640x480">
+                                    {% endif %}
                                 </figure>
                                 <div class="content-box padd-top-40">
                                     <div class="row detail-header clearfix">
                                         <div class="col-md-8 col-sm-12">
-                                            <h3 class="fs-28"><a href="#">Taller sobre energia renovable.</a></h3>
+                                            <h3 class="fs-28">{{object.evento}}</h3>
                                             <ul class="event-held list-inline">
-                                                <li class="theme_color "><i class="black_color fa fa-calendar"></i> 27 Agosto 2018</li>
-                                                <li class="theme_color "><i class="black_color fa fa-clock-o mr-5"></i> De 8:00 am - 5:30 pm</li>
-                                                <li class="theme_color "> <i class="black_color fa fa-map-marker mr-5"></i>Hotel Las Mercedes</li>
+                                                <li class="theme_color "><i class="black_color fa fa-calendar"></i> {{object.inicio|date:'d F Y'}}</li>
+                                                <li class="theme_color "><i class="black_color fa fa-clock-o mr-5"></i> De {{object.hora_inicio|time:'g:i a'}} - {{object.hora_fin|time:'g:i a'}}</li>
+                                                <li class="theme_color "> <i class="black_color fa fa-map-marker mr-5"></i>{{object.lugar}}</li>
                                             </ul>
                                         </div>
                                         <div class="col-md-4 col-sm-12 pull-right text-right"><a href="#" class="theme-btn btn-style-two">Confirmar Asistencia</a></div>
@@ -43,7 +50,7 @@
                                     <hr>
                                     
                                     <div class="text">
-                                        <p>En coordinacion con Swisscontact se desarrollara un intercambio de experiencia para conocer la aplicaciòn de buenas pràcticas apicolas, ademas se realizara visita a la planta de acopio de miel, en la que participaran 27 mujeres apicultoras de ASOMUPRO en Nindiri departamento de Masaya.</p>
+                                        {{object.descripcion|safe}}
                                     </div>
                                     
                                     <br>
@@ -55,9 +62,8 @@
                                     
                                     <br><br>
                                     
-                                    <div class="other-info">
+                                    <!--<div class="other-info">
                                     	<div class="row clearfix">
-                                        	<!--Info Column-->
                                             <div class="info-column column col-md-6 col-xs-12">
                                             	<h3>Detalles del evento</h3>
                                                 <ul class="info-box">
@@ -67,11 +73,11 @@
                                                 </ul>
                                             </div>
                                             
-                                            <!--Map Column-->
+                                            
                                             <div class="map-column column col-md-6 col-xs-12">
-                                                <!--Map Container-->
+                                                
                                                 <div class="map-container">
-                                                    <!--Map Canvas-->
+                                                    
                                                     <div class="map-canvas"
                                                         data-zoom="12"
                                                         data-lat="12.145968"
@@ -87,7 +93,7 @@
                                             </div>
                                             
                                         </div>
-                                    </div>
+                                    </div>-->
                                     
                                 </div>
                             </article>
@@ -115,7 +121,7 @@
                         </div>
                         
                         <!-- Popular Categories -->
-                        <div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <!--<div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="sidebar-title"><h3>Temas</h3></div>
                             
                             <ul class="list">
@@ -128,30 +134,33 @@
 
                             </ul>
                             
-                        </div>
+                        </div>-->
                         
                         
                         <!-- Recent Posts -->
                         <div class="widget recent-posts wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="sidebar-title"><h3>Últimas Noticias</h3></div>
                             
+                            {% for nota in ultimas_notas %}
                             <article class="post">
-                                <figure class="post-thumb"><img src="http://cafodca.org/uploads/fotos/30742507_1938604222816660_8820942908413706240_o.380x250.jpg" alt=""></figure>
-                                <h4><a href="#">Visita a la comunidad Chupoj II, y III</a></h4>
-                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por Pablo Garcia </div>
+                                <figure class="post-thumb">
+                                    {% if nota.foto %}
+                                        {% thumbnail nota.foto "380x250" as im %}
+                                            <img src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                    {% elif nota.fotos.all %}
+                                        {%for thumb in nota.fotos.all|slice:"1"%} 
+                                        <img src="{{thumb.foto.url_380x250}}" alt="">
+                                        {% endfor %}
+                                    {% else %}
+                                    <img src="https://via.placeholder.com/380x250">
+                                    {% endif %}
+                                    
+                                </figure>
+                                <h4><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo}}</a></h4>
+                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por {{nota.user.get_full_name}} </div>
                             </article>
-                            
-                             <article class="post">
-                                <figure class="post-thumb"><img src="http://cafodca.org/uploads/fotos/30742507_1938604222816660_8820942908413706240_o.380x250.jpg" alt=""></figure>
-                                <h4><a href="#">Visita a la comunidad Chupoj II, y III</a></h4>
-                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por Pablo Garcia </div>
-                            </article>
-                            
-                            <article class="post">
-                                <figure class="post-thumb"><img src="http://cafodca.org/uploads/fotos/30742507_1938604222816660_8820942908413706240_o.380x250.jpg" alt=""></figure>
-                                <h4><a href="#">Visita a la comunidad Chupoj II, y III</a></h4>
-                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por Pablo Garcia </div>
-                            </article>
+                            {% endfor %}
                             
                         </div>
                         
@@ -160,16 +169,15 @@
                             <div class="sidebar-title"><h3>Pais</h3></div>
                             
                             <ul class="list">
-                                <li><a href="#">Nicaragua</a></li>
-                                <li><a href="#">Honduras</a></li>
-                                <li><a href="#">El Salvador</a></li>
-                                <li><a href="#">Guatemala</a></li>
+                                {% for pais in paises %}
+                                    <li><a href="{% url 'events_list_pais' pais.id %}">{{pais}}</a></li>
+                                {% endfor %}
                             </ul>
                             
                         </div>
                         
                         <!-- Popular Tags -->
-                        <div class="widget popular-tags">
+                        <!--<div class="widget popular-tags">
                             <div class="sidebar-title"><h3>Palabras claves</h3></div>
                             
                                 <a href="#">acciones</a>
@@ -183,7 +191,7 @@
                                 <a href="#">familias</a>
                                 <a href="#">igualdad</a>
                             
-                        </div>
+                        </div>-->
                                 
                     </aside>
                 

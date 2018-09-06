@@ -174,3 +174,5 @@ CKEDITOR_CONFIGS = {
     },
 
 }
+
+LOGIN_REDIRECT_URL = '/foros/perfil/'

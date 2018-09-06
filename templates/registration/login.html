@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="base-color text-center">Inicio de sesión</h2>
+<hr>
+<form action="/accounts/login/" method="POST">{% csrf_token %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            <strong>ERROR: </strong>Por favor, introduzca un nombre de usuario y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas.
+        </div>
+     {% endif %} 
+    <div class="form-group">
+        <label>Usuario</label>
+        {{form.username}}
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Contraseña <a href="/accounts/password_reset/">(Resetear Contraseña)</a></label>
+        {{form.password}}
+    </div>
+    <input type="submit" name="Login"value="Iniciar sesión">
+</form>
+{% endblock content %}

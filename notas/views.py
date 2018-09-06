@@ -6,6 +6,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import *
 from agendas.models import *
+from foros.models import *
 from django.shortcuts import render_to_response, get_object_or_404
 import datetime
 
@@ -22,6 +23,7 @@ def index(request,template='index.html'):
 	eventos = Agendas.objects.filter(inicio__gte = hoy,publico=True).order_by('-inicio','-hora_inicio')[:4]
 	paises = Pais.objects.all()
 	contrapartes = Contraparte.objects.all()
+	imagenes = Imagen.objects.order_by('-id')[:8]
 
 	return render(request, template, locals())
 
