@@ -17,7 +17,7 @@ from sorl.thumbnail import ImageField
 class Notas(models.Model):
     titulo = models.CharField(max_length=200)
     foto = ImageField(upload_to='notas/',null=True, blank=True)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200,editable=False)
     fecha = models.DateField('Fecha de publicación', auto_now_add=True)
     contenido = RichTextUploadingField()
     fotos = GenericRelation(Imagen)

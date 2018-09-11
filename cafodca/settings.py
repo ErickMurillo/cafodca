@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'embed_video',
     'sorl.thumbnail',
     'el_pagination',
+    'crispy_forms',
 
     'foros',
     'notas',

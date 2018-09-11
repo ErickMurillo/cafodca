@@ -66,18 +66,18 @@ class Contraparte(models.Model):
     def get_absolute_url(self):
         return '/contrapartes/%d/' % (self.id,)
 
-# REDES_CHOICES = (('Sitio web','Sitio web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
-#                     ('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),
-#                     ('Flickr','Flickr'),('Pinterest','Pinterest'),('Vimeo','Vimeo'),('Otra','Otra'),)
+REDES_CHOICES = (('Sitio web','Sitio web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
+                    ('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),
+                    ('Flickr','Flickr'),('Pinterest','Pinterest'),('Vimeo','Vimeo'),('Otra','Otra'),)
 
-# class Redes(models.Model):
-#     organizacion = models.ForeignKey(Contraparte)
-#     opcion = models.CharField(max_length=25,choices=REDES_CHOICES)
-#     url = models.URLField()
+class Redes(models.Model):
+    organizacion = models.ForeignKey(Contraparte)
+    opcion = models.CharField(max_length=25,choices=REDES_CHOICES)
+    url = models.URLField()
 
-#     class Meta:
-#         verbose_name = 'Red'
-#         verbose_name_plural = 'Redes'
+    class Meta:
+        verbose_name = 'Red'
+        verbose_name_plural = 'Redes'
 
 class UserProfile(models.Model):
     # This field is required.

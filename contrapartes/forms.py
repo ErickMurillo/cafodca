@@ -17,14 +17,14 @@ class ContraparteForms(forms.ModelForm):
     nombre = forms.CharField(widget=forms.TextInput(attrs={'class':'span7','rel':"tooltip", 'title':"Nombre completo de la contraparte"}))
     fundacion = forms.CharField(widget=forms.TextInput(attrs={'rel':"tooltip", 'title':"Año en que fue fundada la organización"}))
     contacto = forms.CharField(required=False,widget=forms.TextInput(attrs={'rel':"tooltip", 'title':"Nombre completo de la persona de contacto"}))
-    telefono = forms.IntegerField(required=False,widget=forms.TextInput(attrs={'rel':"tooltip", 'title':"Formato ### - ######## "}))
-    sitio_web = forms.URLField(required=False,widget=forms.TextInput(attrs={'rel':"tooltip", 'title':"Con este formato http://www.dominio.com "}))
-    rss = forms.CharField(required=False,widget=forms.TextInput(attrs={'rel':"tooltip", 'title':"Dirección rss de contenido sindicado"}))
-    font_color = forms.CharField(required=False, widget=ColorPickerWidget, label="Color")
+    telefono = forms.CharField(required=False,widget=forms.TextInput(attrs={'rel':"tooltip", 'title':"Formato ### - ######## "}))
+    # sitio_web = forms.URLField(required=False,widget=forms.TextInput(attrs={'rel':"tooltip", 'title':"Con este formato http://www.dominio.com "}))
+    # rss = forms.CharField(required=False,widget=forms.TextInput(attrs={'rel':"tooltip", 'title':"Dirección rss de contenido sindicado"}))
+    # font_color = forms.CharField(required=False, widget=ColorPickerWidget, label="Color")
 
     class Meta:
         model = Contraparte
-        exclude = ('user',)
+        exclude = ('user','sitio_web','rss','font_color')
 
 class UserForm(ModelForm):
     class Meta:
@@ -43,3 +43,9 @@ class MensajeForm(forms.ModelForm):
         #widgets = {'user': forms.CheckboxSelectMultiple}
     	model = Mensajero
         exclude = ('usuario','fecha')
+
+class RedesFrom(forms.ModelForm):
+    class Meta:
+        model = Redes
+        fields = '__all__'
+        exclude = ['organizacion',]

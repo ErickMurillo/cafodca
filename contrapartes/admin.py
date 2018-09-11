@@ -4,13 +4,13 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from .forms import *
 
-# class RedesInline(admin.TabularInline):
-# 	model = Redes
-# 	extra = 1
+class RedesInline(admin.TabularInline):
+	model = Redes
+	extra = 1
 
 class ContraparteAdmin(admin.ModelAdmin):
 	form = ContraparteForms
-	# inlines = [RedesInline,]
+	inlines = [RedesInline,]
     #class Media:
     #    js = ['../files/js/tiny_mce/tiny_mce.js',
     #          '../files/js/editores/textareas.js',]

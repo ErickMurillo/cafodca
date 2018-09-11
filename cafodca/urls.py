@@ -31,7 +31,7 @@ urlpatterns = [
                             name='password-change'),
     url(r'^$', notas.index),
     url(r'^notas/', include('notas.urls')),
-    # url(r'^contrapartes/', include('contrapartes.urls')),
+    url(r'^contrapartes/', include('contrapartes.urls')),
     url(r'^agendas/', include('agendas.urls')),
     # url(r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
     url(r'^foros/', include('foros.urls')),

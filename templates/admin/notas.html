@@ -1,0 +1,73 @@
+{% extends "admin/base_admin.html" %}
+
+{% block extra_css %}
+<link href="/static/css/jquery.dataTables.min.css" rel="stylesheet">
+{% endblock extra_css %}
+
+{% block content %}
+<div data-bac="#fcfcfc">
+    <section class="welcome-section pt-20 pb-20">
+        <div class="auto-container">
+            <div class="row clearfix perfil">
+                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 detalle-perfil ">
+                	<div class="table-responsive">
+                        <table class="table table-hover" id="example"  style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Fecha</th>
+                                    <th>Editar</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for nota in object_list %}
+                                <tr>
+                                    <td>{{nota.titulo}}</td>
+                                    <td>{{nota.fecha}}</td>
+                                    <td>
+                                        <a href="{% url 'notas-personales-editar' nota.id %}" class="btn btn-success btn-small-special"><span class="fa fa-pencil"></span></a>
+                                    </td>
+                                    <td>
+                                        <a data-toggle="modal" href='#modal-id-{{nota.id}}' class="btn btn-danger btn-small-special"><span class="fa fa-trash"></span></a>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="modal-id-{{nota.id}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Eliminar Noticia</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                La nota "{{nota.titulo}}" se eliminara permanentemente.
+                                                ¿Esta seguro que desea eliminar la nota?
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <a type="button" class="btn btn-danger" href="">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script src="/static/js/jquery.dataTables.min.js"></script> 
+<script type="text/javascript">
+	$(document).ready( function () {
+    $('.table').DataTable();
+} );
+</script>
+{% endblock extra_js %}
