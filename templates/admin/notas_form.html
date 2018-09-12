@@ -24,7 +24,11 @@
                                 {{form2.media}}
                                 {% for img in form2 %}
                                 <div class="col-sm-12  col-md-6 form-group">
-                                    {{img.as_p}}
+                                    {{img.id}} <br>
+                                    {{img.nombre_img}} <br>
+                                    {{img.foto}} <br>
+                                    Tags: {{img.tags_img}} {{img.tags_img.help_text}}
+                                    Eliminar: {{img.DELETE}}
                                 </div>
                                 {% endfor %}
                             </div>
@@ -37,7 +41,11 @@
                                 {{form3.media}}
                                 {% for doc in form3 %}
                                 <div class="col-sm-12  col-md-6 form-group">
-                                    {{doc.as_p}}
+                                    {{doc.id}} <br>
+                                    {{doc.nombre_doc}} <br>
+                                    {{doc.adjunto}} <br>
+                                    Tags: {{doc.tags_doc}} {{doc.tags_doc.help_text}}
+                                    Eliminar: {{doc.DELETE}}
                                 </div>
                                 {% endfor %}
                             </div>

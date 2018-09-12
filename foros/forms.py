@@ -2,7 +2,7 @@
 
 from django.db import models
 #from django.forms import ModelForm
-# from tagging.forms import TagField
+from tagging.forms import TagField
 # from tagging_autocomplete.widgets import TagAutocomplete
 from models import *
 from django import forms
@@ -28,7 +28,7 @@ class ComentarioForm(forms.ModelForm):
     	exclude = ('fecha','aporte','usuario')
 
 class ImagenForm(forms.ModelForm):
-    # tags_img = TagField(widget=TagAutocomplete(), required=False)
+    #tags_img = TagField(widget=TagAutocomplete(), required=False)
 
     class Meta:
     	model = Imagen

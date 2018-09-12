@@ -5,10 +5,14 @@ from django.shortcuts import render
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import *
+from .forms import *
 from agendas.models import *
 from foros.models import *
-from django.shortcuts import render_to_response, get_object_or_404
+from foros.forms import *
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 import datetime
+from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.forms import generic_inlineformset_factory
 
 # Create your views here.
 def logout_page(request):
@@ -45,5 +49,39 @@ def lista_notas_pais(request,id, template='blog-list.html'):
 	object_list = Notas.objects.filter(user__userprofile__contraparte__pais = id).order_by('-id')
 	ultimas_notas = Notas.objects.order_by('-id')[:3]
 	paises = Pais.objects.all()
+
+	return render(request, template, locals())
+
+@login_required
+def crear_nota(request, template='admin/notas_form.html'):
+	ForoImgFormSet = generic_inlineformset_factory(Imagen, extra=5, max_num=5)
+	ForoDocuFormSet = generic_inlineformset_factory(Documentos, extra=5, max_num=5)
+
+	if request.method == 'POST':
+		form = NotasForms(request.POST, files=request.FILES)
+		form2 = ForoImgFormSet(data=request.POST, files=request.FILES)
+		form3 = ForoDocuFormSet(data=request.POST, files=request.FILES)
+
+		if form.is_valid() and form2.is_valid() and form3.is_valid():
+			form_uncommited = form.save(commit=False)
+			form_uncommited.user = request.user
+			form_uncommited.save()
+
+			# form2_uncommited = form2.save(commit=False)
+			# form2_uncommited.content_object = form_uncommited
+			# form2_uncommited.save()
+
+			# form3_uncommited = form3.save(commit=False)
+			# form3_uncommited.content_object = form_uncommited
+			# form3_uncommited.save()
+
+			
+
+			# thread.start_new_thread(notify_all_notas, (form_uncommited,))
+			return redirect('notas-personales')
+	else:
+		form = NotasForms()
+		form2 = ForoImgFormSet()
+		form3 = ForoDocuFormSet()
 
 	return render(request, template, locals())

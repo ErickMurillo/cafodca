@@ -31,7 +31,7 @@ def notas_personales(request, template='admin/notas.html'):
 	return render(request, template, locals())
 
 @login_required
-def notas_personales_editar(request, id, template='admin/editar_notas.html'):
+def notas_personales_editar(request, id, template='admin/notas_form.html'):
 	object = get_object_or_404(Notas, id=id)
 	ForoImgFormSet = generic_inlineformset_factory(Imagen, extra=5, max_num=5)
 	ForoDocuFormSet = generic_inlineformset_factory(Documentos, extra=5, max_num=5)
@@ -56,3 +56,14 @@ def notas_personales_editar(request, id, template='admin/editar_notas.html'):
 		form3 = ForoDocuFormSet(instance=object)
 
 	return render(request, template, locals())
+
+@login_required
+def eliminar_notas_contraparte(request, id):
+	nota = Notas.objects.filter(id = id).delete()
+	return redirect('notas-personales')
+
+@login_required
+def agenda_personales(request, template='admin/agendas.html'):
+    agendas = Agendas.objects.filter(user_id=request.user.id)
+
+    return render(request, template, locals())

@@ -129,7 +129,7 @@
                     </a>
                 </div>
                 <div class="btn-group">
-                    <a type="button" class="btn btn-nav">
+                    <a href="/" type="button" class="btn btn-nav">
                         <span class="fa fa-globe"></span>
                         <p>Web</p>
                     </a>
@@ -271,6 +271,16 @@
         });
     });
 </script>-->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example, #example2').dataTable( {
+        "order": [[ 3, "desc" ]],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        }
+    } );
+} );
+</script>
 {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>
