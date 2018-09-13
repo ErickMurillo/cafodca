@@ -22,7 +22,8 @@
                             <div class="row">
                                 {{ form2.management_form }}
                                 {{form2.media}}
-                                {% for img in form2 %}
+                                {{form2}}
+                                <!--{% for img in form2 %}
                                 <div class="col-sm-12  col-md-6 form-group">
                                     {{img.id}} <br>
                                     {{img.nombre_img}} <br>
@@ -30,7 +31,7 @@
                                     Tags: {{img.tags_img}} {{img.tags_img.help_text}}
                                     Eliminar: {{img.DELETE}}
                                 </div>
-                                {% endfor %}
+                                {% endfor %}-->
                             </div>
 
 							<h4 class="blog-details__title">Documentos</h4>

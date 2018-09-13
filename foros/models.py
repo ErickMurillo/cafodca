@@ -35,6 +35,7 @@ class Imagen(models.Model):
                                    null=True, blank=True)
     tags_img = TagField("Tags",help_text='Separar elementos con "," ', blank=True)
     fileDir = 'fotos/'
+    
     class Meta:
         verbose_name_plural = "Imágenes"
 
