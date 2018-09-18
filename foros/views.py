@@ -64,6 +64,6 @@ def eliminar_notas_contraparte(request, id):
 
 @login_required
 def agenda_personales(request, template='admin/agendas.html'):
-    agendas = Agendas.objects.filter(user_id=request.user.id)
+    object_list = Agendas.objects.filter(user_id=request.user.id)
 
     return render(request, template, locals())

@@ -54,34 +54,29 @@ def lista_notas_pais(request,id, template='blog-list.html'):
 
 @login_required
 def crear_nota(request, template='admin/notas_form.html'):
-	ForoImgFormSet = generic_inlineformset_factory(Imagen, extra=5, max_num=5)
-	ForoDocuFormSet = generic_inlineformset_factory(Documentos, extra=5, max_num=5)
-
 	if request.method == 'POST':
 		form = NotasForms(request.POST, files=request.FILES)
-		form2 = ForoImgFormSet(data=request.POST, files=request.FILES)
-		form3 = ForoDocuFormSet(data=request.POST, files=request.FILES)
+		form2 = FotoForm(data=request.POST, files=request.FILES)
+		form3 = AdjuntoForm(data=request.POST, files=request.FILES)
 
 		if form.is_valid() and form2.is_valid() and form3.is_valid():
 			form_uncommited = form.save(commit=False)
 			form_uncommited.user = request.user
 			form_uncommited.save()
 
-			# form2_uncommited = form2.save(commit=False)
-			# form2_uncommited.content_object = form_uncommited
-			# form2_uncommited.save()
+			form2_uncommited = form2.save(commit=False)
+			form2_uncommited.content_object = form_uncommited
+			form2_uncommited.save()
 
-			# form3_uncommited = form3.save(commit=False)
-			# form3_uncommited.content_object = form_uncommited
-			# form3_uncommited.save()
-
-			
+			form3_uncommited = form3.save(commit=False)
+			form3_uncommited.content_object = form_uncommited
+			form3_uncommited.save()
 
 			# thread.start_new_thread(notify_all_notas, (form_uncommited,))
 			return redirect('notas-personales')
 	else:
 		form = NotasForms()
-		form2 = ForoImgFormSet()
-		form3 = ForoDocuFormSet()
+		form2 = FotoForm()
+		form3 = AdjuntoForm()
 
 	return render(request, template, locals())

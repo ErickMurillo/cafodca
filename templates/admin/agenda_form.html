@@ -16,40 +16,17 @@
 								{{ form.media }}
 								{{form|crispy}}
 
-							<h4 class="blog-details__title">Imagenes</h4>
-                            <hr>
-
-                            <div class="row">
-                                {{ form2.management_form }}
-                                {{form2.media}}
-
-                                {% if request.path == '/notas/crear/' %}
-                                    {{form2.as_p}}
-                                {% else %}
-                                    {% for img in form2 %}
-                                    <div class="col-sm-12  col-md-6 form-group">
-                                        {{img.id}} <br>
-                                        {{img.nombre_img}} <br>
-                                        {{img.foto}} <br>
-                                        Tags: {{img.tags_img}} {{img.tags_img.help_text}}
-                                        Eliminar: {{img.DELETE}}
-                                    </div>
-                                    {% endfor %}
-                                {% endif %}
-                                
-                                
-                            </div>
-
 							<h4 class="blog-details__title">Documentos</h4>
                             <hr>
 
                             <div class="row">
-                                {{ form3.management_form }}
-                                {{form3.media}}
-                                {% if request.path == '/notas/crear/' %}
-                                    {{form3.as_p}}
+                                {{ form1.management_form }}
+                                {{form1.media}}
+
+                                {% if request.path == '/agendas/crear/' %}
+                                    {{form1.as_p}}
                                 {% else %}
-                                    {% for doc in form3 %}
+                                    {% for doc in form1 %}
                                     <div class="col-sm-12  col-md-6 form-group">
                                         {{doc.id}} <br>
                                         {{doc.nombre_doc}} <br>
@@ -59,9 +36,14 @@
                                     </div>
                                     {% endfor %}
                                 {% endif %}
+                                
+                                
                             </div>
-                            <input 
-								<input type="submit" name="Editar" value="Actualizar">
+                            {% if request.path == '/agendas/crear/' %}
+	                            <input type="submit" name="Nuevo" value="Nuevo">
+	                        {% else %}
+                             <input type="submit" name="Actualizar" value="Actualizar">
+                             {% endif %}
 							</form>
 						</div>
 					</div>
@@ -72,9 +54,34 @@
 </div>
 {% endblock content %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/static/css/jquery.timepicker.min.css">
+{% endblock extra_css %}
+
 {% block extra_js %}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/static/js/jquery.timepicker.min.js"></script>
+
 <script type="text/javascript">
 	$( "input, select" ).addClass( "form-control" );
 	$( "input[type='submit']" ).removeClass( "form-control" ).addClass( "btn" );
+</script>
+
+<script>
+  $( function() {
+    $("#id_inicio" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#id_final" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    $('#id_hora_inicio').timepicker({ 'timeFormat': 'H:i:s' });
+    $('#id_hora_fin').timepicker({ 'timeFormat': 'H:i:s' });
+
+  //   for (var i=0; i<=11; i++) {
+  //     $('#id_agendaevento_set-'+i+'-hora_inicio').timepicker({ 'timeFormat': 'H:i:s' });
+  //     $('#id_agendaevento_set-'+i+'-hora_fin').timepicker({ 'timeFormat': 'H:i:s' });
+  // }
+
+  } );
+
+
 </script>
 {% endblock extra_js %}

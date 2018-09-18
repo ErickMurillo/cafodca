@@ -10,7 +10,7 @@
         <div class="auto-container">
             <div class="row clearfix perfil">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
-                	<a href="/notas/crear/">Nuevo evento</a>
+                	<a href="/agendas/crear/">Nuevo evento</a>
                 	<div class="table-responsive">
                         <table class="table table-hover" id="example"  style="width:100%">
                             <thead>
@@ -24,10 +24,10 @@
                             <tbody>
                                 {% for evento in object_list %}
                                 <tr>
-                                    <td>{{evento.titulo}}</td>
-                                    <td>{{evento.fecha}}</td>
+                                    <td>{{evento.evento}}</td>
+                                    <td>{{evento.inicio}}</td>
                                     <td>
-                                        <a href="{% url 'notas-personales-editar' evento.id %}" class="btn btn-success btn-small-special"><span class="fa fa-pencil"></span></a>
+                                        <a href="{% url 'editar-agenda' evento.id %}" class="btn btn-success btn-small-special"><span class="fa fa-pencil"></span></a>
                                     </td>
                                     <td>
                                         <a data-toggle="modal" href='#modal-id-{{evento.id}}' class="btn btn-danger btn-small-special"><span class="fa fa-trash"></span></a>
@@ -41,12 +41,12 @@
                                                 <h4 class="modal-title">Eliminar evento</h4>
                                             </div>
                                             <div class="modal-body">
-                                                El evento "{{evento.titulo}}" se eliminara permanentemente.
+                                                El evento "{{evento.evento}}" se eliminara permanentemente.
                                                 ¿Esta seguro que desea eliminar el evento?
                                             </div>
                                             <div class="modal-footer">
 
-                                                <a type="button" class="btn btn-danger" href="{% url 'eliminar-notas-contraparte' evento.id %}">Eliminar</a>
+                                                <a type="button" class="btn btn-danger" href="{% url 'borrar-agenda' evento.id %}">Eliminar</a>
                                             </div>
                                         </div>
                                     </div>

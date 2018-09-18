@@ -15,7 +15,7 @@ from sorl.thumbnail import ImageField
 
 class Agendas(models.Model):
     evento = models.CharField(max_length=200)
-    foto = ImageField(upload_to='notas/',null=True, blank=True)
+    foto = ImageField(upload_to='agendas/',null=True, blank=True)
     descripcion = RichTextUploadingField()
     inicio = models.DateField('Fecha de Inicio')
     final = models.DateField('Fecha de Finalización')
