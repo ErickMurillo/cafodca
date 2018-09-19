@@ -1,0 +1,26 @@
+{% extends "admin/base_admin.html" %}
+{% load el_pagination_tags %}
+
+{% block content %}
+<div data-bac="#fcfcfc">
+    <section class="welcome-section pt-20 pb-20">
+        <div class="auto-container">
+            <div class="row clearfix perfil">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
+                	{% paginate 12 imagenes %}
+                	{% for img in imagenes %}
+                		<div class="col-md-3">
+                			<img src="{{img.foto.url_380x250}}">
+                		</div>
+                	{% endfor %}
+                	<div class="styled-pagination mb-20">
+                            <ul>
+                                {% show_pages %}
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}

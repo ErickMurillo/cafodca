@@ -11,6 +11,8 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.forms import inlineformset_factory
 from django.contrib.contenttypes.forms import generic_inlineformset_factory
+from tagging.models import Tag
+from tagging.models import TaggedItem
 
 # Create your views here.
 @login_required
@@ -64,6 +66,68 @@ def eliminar_notas_contraparte(request, id):
 
 @login_required
 def agenda_personales(request, template='admin/agendas.html'):
-    object_list = Agendas.objects.filter(user_id=request.user.id)
+	object_list = Agendas.objects.filter(user_id=request.user.id)
 
-    return render(request, template, locals())
+	return render(request, template, locals())
+
+@login_required
+def documento(request, template='admin/documentos.html'):
+	documentos = Documentos.objects.all()
+	tags = []
+	for docu in Documentos.objects.all():
+		for tag in Tag.objects.filter(name=docu.tags_doc):
+			tags.append(tag)
+
+	query = request.GET.get('q', '')
+	if query:
+		result_documento = Documentos.objects.filter(nombre_doc__icontains=query)
+		result_tags = Tag.objects.filter(name__icontains=query)
+		lista = []
+		tags_lista = []
+		for n in result_documento:
+			lista.append(n)
+		for rtag in result_tags:
+			TaggedItems = TaggedItem.objects.get_by_model(Documentos, rtag.name)
+			if not rtag.items.all().count() == 0:
+				li = []
+				for it in rtag.items.all():
+					if it.object:
+						li.append(it)
+				tags_lista.append({'name':rtag.name, 'count': len(li)})
+			for item in TaggedItems:
+				lista.append(item)
+		#tags.sort(key=operator.itemgetter('count'), reverse=True)
+		documentos = list(set(lista))
+
+	return render(request, template, locals())
+
+@login_required
+def multimedia_fotos(request, template='admin/fotos.html'):
+	imagenes = Imagen.objects.all()
+	tags = []
+	for docu in Imagen.objects.all():
+		for tag in Tag.objects.filter(name=docu.tags_img):
+			tags.append(tag)
+
+	query = request.GET.get('q', '')
+	if query:
+		result_fotos = Imagen.objects.filter(nombre_img__icontains=query)
+		result_tags = Tag.objects.filter(name__icontains=query)
+		lista = []
+		tags_lista = []
+		for n in result_fotos:
+			lista.append(n)
+		for rtag in result_tags:
+			TaggedItems = TaggedItem.objects.get_by_model(Imagen, rtag.name)
+			if not rtag.items.all().count() == 0:
+				li = []
+				for it in rtag.items.all():
+					if it.object:
+						li.append(it)
+				tags_lista.append({'name':rtag.name, 'count': len(li)})
+			for item in TaggedItems:
+				lista.append(item)
+		#tags.sort(key=operator.itemgetter('count'), reverse=True)
+		imagenes = list(set(lista))
+
+	return render(request, template, locals())
