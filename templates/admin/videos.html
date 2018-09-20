@@ -1,5 +1,6 @@
 {% extends "admin/base_admin.html" %}
 {% load el_pagination_tags %}
+{% load embed_video_tags %}
 
 {% block content %}
 <div data-bac="#fcfcfc">
@@ -10,10 +11,10 @@
             	<a href="/foros/privado/multimedia_videos/">Videos</a>
             	<a href="/foros/privado/multimedia_audios/">Audios</a>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
-                	{% paginate 12 imagenes %}
-                	{% for img in imagenes %}
+                	{% paginate 12 videos %}
+                	{% for vid in videos %}
                 		<div class="col-md-3">
-                			<img src="{{img.foto.url_380x250}}">
+                            {% video vid.url '380x250' %}
                 		</div>
                 	{% endfor %}
                 	<div class="styled-pagination mb-20">

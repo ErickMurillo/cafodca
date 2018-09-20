@@ -1,0 +1,52 @@
+{% extends "admin/base_admin.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+{% endblock extra_css %}
+
+{% block content %}
+<div data-bac="#fcfcfc">
+    <section class="welcome-section pt-20 pb-20">
+        <div class="auto-container">
+            <div class="row clearfix perfil">
+            	<a href="/foros/privado/multimedia_fotos/">Imagenes</a>
+            	<a href="/foros/privado/multimedia_videos/">Videos</a>
+            	<a href="/foros/privado/multimedia_audios/">Audios</a>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
+                	<table class="table table-hover" id="example"  style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Tags</th>
+                                    <th>Descargar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for audio in audios %}
+                                <tr>                                    
+                                    <td>{{audio.id}}</td>
+                                    <td>{{audio.nombre_audio}}</td>
+                                    <td>{{audio.tags_aud}}</td>
+                                    <td><a href="/media/{{audio.audio}}" download>Descargar</a></td>
+                                </tr>
+                                {% endfor %}
+                                
+
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+<script type="text/javascript">
+$(document).ready( function () {
+    $('.table').DataTable();
+} );
+</script>
+{% endblock extra_js %}
