@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import *
 from .forms import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.forms import inlineformset_factory
+
+from .models import *
+from notas.models import Notas
 
 # Create your views here.
 @login_required
@@ -31,3 +33,9 @@ def editar_contraparte(request, id, template='admin/editar_contraparte.html'):
 		formset = FormSetInit(instance=contra)
 
 	return render(request, template, locals())
+
+
+def detalle_contraparte(request,id):
+    contra = get_object_or_404(Contraparte, id=id)
+    notas = Notas.objects.filter(user__userprofile__contraparte__id=id).order_by('-fecha')
+    return render(request, 'contraparte_detail.html', locals(),)

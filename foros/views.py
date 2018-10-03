@@ -20,7 +20,7 @@ def perfil(request, template='admin/perfil.html'):
 	usuario = request.user.id
 	user_profile = get_object_or_404(UserProfile, user = usuario)
 	contraparte = get_object_or_404(Contraparte, id = user_profile.contraparte.id)
-	
+
 	foros = Foros.objects.filter(contraparte_id=request.user.id)
 	agendas = Agendas.objects.filter(user_id=request.user.id)
 
@@ -42,7 +42,7 @@ def notas_personales_editar(request, id, template='admin/notas_form.html'):
 		form = NotasForms(request.POST, request.FILES, instance=object)
 		form2 = ForoImgFormSet(data=request.POST, files=request.FILES, instance=object)
 		form3 = ForoDocuFormSet(data=request.POST, files=request.FILES, instance=object)
-		
+
 		if form.is_valid() and form2.is_valid() and form3.is_valid():
 			form_uncommited = form.save()
 			form_uncommited.user = request.user
@@ -50,7 +50,7 @@ def notas_personales_editar(request, id, template='admin/notas_form.html'):
 
 			form2.save()
 			form3.save()
-			
+
 			return redirect('notas-personales')
 	else:
 		form = NotasForms(instance=object)
@@ -193,3 +193,91 @@ def multimedia_audios(request, template='admin/audios.html'):
 		audios = list(set(lista))
 
 	return render(request, template, locals())
+
+### Foros  ###
+@login_required
+def crear_foro(request):
+    if request.method == 'POST':
+        form = ForosForm(request.POST)
+        form2 = ImagenForm(request.POST, request.FILES)
+        form3 = DocumentoForm(request.POST, request.FILES)
+        form4 = VideoForm(request.POST)
+        form5 = AudioForm(request.POST, request.FILES)
+
+        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid() and form5.is_valid():
+            form_uncommited = form.save(commit=False)
+            form_uncommited.contraparte = request.user
+            form_uncommited.save()
+            if form2.cleaned_data['nombre_img'] != '':
+                form2_uncommitd = form2.save(commit=False)
+                form2_uncommitd.content_object = form_uncommited
+                form2_uncommitd.save()
+            if form3.cleaned_data['nombre_doc'] != '':
+                form3_uncommitd = form3.save(commit=False)
+                form3_uncommitd.content_object = form_uncommited
+                form3_uncommitd.save()
+            if form4.cleaned_data['nombre_video'] != '':
+                form4_uncommitd = form4.save(commit=False)
+                form4_uncommitd.content_object = form_uncommited
+                form4_uncommitd.save()
+            if form5.cleaned_data['nombre_audio'] != '':
+                form5_uncommitd = form5.save(commit=False)
+                form5_uncommitd.content_object = form_uncommited
+                form5_uncommitd.save()
+
+            thread.start_new_thread(notify_all_foro, (form_uncommited,))
+
+            return HttpResponseRedirect('/foros')
+
+    else:
+        form = ForosForm()
+        form2 = ImagenForm()
+        form3 = DocumentoForm()
+        form4 = VideoForm()
+        form5 = AudioForm()
+    return render(request, 'foros/crear_foro.html', locals())
+
+
+@login_required
+def ver_foro(request, foro_id):
+    discusion = get_object_or_404(Foros, id=foro_id)
+
+    if request.method == 'POST':
+        form = AporteForm(request.POST)
+        form2 = ImagenForm(request.POST, request.FILES)
+        form3 = DocumentoForm(request.POST, request.FILES)
+        form4 = VideoForm(request.POST)
+        form5 = AudioForm(request.POST, request.FILES)
+
+        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid() and form5.is_valid():
+            form_uncommited = form.save(commit=False)
+            form_uncommited.user = request.user
+            form_uncommited.foro = discusion
+            form_uncommited.save()
+            if form2.cleaned_data['nombre_img'] != '':
+                form2_uncommitd = form2.save(commit=False)
+                form2_uncommitd.content_object = form_uncommited
+                form2_uncommitd.save()
+            if form3.cleaned_data['nombre_doc'] != '':
+                form3_uncommitd = form3.save(commit=False)
+                form3_uncommitd.content_object = form_uncommited
+                form3_uncommitd.save()
+            if form4.cleaned_data['nombre_video'] != '':
+                form4_uncommitd = form4.save(commit=False)
+                form4_uncommitd.content_object = form_uncommited
+                form4_uncommitd.save()
+            if form5.cleaned_data['nombre_audio'] != '':
+                form5_uncommitd = form5.save(commit=False)
+                form5_uncommitd.content_object = form_uncommited
+                form5_uncommitd.save()
+
+            thread.start_new_thread(notify_all_aporte, (form_uncommited,))
+
+            return HttpResponseRedirect('/foros/ver/%d' % discusion.id)
+    else:
+        form = AporteForm()
+        form2 = ImagenForm()
+        form3 = DocumentoForm()
+        form4 = VideoForm()
+        form5 = AudioForm()
+    return render(request, 'foros/ver_foro.html',  locals())
