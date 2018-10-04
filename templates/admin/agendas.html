@@ -9,9 +9,14 @@
     <section class="welcome-section pt-20 pb-20">
         <div class="auto-container">
             <div class="row clearfix perfil">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
-                	<a href="/agendas/crear/">Nuevo evento</a>
-                	<div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-title double-line line-left">
+                        <div style="flex-grow: 8">
+                            <h3 class="inner-title ">Eventos de la organización</h3>
+                        </div> 
+                        <a class="theme-btn btn-style-two admin-btn" href="/agendas/crear/">Nuevo evento</a>
+                    </div>
+                    <div class="panel-body">
                         <table class="table table-hover" id="example"  style="width:100%">
                             <thead>
                                 <tr>
@@ -47,6 +52,7 @@
                                             <div class="modal-footer">
 
                                                 <a type="button" class="btn btn-danger" href="{% url 'borrar-agenda' evento.id %}">Eliminar</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                             </div>
                                         </div>
                                     </div>

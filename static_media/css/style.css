@@ -39,7 +39,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic);
 @import url(https://fonts.googleapis.com/css?family=Raleway:800,700,600,500,400,400italic);
 
-@import url('font-awesome.css');
+@import url('font-awesome.min.css');
 @import url('flaticon.css');
 @import url('animate.css');
 @import url('jquery.bxslider.css');
