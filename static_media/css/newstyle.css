@@ -186,3 +186,7 @@ background: #f14b05;
 .theme_color_two{
     color: #f14b05 !important;
 }
+.cont_org{
+  max-height: 76px;
+  overflow: hidden;
+}

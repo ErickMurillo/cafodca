@@ -169,7 +169,7 @@
                                         {% endthumbnail %}
                                     {% elif nota.fotos.all %}
                                         {%for thumb in nota.fotos.all|slice:"1"%}
-                                        <img src="{{thumb.foto.url_380x250}}" alt="">
+                                        <img src="http://cafodca.org{{thumb.foto.url_380x250}}" alt="">
                                         {% endfor %}
                                     {% else %}
                                         <img src="https://via.placeholder.com/380x250">
@@ -202,94 +202,6 @@
             </div>
         </div>
     </section>
-
-    <!--Recent Causes Section
-    <section class="recent-projects">
-        <div class="auto-container">
-
-            <div class="sec-title clearfix">
-                <div class="pull-left">
-                    <h2>Recent <span class="normal-font theme_color">Causes</span></h2>
-                    <div class="text">Lorem ipsum dolor sit amet, cum at inani interesset, nisl fugit munere ad mel,vix an omnium dolor amet </div>
-                </div>
-                <div class="pull-right padd-top-30">
-                    <a href="#" class="theme-btn btn-style-three">See All Projects</a>
-                </div>
-            </div>
-            <div class="row clearfix">
-
-
-                <div class="column default-featured-column style-two col-md-4 col-sm-4 col-xs-12">
-                    <article class="inner-box wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
-                        <figure class="image-box">
-                            <a href="#"><img src="http://cafodca.org/uploads/fotos/IMG_20180509_091635.640x480.jpg" alt=""></a>
-                            <div class="donate-piechart">
-                              <div class="piechart-block">
-                                <div class="piechart style-one"  data-fg-color="rgba(250,119,68,1)" data-value=".75">
-                                  <span>.75</span>
-                                </div>
-                              </div>
-                            </div>
-                        </figure>
-                        <div class="content-box">
-                            <h3><a href="#">Charity For Education</a></h3>
-                            <div class="column-info"><span class="raised-amount">Raised: $1890</span> Goal: $2500</div>
-                            <div class="text">Lorem ipsum dolor sit amet et siu amet amet audiam copiosaei mei.</div>
-                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Donate Now</a>
-                            <a href="#" class="theme-btn btn-style-two btn-sm">Leer más</a>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="column default-featured-column style-two col-md-4 col-sm-4 col-xs-12">
-                    <article class="inner-box wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
-                        <figure class="image-box">
-                            <a href="#"><img src="images/causes/2.jpg" alt=""></a>
-                            <div class="donate-piechart">
-                              <div class="piechart-block">
-                                <div class="piechart style-one"  data-fg-color="rgba(250,119,68,1)" data-value=".65">
-                                  <span>.65</span>
-                                </div>
-                              </div>
-                            </div>
-                        </figure>
-                        <div class="content-box">
-                            <h3><a href="#">Charity For Education</a></h3>
-                            <div class="column-info"><span class="raised-amount">Raised: $1890</span> Goal: $2500</div>
-                            <div class="text">Lorem ipsum dolor sit amet et siu amet amet audiam copiosaei mei.</div>
-                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Donate Now</a>
-                            <a href="#" class="theme-btn btn-style-two btn-sm">Leer más</a>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="column default-featured-column style-two col-md-4 col-sm-4 col-xs-12">
-                    <article class="inner-box wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
-                        <figure class="image-box">
-                            <a href="#"><img src="images/causes/3.jpg" alt=""></a>
-                            <div class="donate-piechart">
-                              <div class="piechart-block">
-                                <div class="piechart style-one"  data-fg-color="rgba(250,119,68,1)" data-value=".85">
-                                  <span>.85</span>
-                                </div>
-                              </div>
-                            </div>
-                        </figure>
-                        <div class="content-box">
-                            <h3><a href="#">Charity For Education</a></h3>
-                            <div class="column-info"><span class="raised-amount">Raised: $1890</span> Goal: $2500</div>
-                            <div class="text">Lorem ipsum dolor sit amet et siu amet amet audiam copiosaei mei.</div>
-                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Donate Now</a>
-                            <a href="#" class="theme-btn btn-style-two btn-sm">Leer más</a>
-                        </div>
-                    </article>
-                </div>
-
-            </div>
-        </div>
-    </section>-->
 
     <!--Main Features-->
     <section class="main-features parallax-section theme-overlay overlay-deep-white" style="background-image:url(http://monitoreo-finca.cafodca.org/static/img/10.JPG);">
@@ -328,12 +240,12 @@
                         <div class="inner-box text-center">
                             <!--Image Box-->
                             <figure class="image-box">
-                                <img src="{{img.foto.url_380x250}}" alt="">
+                                <img src="http://cafodca.org{{img.foto.url_380x250}}" alt="">
                             </figure>
                             <div class="overlay-box">
                                 <div class="inner-content">
                                     <div class="content">
-                                        <a class="arrow lightbox-image" href="{{img.foto.url_640x480}}" title="Image Caption Here"><span class="icon flaticon-cross-4"></span></a>
+                                        <a class="arrow lightbox-image" href="http://cafodca.org{{img.foto.url_640x480}}" title="Image Caption Here"><span class="icon flaticon-cross-4"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -346,25 +258,6 @@
 
         </div>
     </section>
-
-    <!--Intro Section
-    <section class="subscribe-intro">
-        <div class="auto-container">
-            <div class="row clearfix">
-
-                <div class="column col-md-9 col-sm-12 col-xs-12">
-                    <h2>Subcribe for Newsletter</h2>
-                    There are many variations of passages of Lorem Ipsum available but the majority have
-                </div>
-
-                <div class="column col-md-3 col-sm-12 col-xs-12">
-                    <div class="text-right padd-top-20">
-                        <a href="#" class="theme-btn btn-style-one">Subscribe Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
 
     <!--Team Section-->
     <section class="team-section">
@@ -384,13 +277,13 @@
                 <!--Column-->
                 <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <figure class="image"><a href="mailto:mail@email.com"><img src="/static/images/resource/team-image-1.jpg" alt=""></a></figure>
+                        <figure class="image"><img src="/static/images/resource/team-image-1.jpg" alt=""></figure>
                         <div class="member-info">
                             <h3>{{empresa.siglas}}</h3>
-                            <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px">{{empresa.pais}}</div>
+                            <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px"> {{empresa.pais}}</div>
                         </div>
                         <div class="content">
-                            <div class="text"><p>{{empresa.generalidades|safe|striptags|truncatewords:25}}<p></div>
+                            <div class="text cont_org"><p>{{empresa.generalidades|safe|striptags|truncatewords:20}}<p></div>
                             <div class="social-links">
                                 <a href="#"><span class="fa fa-facebook-f"></span></a>
                                 <a href="#"><span class="fa fa-twitter"></span></a>
