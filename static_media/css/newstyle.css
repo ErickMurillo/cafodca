@@ -204,10 +204,68 @@ background: #f14b05;
 .perfil .panel .panel-title{
   display: flex;
   flex-wrap: nowrap;
-   align-items: baseline;
+  align-items: baseline;
+}
+.flex_container{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
 }
 .foro-title{
   display: flex;
   flex-wrap: nowrap;
    align-items: baseline;
+}
+.box_shadow{
+  -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+}
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    max-width: 960px;
+}
+.btn-style-danger{
+  position:relative;
+  display:inline-block;
+  line-height:24px;
+  padding:11px 25px;
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  background:#c9302c;
+  color:#ffffff !important;
+  border:2px solid #c9302c !important;
+  border-radius:3px;
+}
+
+.btn-style-danger:hover{
+  background:#ffffff;
+  color:#c9302c !important;
+  border-color:#93C55E; 
+}
+.column.blog-news-column.foro_content  .content-box{
+  padding: 0px !important;
+}
+.sidebar_foro .widget{
+    margin-bottom: 10px;
+}
+.sidebar_foro .sidebar-title{
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
