@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="/static/css/slick.css"/>
 <link href="/static/css/slick-theme.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
-<
+<link rel="stylesheet" href="/static/css/audioplayer.css" />
 {% endblock extra_css %}
 
 
@@ -48,7 +48,7 @@
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
                 
 <script type="text/javascript">
-$('.single-item').slick({
+$('.single-item, .gallery{{respuesta.id}}').slick({
   dots: true,
   infinite: true,
   speed: 300,
@@ -57,6 +57,17 @@ $('.single-item').slick({
   autoplay: true,
   autoplaySpeed: 2000
 });
+{% for respuesta in discusion.aportes_set.all %}
+$('.gallery{{respuesta.id}}').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 1,
+  adaptiveHeight: true,
+  autoplay: true,
+  autoplaySpeed: 2000
+});
+{% endfor %}
 $('[data-fancybox]').fancybox({
     protect: true,
     youtube : {
@@ -68,6 +79,8 @@ $('[data-fancybox]').fancybox({
     }
 });
 </script>
+<script src="/static/js/audioplayer.min.js"></script>
+<script>$( function() { $( 'audio' ).audioPlayer(); } );</script>
 {% endblock %}
 
 {% block content %}
@@ -186,12 +199,12 @@ $('[data-fancybox]').fancybox({
                             <div class="widget wow fadeInUp">
                                 <div class="sidebar-title"><h3>Video</h3></div>
                                 {% for video in discusion.video.all%}
-                                    <li><a data-fancybox href="{{ video.url }}">
-                                        {{video.nombre_video}}
-                                    </a></li>
+                                    <a data-fancybox href="{{ video.url }}">
+                                        <img src="https://via.placeholder.com/854x480" alt="" width="100%">
+                                    </a>
                                 {% endfor %}
                             </div>
-                    {%endif%}
+                        {%endif%}
                     </aside>
                 </div>
             </div>
@@ -221,83 +234,71 @@ $('[data-fancybox]').fancybox({
                             
                             <div class="comment-info">
                                 <strong rel="tooltip" title="{{respuesta.user.first_name}} - {{respuesta.user.userprofile.contraparte}}">{{respuesta.user}}</strong>
-                                <div class="comment-time">{{respuesta.fecha|date:"d \d\e F \d\e\l Y"}}</div></div>
+                                <div class="comment-time">{{respuesta.fecha|date:"d \d\e F \d\e\l Y"}}</div>
+                            </div>
                             <div class="text">{{respuesta.contenido|safe}}</div>
                             
                             <a class="reply-btn" data-fancybox data-type="iframe" data-src="/foros/ver_comentario/{{respuesta.id}}" href="javascript:;">
                                 <span class="txt">Comentar</span>
                             </a>
                             {% if respuesta.user == request.user or request.user.is_superuser %}
+                            <br>
                                 <a class="btn-theme btn-style-two btn-sm" href="/foros/aporte/editar/{{respuesta.id}}"><span class="txt fa fa-pencil"></span></a>
                                 <a class="btn-theme btn-style-danger btn-sm" data-toggle="modal" data-target="#myModalAporte"><span class="txt fa fa-trash"></span></a>
                             {% endif %}
+                            <hr>
                             <div class="attached_comment">
-                                {%if respuesta.fotos.all%}
-                                    <div class="sidebar-title">Fotos</div>
-                                    <div class="thumbs" style="margin-top:10px">
-                                        {% for img in respuesta.fotos.all%}
-                                        <a class="fancybox" rel="gallery{{respuesta.id}}" title="{{imagen.nombre_img}}" href="{{img.foto.url_640x480}}"><img src="{{img.foto.url_80x80}}" alt="{{imagen.nombre}}" title="{{imagen.nombre}}"></a>
-                                        {% endfor %}
-                                        <div class="clean"></div>
+                                
+                                <div class="row">
+                                    {%if respuesta.fotos.all%}
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                        <h4><b>Imágenes</b></h4>
+                                        <br>
+                                        <div class="gallery{{respuesta.id}}">
+                                            {% for img in respuesta.fotos.all%}
+                                                <a data-fancybox="gallery" title="{{imagen.nombre_img}}" href="{{img.foto.url_640x480}}" alt="{{imagen.nombre_img}}">
+                                                    <img src="{{img.foto.url_300x200}}" alt="{{imagen.nombre}}" title="{{imagen.nombre}}">
+                                                </a>
+                                            {% endfor %}
+                                        </div>
                                     </div>
                                     {%endif%}
                                     {%if respuesta.adjuntos.all %}
-                                    <div class="sidebar-title">Documentos</div>
-                                    <table class="table  table-bordered table-condensed doc-sidebar">
-                                        <tbody>
+                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                            <h4><b>Documentos</b></h4>
+                                            <br>
                                             {% for doc in respuesta.adjuntos.all%}
-                                            <tr>
-                                                <td>{{doc.nombre_doc}}</td>
-                                                <td><center><a href="/uploads/{{doc.adjunto}}" class=" btn btn-info btn-mini dropdown-toggle"><i class="icon-download-alt icon-white"></i>Descargar</a></center></td>
-                                            </tr>
+                                                <a class="btn-theme btn-style-three" href="/uploads/{{doc.adjunto}}" target="_blank">{{doc.nombre_doc}} <span class="fa fa-download"></span></a>
                                             {% endfor %}
-                                        </tbody>
-                                    </table>
+                                        </div>
                                     {%endif%}
                                     {%if respuesta.video.all%}
-                                    <div class="sidebar-title">Videos</div>
-                                    <table class="table  table-bordered table-condensed doc-sidebar">
-                                        <tbody>
+                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                            <h4><b>Video</b></h4>
+                                            <br>
                                             {% for video in respuesta.video.all%}
-                                            <tr>
-                                                <td><a href="" data-toggle="modal" data-target="#myModalresp{{video.id}}"><img src="{{video.url}}" width="290" height="150"><img src="/files/img/player.png" class="player-icon"></a></td>
-                                            </tr>
-                                            <div class="modal fade hide modal-video" id="myModalresp{{video.id}}">
-                                                <div class="modal-header">
-                                                    <a class="close" data-dismiss="modal">×</a>
-                                                    <h3>{{video.nombre_video}}</h3>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>{{ video.url }}</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
-                                                </div>
-                                            </div>
+                                            <a data-fancybox data-options='{"caption" : "{{video.nombre_video}}"}' href="{{ video.url }}">
+                                                <img src="https://via.placeholder.com/854x480" alt="" width="100%" alt="{{video.nombre_video}}">
+                                            </a>
                                             {% endfor %}
-                                        </tbody>
-                                    </table>
+                                        </div>
                                     {%endif%}
+                                    <div class="clearfix "></div>
                                     {%if respuesta.audio.all%}
-                                    <div class="sidebar-title">Audio</div>
-                                    <table class="table  table-bordered table-condensed doc-sidebar">
-                                        <tbody>
+                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                            <h4><b>Audio</b></h4>
+                                            <br>
                                             {% for audio in respuesta.audio.all%}
-                                            <tr>
-                                                <td>{{audio.nombre_audio}}</br>
-                                                    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="280" height="20"
-                                                    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
-                                                    <param name="movie" value="/files/js/singlemp3player.swf?file=/uploads/{{audio.audio}}&showDownload=true" />
-                                                    <param name="wmode" value="transparent" />
-                                                    <embed wmode="transparent" width="280" height="20" src="/files/js/singlemp3player.swf?file=/uploads/{{audio.audio}}&showDownload=true"
-                                                    type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-                                                </object>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                {%endif%}
+                                                <div>
+                                                    <p>{{audio.nombre_audio}}</p>
+                                                    <audio src="/uploads/{{audio.audio}}" preload="auto" /></audio>
+                                                    <br>
+                                                </div>
+
+                                            {% endfor %}
+                                        </div>
+                                    {%endif%}
+                                </div>
                             </div>
                         </div>
                         {% for comentario in respuesta.comentarios_set.all %}
@@ -315,9 +316,64 @@ $('[data-fancybox]').fancybox({
                                 </div>
                                 <div class="text">{{comentario.comentario|safe}}</div>
                                 {% if respuesta.user == request.user or request.user.is_superuser %}
+                                <br>
                                     <a class="btn-theme btn-style-two btn-sm" href="/foros/comentario/editar/{{comentario.id}}"><span class="txt fa fa-pencil"></span></a>
                                     <a class="btn-theme btn-style-danger btn-sm" data-toggle="modal" data-target="#myModalcomment"><span class="txt fa fa-trash"></span></a>
                                 {% endif %}
+                                <hr>
+                                <div class="attached_comment">
+                                    
+                                    <div class="row">
+                                        {%if respuesta.fotos.all%}
+                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                            <h4><b>Imágenes</b></h4>
+                                            <br>
+                                            <div class="gallery{{respuesta.id}}">
+                                                {% for img in respuesta.fotos.all%}
+                                                    <a data-fancybox="gallery" title="{{imagen.nombre_img}}" href="{{img.foto.url_640x480}}" alt="{{imagen.nombre_img}}">
+                                                        <img src="{{img.foto.url_300x200}}" alt="{{imagen.nombre}}" title="{{imagen.nombre}}">
+                                                    </a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        {%endif%}
+                                        {%if respuesta.adjuntos.all %}
+                                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                                <h4><b>Documentos</b></h4>
+                                                <br>
+                                                {% for doc in respuesta.adjuntos.all%}
+                                                    <a class="btn-theme btn-style-three" href="/uploads/{{doc.adjunto}}" target="_blank">{{doc.nombre_doc}} <span class="fa fa-download"></span></a>
+                                                {% endfor %}
+                                            </div>
+                                        {%endif%}
+                                        {%if respuesta.video.all%}
+                                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                                <h4><b>Video</b></h4>
+                                                <br>
+                                                {% for video in respuesta.video.all%}
+                                                <a data-fancybox data-options='{"caption" : "{{video.nombre_video}}"}' href="{{ video.url }}">
+                                                    <img src="https://via.placeholder.com/854x480" alt="" width="100%" alt="{{video.nombre_video}}">
+                                                </a>
+                                                {% endfor %}
+                                            </div>
+                                        {%endif%}
+                                        <div class="clearfix "></div>
+                                        {%if respuesta.audio.all%}
+                                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                                <h4><b>Audio</b></h4>
+                                                <br>
+                                                {% for audio in respuesta.audio.all%}
+                                                    <div>
+                                                        <p>{{audio.nombre_audio}}</p>
+                                                        <audio src="/uploads/{{audio.audio}}" preload="auto" /></audio>
+                                                        <br>
+                                                    </div>
+
+                                                {% endfor %}
+                                            </div>
+                                        {%endif%}
+                                    </div>
+                                </div>
 
                             </div>
                         {% endfor %}
@@ -365,6 +421,96 @@ $('[data-fancybox]').fancybox({
                     </div>
                 </div>
             </div>
+            <!--End Comments Area-->
+            <!--Comment Form -->
+            <div class="comment-form wow fadeInUp well" data-wow-delay="200ms" data-wow-duration="1500ms">
+                    
+                <div class="group-title text-uppercase"><h2>AGREGAR APORTE A ESTE FORO</h2><div class="default-line-left"></div></div>
+                
+                <!--Comment Form-->
+                <form  enctype="multipart/form-data" action="." method="post">{% csrf_token %}
+                    {{ form.media }}
+                    <div class="row clearfix">
+                        {%if form.errors%}
+                                <div class="alert alert-error"><b>Favor corregir los siguientes errores</b><br>{{form.errors}}</div>
+                        {%endif%}
+                        
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 form-group">
+                            {{form.as_p}}
+                        </div>
+                        <div class=" col-lg-3 col-md-3 col-sm-12 col-xs-12 form-group">
+                            <p><label for="">Adjunto:</label></p>
+                            <!--Accordion Box-->
+                            <div class="accordion-box">
+                                <!-- Accordion -->
+                                <div class="accordion accordion-block">
+                                    <div class="accord-btn"><h4>Fotos e imágenes</h4></div>
+                                    <div class="accord-content">
+                                        {{ form2.management_form }}
+                                        {% for foto in form2 %}
+                                        <div class="media-form-inline">
+                                                {{foto.label_tag}}
+                                                {{foto}}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-box">
+                                <!-- Accordion -->
+                                <div class="accordion accordion-block">
+                                    <div class="accord-btn"><h4>Documentos</h4></div>
+                                    <div class="accord-content">
+                                        {{ form3.management_form }}
+                                        {% for docu in form3 %}
+                                        <div class="media-form-inline">
+                                                {{docu.label_tag}}
+                                                {{docu}}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-box">
+                                <!-- Accordion -->
+                                <div class="accordion accordion-block">
+                                    <div class="accord-btn"><h4>Videos</h4></div>
+                                    <div class="accord-content">
+                                        {{ form4.management_form }}
+                                        {% for video in form4 %}
+                                        <div class="media-form-inline">
+                                                {{video.label_tag}}
+                                                {{video}}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-box">
+                                <!-- Accordion -->
+                                <div class="accordion accordion-block">
+                                    <div class="accord-btn"><h4>Audios</h4></div>
+                                    <div class="accord-content">
+                                        {{ form5.management_form }}
+                                        {% for audio in form5 %}
+                                        <div class="media-form-inline">
+                                                {{audio.label_tag}}
+                                                {{audio}}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <input class="theme-btn btn-style-two" type="submit" id="submitfoo" value="Guardar"></input>
+                            
+                        </div>
+
+                        
+                    </div>
+                </form>
+                    
+            </div>
+
         </div>
     </div>
     
