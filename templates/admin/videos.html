@@ -3,28 +3,71 @@
 {% load embed_video_tags %}
 
 {% block content %}
-<div data-bac="#fcfcfc">
-    <section class="welcome-section pt-20 pb-20">
+    <section class="gallery-section">
         <div class="auto-container">
-            <div class="row clearfix perfil">
-            	<a href="/foros/privado/multimedia_fotos/">Imagenes</a>
-            	<a href="/foros/privado/multimedia_videos/">Videos</a>
-            	<a href="/foros/privado/multimedia_audios/">Audios</a>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
-                	{% paginate 12 videos %}
-                	{% for vid in videos %}
-                		<div class="col-md-3">
-                            {% video vid.url '380x250' %}
-                		</div>
-                	{% endfor %}
-                	<div class="styled-pagination mb-20">
-                            <ul>
-                                {% show_pages %}
-                            </ul>
-                        </div>
-                </div>
+            
+            <!--Filter-->
+            <div class="filters text-center">
+                <ul class="filter-btns clearfix btngallery_admin">
+                    
+                    <li class=""><a class="" href="/foros/privado/multimedia_fotos/">Imagenes</a></li>
+                    <li class="active"><a href="/foros/privado/multimedia_videos/">Videos</a></li>
+                    <li class=""><a href="/foros/privado/multimedia_audios/">Audios</a></li>
+                </ul>
             </div>
+            <div class="row clearfix">
+                    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                        <aside class="sidebar">
+                        
+                            <!-- Search Form -->
+                            <div class="widget search-box">
+                                
+                                <form method="post" action="index.html">
+                                    <div class="form-group">
+                                        <input type="search" name="search-field" value="" placeholder="Buscar">
+                                        <button type="submit"><span class="icon flaticon-tool-5"></span></button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                            <div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                                <div class="sidebar-title"><h3>Palabras claves</h3></div>
+                                
+                                <ul class="list">
+                                    {% for vid in videos %}
+                                    <li><a href="#" class="pdr10">{{vid.tags_vid}}</a></li>
+                                    {% endfor %}
+
+                                </ul>
+                                
+                            </div>
+                            <!-- <div class="widget popular-tags">
+                                <div class="sidebar-title"><h3>Palabras claves</h3></div>
+                                {% for doc in documentos %}
+                                    <a href="#">{{doc.tags_doc}}</a>
+                                {% endfor %}
+                                
+                            </div> -->
+                        </aside>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="row clearfix">
+                            {% paginate 12 videos %}
+                            {% for vid in videos %}
+                                <div class="column col-md-6 col-sm-6 col-xs-12">
+                                    {% video vid.url '420x250' %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            <div class="styled-pagination mb-20">
+                <ul>
+                    {% show_pages %}
+                </ul>
+            </div>
+
         </div>
     </section>
-</div>
+
 {% endblock content %}

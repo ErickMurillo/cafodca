@@ -278,3 +278,25 @@ background: #f14b05;
 .orgdetail-section{
   margin-top: 30px;
 }
+.controls  [name="nombre"]{
+  min-width: 60% !important;
+}
+.gallery-section .filter-btns li{
+  padding
+}
+.gallery-section .filter-btns.btngallery_admin li a{
+    padding: 9px 25px;
+  }
+.gallery-section .filter-btns.btngallery_admin li:hover a, .gallery-section .filter-btns li.active a{
+    color: #ffffff;
+
+}
+.tp-caption.sfl.sfb.tp-resizeme.text-center.prueba.start{
+  left: auto;
+  padding: 20px;
+}
+.tp-caption.prueba{
+      white-space: inherit;
+      margin-top: 20px;
+      background: rgba(69, 58, 54, 0.5);
+}
