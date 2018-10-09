@@ -1,8 +1,6 @@
 {% extends "admin/base_admin.html" %}
 
-{% block extra_css %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-{% endblock extra_css %}
+
 
 {% block content %}
 <div data-bac="#fcfcfc">
@@ -43,7 +41,6 @@
 {% endblock content %}
 
 {% block extra_js %}
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <script type="text/javascript">
 $(document).ready( function () {
     $('.table').DataTable();

@@ -1,9 +1,4 @@
 {% extends "admin/base_admin.html" %}
-
-{% block extra_css %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-{% endblock extra_css %}
-
 {% block content %}
 <div data-bac="#fcfcfc">
     <section class="welcome-section pt-20 pb-20">
@@ -71,10 +66,15 @@
 {% endblock content %}
 
 {% block extra_js %}
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
 <script type="text/javascript">
-	$(document).ready( function () {
-    $('.table').DataTable();
-} );
+    $(document).ready(function() {
+        $('.table').dataTable( {
+            "order": [[ 3, "desc" ]],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        } );
+    } );
 </script>
 {% endblock extra_js %}

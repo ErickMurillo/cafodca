@@ -1,6 +1,8 @@
 {% extends "admin/base_admin.html" %}
 {% load el_pagination_tags %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
+{% endblock extra_css %}
 {% block content %}
 <div data-bac="#fcfcfc">
     <section class="welcome-section pt-20 pb-20">
@@ -12,18 +14,26 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
                 	{% paginate 12 imagenes %}
                 	{% for img in imagenes %}
-                		<div class="col-md-3">
-                			<img src="{{img.foto.url_380x250}}">
+                		<div class="col-md-3 mb-20">
+                            <a data-fancybox="gallery" title="{{img.nombre_img}}" href="http://cafodca.org{{img.foto.url_640x480}}">
+                			 <img  src="http://cafodca.org{{img.foto.url_380x250}}" width="100%">
+                            </a>
                 		</div>
                 	{% endfor %}
-                	<div class="styled-pagination mb-20">
+
+                	
+                </div>
+
+            </div>
+            <div class="styled-pagination mb-20">
                             <ul>
                                 {% show_pages %}
                             </ul>
                         </div>
-                </div>
-            </div>
         </div>
     </section>
 </div>
 {% endblock content %}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+{% endblock extra_js %}
