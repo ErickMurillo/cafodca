@@ -1,49 +1,100 @@
 {% extends "admin/base_admin.html" %}
 
-{% block extra_css %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-{% endblock extra_css %}
-
 {% block content %}
 <div data-bac="#fcfcfc">
     <section class="welcome-section pt-20 pb-20">
         <div class="auto-container">
             <div class="row clearfix perfil">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
-                	<div class="table-responsive">
-                        <table class="table table-hover" id="example"  style="width:100%">
-                            <thead>
-                                <tr>
-                                	<th>Id</th>
-                                    <th>Nombre del documento</th>
-                                    <th>Tags</th>
-                                    <th>Descargar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                    <aside class="sidebar">
+                    
+                        <!-- Search Form -->
+                        <div class="widget search-box">
+                            
+                            <form method="post" action="index.html">
+                                <div class="form-group">
+                                    <input type="search" name="search-field" value="" placeholder="Buscar">
+                                    <button type="submit"><span class="icon flaticon-tool-5"></span></button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                        <div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="sidebar-title"><h3>Palabras claves</h3></div>
+                            
+                            <ul class="list">
                                 {% for doc in documentos %}
-                                <tr>
-                                	<td>{{doc.id}}</td>
-                                    <td>{{doc.nombre_doc}}</td>
-                                    <td>{{doc.tags_doc}}</td>
-                                    <td><a href="/media/{{doc.adjunto}}" download>Descargar</a></td>
-                                </tr>
+                                <li><a href="#" class="pdr10">{{doc.tags_doc}}</a></li>
                                 {% endfor %}
-                            </tbody>
-                        </table>
+
+                            </ul>
+                            
+                        </div>
+                        <!-- <div class="widget popular-tags">
+                            <div class="sidebar-title"><h3>Palabras claves</h3></div>
+                            {% for doc in documentos %}
+                                <a href="#">{{doc.tags_doc}}</a>
+                            {% endfor %}
+                            
+                        </div> -->
+                    </aside>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-title double-line line-left">
+                            <div style="flex-grow: 8">
+                                <h3 class="inner-title ">Documentos</h3>
+                            </div> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="example"  style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <td>Nombre</td>
+                                                <th>Fecha</th>
+                                                <th>Usuario</th>
+                                                <th>Descargar</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for doc in documentos %}
+                                            <tr>
+                                                <td>{{doc.id}}</td>
+                                                <td>{{doc.nombre_doc}}</td>
+                                                <td>01/06/2018</td>
+                                                <td>Pablo Garcia</td>
+                                                <td>
+                                                    <a href="/media/{{doc.adjunto}}" class="btn btn-success btn-small-special"><span class="fa fa-download  "></span></a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
+
 {% endblock content %}
 
 {% block extra_js %}
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
 <script type="text/javascript">
-$(document).ready( function () {
-    $('.table').DataTable();
-} );
+    $(document).ready(function() {
+        $('.table').dataTable( {
+            "order": [[ 3, "desc" ]],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        } );
+    } );
 </script>
 {% endblock extra_js %}

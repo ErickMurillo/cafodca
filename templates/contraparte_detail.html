@@ -11,6 +11,113 @@
     </script>
 {% endblock %}
 {% block content %}
+        <section class="page-title" style="background-image:url(http://www.vielva.cl/img/Category/5/AGRICOLA.png);">
+            <div class="auto-container">
+                <div class="sec-title">
+                    <h1>Detalles Contrapartes</h1>
+                    <div class="bread-crumb"><a href="/">Inicio</a> / <a href="/contrapartes/" class="current">Contrapartes</a> / <a>Detalles Contrapartes</a></div>
+                </div>
+            </div>
+        </section>
+        <section class="orgdetail-section pt-20 pb-20">
+            <div class="auto-container">
+                <div class="row clearfix perfil">
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 detalle-perfil ">
+                        <h3 class="theme_color"><b>{{contra.nombre}} </b></h3>
+                        <h3 class="theme_color_two"><b>{{contra.siglas}}</b></h3>
+                        <ul class="list-inline">
+                            <li class="pais">
+                                <!-- <img src="https://icon-icons.com/icons2/40/PNG/48/NicaraguaFlag_6444.png" alt="" width="20px"> -->
+                                <span class="fa fa-map-marker icon"></span><span class="icon_text">{{contra.pais}}</span>
+                            </li>
+                            <li class="fundacion">
+                                <span class="fa fa-calendar icon"></span><span class="icon_text">Fundación {{contra.fundacion}}</span>
+                            </li>
+                            
+                        </ul>
+                        <div class="row clearfix">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h5 class="inner-title double-line line-left">Contacto</h5>
+                                <ul class="list-inline">
+                                    <li><span class="fa fa-envelope theme_color"></span> <a href="">simas@simas.com</a></li>
+                                    <li><span class="fa fa-phone theme_color"> </span> <a href="">{{contra.telefono}}</a></li>
+                                    <!--<li><span class="fa fa-globe theme_color"></span> <a href="">www.simas.com.ni</a></li>-->
+                                </ul>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h5 class="inner-title double-line line-left">Redes</h5>
+                                <div class="info-box social-box">
+                                    <div class="social-links clearfix">
+                                        {% for red in contra.redes_set.all %}
+                                        <a href="{{red.url}}" class="img-circle" target="_blank"><span class="{% if red.opcion == 'Sitio web' %}
+                                                                fa fa-globe
+                                                            {% elif red.opcion == 'Facebook' %}
+                                                                fa fa-facebook
+                                                            {% elif red.opcion == 'Twitter' %}
+                                                                fa fa-twitter
+                                                            {% elif red.opcion == 'Youtube' %}
+                                                                fa fa-youtube
+                                                            {% elif red.opcion == 'Google+' %}
+                                                                fa fa-google
+                                                            {% elif red.opcion == 'Instagram' %}
+                                                                fa fa-instagram
+                                                            {% elif red.opcion == 'Linkedin' %}
+                                                                fa fa-linkedin
+                                                            {% elif red.opcion == 'Flickr' %}
+                                                                fa fa-flickr
+                                                            {% elif red.opcion == 'Pinterest' %}
+                                                                fa fa-pinterest
+                                                            {% elif red.opcion == 'Vimeo' %}
+                                                                fa fa-vimeo
+                                                            {% elif red.opcion == 'Otra' %}
+                                                                fa fa-link
+                                                            {% endif %}"></span></a>
+                                        {% endfor %}
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 logo-perfil">
+                        <img src="{{contra.logo.url_350x250}}" alt="" width="180px" class="pt-10 pb-10">
+                        <div class="">
+                            <a class="theme-btn btn-style-two ml-40" href="">Editar</a>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="welcome-section pb-60" >
+            <div class="auto-container" data-bac="#fff">
+
+                <div class="row clearfix">
+                    <div class="col-lg-12 org-contenido">
+                        <div class="content-box">
+                            <h4 class="inner-title double-line line-left">GENERALIDADES</h4>
+                            <p class="text">
+                                {{contra.generalidades|safe}} 
+                            </p>
+                            <br>
+                            <h4 class="inner-title double-line line-left">TEMAS</h4>
+                            <p class="text">
+                                {{contra.temas|safe}} 
+                            </p>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+<!--
 <div class="row">
     <div class="encabezado">
       <div class="container">
@@ -49,7 +156,7 @@
         </div>
         <div class="row detalle-full">
             <div class="span7 divisordoble">
-                <img class="contraparte-detalle-logo"src="{{contra.logo.url_180x160}}" alt="{{contra.nombre}}">
+                <img class="contraparte-detalle-logo" src="{{contra.logo.url_180x160}}" alt="{{contra.nombre}}">
                 <table class="table  table-bordered table-striped table-condensed contraparte-tabla">
                     <tbody>
                         {%if contra.pais %}
@@ -113,5 +220,6 @@
         </div>
     </div>
 </div>
+-->
 
 {% endblock %}

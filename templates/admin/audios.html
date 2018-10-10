@@ -1,24 +1,35 @@
 {% extends "admin/base_admin.html" %}
 
-{% block extra_css %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-{% endblock extra_css %}
+
 
 {% block content %}
 <div data-bac="#fcfcfc">
-    <section class="welcome-section pt-20 pb-20">
-        <div class="auto-container">
-            <div class="row clearfix perfil">
-            	<a href="/foros/privado/multimedia_fotos/">Imagenes</a>
-            	<a href="/foros/privado/multimedia_videos/">Videos</a>
-            	<a href="/foros/privado/multimedia_audios/">Audios</a>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detalle-perfil ">
-                	<table class="table table-hover" id="example"  style="width:100%">
+     <section class="gallery-section">
+        <div class="auto-container perfil">
+            <!--Filter-->
+            <div class="filters text-center">
+                <ul class="filter-btns clearfix btngallery_admin">
+                    
+                    <li class=""><a class="" href="/foros/privado/multimedia_fotos/">Imagenes</a></li>
+                    <li class="active"><a href="/foros/privado/multimedia_videos/">Videos</a></li>
+                    <li class=""><a href="/foros/privado/multimedia_audios/">Audios</a></li>
+                </ul>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-title double-line line-left">
+                    <div style="flex-grow: 8">
+                        <h3 class="inner-title ">Audios</h3>
+                    </div> 
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="example"  style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Tags</th>
+                                    <th>Tag</th>
                                     <th>Descargar</th>
                                 </tr>
                             </thead>
@@ -35,18 +46,25 @@
 
                             </tbody>
                         </table>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 </div>
+
 {% endblock content %}
 
 {% block extra_js %}
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <script type="text/javascript">
-$(document).ready( function () {
-    $('.table').DataTable();
-} );
+    $(document).ready(function() {
+        $('.table').dataTable( {
+            "order": [[ 3, "desc" ]],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        } );
+    } );
 </script>
 {% endblock extra_js %}
