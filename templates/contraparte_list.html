@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load el_pagination_tags %}
+
+{% block content %}
+    <!--Page Title-->
+    <section class="page-title" style="background-image:url(http://www.vielva.cl/img/Category/5/AGRICOLA.png);">
+    	<div class="auto-container">
+        	<div class="sec-title">
+                <h1>Contrapartes</h1>
+                <div class="bread-crumb"><a href="/">Inicio</a> / <a href="/contrapartes/" class="current">Contrapartes</a></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--Sidebar Page-->
+    <div class="team-section pb-0">
+    	<div class="auto-container">
+
+        	<div class="row clearfix">
+                {% paginate 8 object_list %}
+                    {% for object in object_list %}
+                        <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="inner-box">
+                                <figure class="image">
+                                    <a href="{% url 'detalle-contraparte' object.id %}">
+                                        {% if object.logo %}
+                                            {% thumbnail object.logo "270x178" as im %}
+                                                <img src="{{ im.url }}" width="100%">
+                                            {% endthumbnail %}
+                                        {% else %}
+                                            <img src="https://via.placeholder.com/380x250" width="100%">
+                                        {% endif %}
+                                    </a>
+                                </figure>
+                                <div class="member-info">
+                                    <h3><a href="{% url 'detalle-contraparte' object.id %}">{{object.siglas}}</a></h3>
+                                    <div class="designation"><img src="/static/images/{{object.pais.codigo}}-g.png" alt="" width="25px"> {{object.pais}}</div>
+                                </div>
+                                <div class="content">
+                                    <div class="text  cont_org"><p>{{object.generalidades|safe|striptags|truncatechars:130}}</p></div>
+                                    <div class="social-links">
+                                        <a href="#"><span class="fa fa-facebook-f"></span></a>
+                                        <a href="#"><span class="fa fa-twitter"></span></a>
+                                        <a href="#"><span class="fa fa-google-plus"></span></a>
+                                        <a href="#"><span class="fa fa-linkedin"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                      
+            </div>
+            <!-- Styled Pagination -->
+                        <div class="styled-pagination mb-20">
+                            <ul>
+                                {% show_pages %}
+                                <!--<li><a class="prev" href="#"><span class="fa fa-angle-left"></span>&ensp;Anterior</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#" class="active">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a class="next" href="#">Siguiente&ensp;<span class="fa fa-angle-right"></span></a></li>-->
+
+                            </ul>
+                        </div>
+        </div>
+    </div>
+{% endblock content %}

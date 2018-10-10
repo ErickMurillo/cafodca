@@ -4,22 +4,16 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
-# from south.modelsinspector import add_introspection_rules
 # from tagging.models import Tag
 from tagging.fields import TagField
-# from taggit_autosuggest.managers import TaggableManager
 from django.contrib.auth.models import User
 #from contrapartes.models import Usuarios
 from thumbs import ImageWithThumbsField
 from utils import *
 import datetime
-# from south.modelsinspector import add_introspection_rules
 # from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from embed_video.fields import EmbedVideoField
-
-# add_introspection_rules ([], ["^ckeditor\.fields\.RichTextField"])
-# add_introspection_rules ([], ["^tagging_autocomplete\.models\.TagAutocompleteField"])
 
 # Create your models here.
 
@@ -31,11 +25,11 @@ class Imagen(models.Model):
 
     nombre_img = models.CharField("Nombre",max_length=200, null=True, blank=True)
     foto = ImageWithThumbsField("Foto",upload_to=get_file_path,
-                                   sizes=((220,160), (80,80),(380,250),(640,480),(300,200),(300,300),), 
+                                   sizes=((220,160), (80,80),(380,250),(640,480),(300,200),(300,300),),
                                    null=True, blank=True)
     tags_img = TagField("Tags",help_text='Separar elementos con "," ', blank=True)
     fileDir = 'fotos/'
-    
+
     class Meta:
         verbose_name_plural = "Imágenes"
 
@@ -157,7 +151,7 @@ class Aportes(models.Model):
 
     def __unicode__(self):
         return self.foro.nombre
-        
+
     def __documento__(self):
         lista = []
         for obj in self.adjuntos.all():

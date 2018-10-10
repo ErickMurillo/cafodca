@@ -2,49 +2,52 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="main-content prueba">
-    <div class="container ">
-        <div class="row stickem-container prueba">
-        	<section>
-                    <div class="blog-details-top mb40">
-                        <div class="blog-details-top__text-content">
-				        	<form action="." method="POST" class="form-inline" enctype="multipart/form-data">{% csrf_token %}
-				        		{% if form.errors %}
-                                    {{form.errors}}
-                                {% endif %}
+<div data-bac="#fcfcfc">
+    <section class="welcome-section pt-20 pb-20">
+        <div class="auto-container">
+            <div class="row clearfix perfil">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form action="." method="POST" class="form-inline" enctype="multipart/form-data">{% csrf_token %}
+			        		{% if form.errors %}
+                                {{form.errors}}
+                            {% endif %}
 
-								{{ form.media }}
-								{{form|crispy}}
-								<div>
-									<br>
-									<h4 class="blog-details__title">Redes</h4>
-									<hr>
-									<div class="row">
-									{{ formset.management_form }}
+							{{ form.media }}
+							{{form|crispy}}
+							<div>
+								<br>
+								<h4 class="blog-details__title">Redes</h4>
+								<hr>
+								<div class="row">
+								{{ formset.management_form }}
 
-									{% for red in formset %}
-										<div class="col-md-4">
-											{% if red.errors %}
-												{{red.errors}}
-											{% endif %}
-											
-											{{red.id}}
-											{{red.opcion}}
-											{{red.url}}
-											Eliminar: {{red.DELETE}}
-										</div>
-									{% endfor %}
+								{% for red in formset %}
+									<div class="col-md-6 col-sm-12 pb-20">
+										{% if red.errors %}
+											{{red.errors}}
+										{% endif %}
+										
+										{{red.id}}
+										{{red.opcion}}
+										{{red.url}}
+										Eliminar: {{red.DELETE}}
 									</div>
-								</div>
-								<input type="submit" name="Editar" value="Actualizar">
-							</form>
-						</div>
-					</div>
-			</section>
 
-		</div>
-    </div>
+								{% endfor %}
+								</div>
+							</div>
+							<hr>
+							<input class="theme-btn btn-style-two admin-btn btn" type="submit" name="Editar" value="Actualizar">
+						</form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </div>
+
 {% endblock content %}
 
 {% block extra_js %}

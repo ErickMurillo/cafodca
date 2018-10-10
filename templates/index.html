@@ -3,15 +3,15 @@
 
 {% block content %}
     <section class="main-slider revolution-slider">
-        
+
         <div class="tp-banner-container">
             <div class="tp-banner">
                 <ul>
-                    
+
                     <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="/static/images/1.jpg"  data-saveperformance="off"  data-title="Awesome Title Here">
                     <img src="/static/images/1.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                    
-                    
+
+
                     <div class="tp-caption sfl sfb tp-resizeme"
                     data-x="center" data-hoffset="0"
                     data-y="center" data-voffset="-20"
@@ -24,7 +24,7 @@
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"><h3 class="bg-color">Programa Medios de Vida Sostenible y Gestión de Riesgo</h3></div>
-                    
+
                     <div class="tp-caption sfl sfb tp-resizeme text-center prueba"
                     data-x="center" data-hoffset="0"
                     data-y="center" data-voffset="50"
@@ -37,13 +37,13 @@
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"><div class="text">Fortaleciendo la alianza entre las organizaciones socias del programa "Medios de vida sostenible" de CAFOD en Centroamérica, para mejorar el aprendizaje e impacto de los proyectos</div></div>
-                    
+
                     </li>
-                    
+
                    <!--  <li data-transition="slidedown" data-slotamount="1" data-masterspeed="1000" data-thumb="images/main-slider/2.jpg"  data-saveperformance="off"  data-title="Awesome Title Here">
-                    <img src="images/main-slider/2.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"> 
-                    
-                    
+                    <img src="images/main-slider/2.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+
+
                     <div class="tp-caption sfl sfb tp-resizeme"
                     data-x="center" data-hoffset="0"
                     data-y="center" data-voffset="-120"
@@ -56,7 +56,7 @@
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"><h2 class="normal-font"><span>Help us</span> <strong class="theme_color">to save</strong></h2></div>
-                    
+
                     <div class="tp-caption sfr sfb tp-resizeme"
                     data-x="center" data-hoffset="0"
                     data-y="center" data-voffset="-30"
@@ -69,7 +69,7 @@
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"><h2>the <span class="theme_color">Homeless</span> People</h2></div>
-                    
+
                     <div class="tp-caption sfl sfb tp-resizeme"
                     data-x="center" data-hoffset="0"
                     data-y="center" data-voffset="50"
@@ -82,7 +82,7 @@
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"><h4>All of our afford can bring back the life</h4></div>
-                    
+
                     <div class="tp-caption sfr sfb tp-resizeme"
                     data-x="center" data-hoffset="0"
                     data-y="center" data-voffset="120"
@@ -95,21 +95,21 @@
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-five mr-10">Join With Us</a><a href="#" class="theme-btn btn-style-two">Donate Now</a></div>
-                    
+
                     </li> -->
 
                 </ul>
-                
+
             </div>
         </div>
     </section>
-    
+
     <!--Events Section-->
     <section class="welcome-section pt-50 pb-60" data-bac="#fcfcfc">
         <div class="auto-container">
 
             <div class="row clearfix">
-                
+
                 <!--Cause Column-->
                 <div class="column default-featured-column links-column col-lg-4 col-md-12">
                     <article class="inner-box mb-md-60">
@@ -150,11 +150,11 @@
                                 </div>
                                 {% endfor %}
                             </div>
-                            
+
                         </div>
                     </article>
                 </div>
-                
+
                 <!--Featured Column-->
                 <div class="column default-featured-column blog-news-column  style-three col-lg-8 col-md-6 col-sm-6 col-xs-12">
                     <h4 class="inner-title double-line line-left">NOTICIAS RECIENTES</h4>
@@ -168,14 +168,14 @@
                                             <img src="{{ im.url }}">
                                         {% endthumbnail %}
                                     {% elif nota.fotos.all %}
-                                        {%for thumb in nota.fotos.all|slice:"1"%} 
-                                        <img src="{{thumb.foto.url_380x250}}" alt="">
+                                        {%for thumb in nota.fotos.all|slice:"1"%}
+                                        <img src="http://cafodca.org{{thumb.foto.url_380x250}}" alt="">
                                         {% endfor %}
                                     {% else %}
                                         <img src="https://via.placeholder.com/380x250">
                                     {% endif %}
                                 </a>
-                               
+
                                 <div class="news-date">{{nota.fecha|date:'d'}}<span class="month">{{nota.fecha|date:'M'}}</span></div>
                             </figure>
                             <div class="content-box">
@@ -184,7 +184,7 @@
                                     <div class="post-author">Por <span class="theme_color">{{nota.user.get_full_name}}</span></div>
                                     <div class="post-options clearfix">
                                         <a href="#" class="comments-count"><span class="icon fa fa-eye"></span> 6</a>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="text">{{nota.contenido|safe|striptags|truncatechars:130}}</div>
@@ -192,113 +192,26 @@
                             </div>
                         </article>
                         {% endfor %}
-                        
+
                     </div>
                 </div>
-                
 
-                
-                
+
+
+
             </div>
         </div>
     </section>
 
-    <!--Recent Causes Section
-    <section class="recent-projects">
-        <div class="auto-container">
-            
-            <div class="sec-title clearfix">
-                <div class="pull-left">
-                    <h2>Recent <span class="normal-font theme_color">Causes</span></h2>
-                    <div class="text">Lorem ipsum dolor sit amet, cum at inani interesset, nisl fugit munere ad mel,vix an omnium dolor amet </div>
-                </div>
-                <div class="pull-right padd-top-30">
-                    <a href="#" class="theme-btn btn-style-three">See All Projects</a>
-                </div>
-            </div>
-            <div class="row clearfix">
-                
-    
-                <div class="column default-featured-column style-two col-md-4 col-sm-4 col-xs-12">
-                    <article class="inner-box wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
-                        <figure class="image-box">
-                            <a href="#"><img src="http://cafodca.org/uploads/fotos/IMG_20180509_091635.640x480.jpg" alt=""></a>
-                            <div class="donate-piechart">
-                              <div class="piechart-block">
-                                <div class="piechart style-one"  data-fg-color="rgba(250,119,68,1)" data-value=".75">
-                                  <span>.75</span>
-                                </div>
-                              </div>
-                            </div>
-                        </figure>
-                        <div class="content-box">
-                            <h3><a href="#">Charity For Education</a></h3>
-                            <div class="column-info"><span class="raised-amount">Raised: $1890</span> Goal: $2500</div>
-                            <div class="text">Lorem ipsum dolor sit amet et siu amet amet audiam copiosaei mei.</div>
-                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Donate Now</a>
-                            <a href="#" class="theme-btn btn-style-two btn-sm">Leer más</a>
-                        </div>
-                    </article>
-                </div>
-                
-               
-                <div class="column default-featured-column style-two col-md-4 col-sm-4 col-xs-12">
-                    <article class="inner-box wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
-                        <figure class="image-box">
-                            <a href="#"><img src="images/causes/2.jpg" alt=""></a>
-                            <div class="donate-piechart">
-                              <div class="piechart-block">
-                                <div class="piechart style-one"  data-fg-color="rgba(250,119,68,1)" data-value=".65">
-                                  <span>.65</span>
-                                </div>
-                              </div>
-                            </div>
-                        </figure>
-                        <div class="content-box">
-                            <h3><a href="#">Charity For Education</a></h3>
-                            <div class="column-info"><span class="raised-amount">Raised: $1890</span> Goal: $2500</div>
-                            <div class="text">Lorem ipsum dolor sit amet et siu amet amet audiam copiosaei mei.</div>
-                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Donate Now</a>
-                            <a href="#" class="theme-btn btn-style-two btn-sm">Leer más</a>
-                        </div>
-                    </article>
-                </div>
-                
-
-                <div class="column default-featured-column style-two col-md-4 col-sm-4 col-xs-12">
-                    <article class="inner-box wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
-                        <figure class="image-box">
-                            <a href="#"><img src="images/causes/3.jpg" alt=""></a>
-                            <div class="donate-piechart">
-                              <div class="piechart-block">
-                                <div class="piechart style-one"  data-fg-color="rgba(250,119,68,1)" data-value=".85">
-                                  <span>.85</span>
-                                </div>
-                              </div>
-                            </div>
-                        </figure>
-                        <div class="content-box">
-                            <h3><a href="#">Charity For Education</a></h3>
-                            <div class="column-info"><span class="raised-amount">Raised: $1890</span> Goal: $2500</div>
-                            <div class="text">Lorem ipsum dolor sit amet et siu amet amet audiam copiosaei mei.</div>
-                            <a href="#" class="theme-btn btn-style-four btn-sm mr-10">Donate Now</a>
-                            <a href="#" class="theme-btn btn-style-two btn-sm">Leer más</a>
-                        </div>
-                    </article>
-                </div>
-                
-            </div>
-        </div>
-    </section>-->
-    
     <!--Main Features-->
     <section class="main-features parallax-section theme-overlay overlay-deep-white" style="background-image:url(http://monitoreo-finca.cafodca.org/static/img/10.JPG);">
         <div class="auto-container">
             <div class="title-box text-center mb-0">
-                <h1 class="fs-36 mb-15">SISTEMA DE MONITOREO DE FINCA</h1>
+                <h1 class="fs-36 mb-15">SISTEMAS DE MONITOREOS</h1>
                 <div class="text">El Programa Medios de Vida Sostenible con enfoque en la gestión de riesgo y el cambio climático de CAFOD, implementa el sistema de monitoreo de finca que tiene como fin identificar la mejoría del bienestar de vida de familias campesinas atendidas por el programa a través de co-partes en territorio.</div>
                 <div class="">
-                    <a class="theme-btn btn-style-four" href="#">Ver monitoreo</a>
+                    <a class="theme-btn btn-style-four" href="http://monitoreo-finca.cafodca.org/">Ver mapa finca</a>
+                    <a class="theme-btn btn-style-five" href="http://proyecto-joa.cafodca.org/">Ver  projecto joa</a>
                 </div>
             </div>
         </div>
@@ -307,7 +220,7 @@
     <!--Gallery Section-->
     <section class="gallery-section gutterless pb-0">
         <div class="container">
-            <div class="row">            
+            <div class="row">
                 <div class="sec-title text-center">
                     <h2>Nuestra <span class="normal-font theme_color">Galería</span></h2>
                 </div>
@@ -315,10 +228,10 @@
         </div>
 
         <div class="container-fluid">
-            
+
             <!--Filter List-->
             <div class="row filter-list clearfix">
-                
+
                 {% for img in imagenes %}
                 <!--Column-->
                 <div class="column mix mix_all eco plants col-md-3 col-sm-6 col-xs-12">
@@ -327,12 +240,12 @@
                         <div class="inner-box text-center">
                             <!--Image Box-->
                             <figure class="image-box">
-                                <img src="{{img.foto.url_380x250}}" alt="">
+                                <img src="http://cafodca.org{{img.foto.url_380x250}}" alt="">
                             </figure>
                             <div class="overlay-box">
                                 <div class="inner-content">
                                     <div class="content">
-                                        <a class="arrow lightbox-image" href="{{img.foto.url_640x480}}" title="Image Caption Here"><span class="icon flaticon-cross-4"></span></a>
+                                        <a class="arrow lightbox-image" href="http://cafodca.org{{img.foto.url_640x480}}" title="{{img.nombre_img}}"><span class="icon flaticon-cross-4"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -340,56 +253,37 @@
                     </div>
                 </div>
                 {% endfor %}
-                
+
             </div>
-            
+
         </div>
     </section>
 
-    <!--Intro Section
-    <section class="subscribe-intro">
-        <div class="auto-container">
-            <div class="row clearfix">
-                
-                <div class="column col-md-9 col-sm-12 col-xs-12">
-                    <h2>Subcribe for Newsletter</h2>
-                    There are many variations of passages of Lorem Ipsum available but the majority have 
-                </div>
-               
-                <div class="column col-md-3 col-sm-12 col-xs-12">
-                    <div class="text-right padd-top-20">
-                        <a href="#" class="theme-btn btn-style-one">Subscribe Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
-    
     <!--Team Section-->
     <section class="team-section">
         <div class="auto-container">
             <div class="sec-title clearfix">
                 <div class="pull-left">
                     <h2>Nuestros <span class="normal-font theme_color">Miembros</span></h2>
-                   
+
                 </div>
                 <div class="pull-right padd-top-30">
-                    <a class="theme-btn btn-style-three" href="#">Todos los miembros</a>
+                    <a class="theme-btn btn-style-three" href="/contrapartes/">Todos los miembros</a>
                 </div>
             </div>
-            
+
             <div class="row clearfix">
-                
+            {% for empresa in  contrapartes %}
                 <!--Column-->
                 <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                     <div class="inner-box">
-                        <figure class="image"><a href="mailto:mail@email.com"><img src="/static/images/resource/team-image-1.jpg" alt=""></a></figure>
+                        <figure class="image"><img src="/static/images/resource/team-image-1.jpg" alt=""></figure>
                         <div class="member-info">
-                            <h3>Red COMAL</h3>
-                            <div class="designation"><img src="https://cdn.icon-icons.com/icons2/40/PNG/128/flagofHonduras_6508.png" alt="" width="25px"> Honduras</div>
+                            <h3><a href="">{{empresa.siglas}}</a><h3>
+                            <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px"> {{empresa.pais}}</div>
                         </div>
                         <div class="content">
-                            <div class="text"><p>La Red de Comercialización Comunitaria Alternativa, Red COMAL, se conforma por Organizaciones...<p></div>
+                            <div class="text cont_org"><p>{{empresa.generalidades|safe|striptags|truncatewords:20}}<p></div>
                             <div class="social-links">
                                 <a href="#"><span class="fa fa-facebook-f"></span></a>
                                 <a href="#"><span class="fa fa-twitter"></span></a>
@@ -399,69 +293,9 @@
                         </div>
                     </div>
                 </article>
-                
-                <!--Column-->
-                <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="inner-box">
-                        <figure class="image"><a href="mailto:mail@email.com"><img src="/static/images/resource/team-image-2.jpg" alt=""></a></figure>
-                        <div class="member-info">
-                            <h3>ERIC-SJ & RP</h3>
-                            <div class="designation"><img src="https://cdn.icon-icons.com/icons2/40/PNG/128/flagofHonduras_6508.png" alt="" width="25px"> Honduras</div>
-                        </div>
-                        <div class="content">
-                            <div class="text"><p>El ERIC, es una obra social de la compañia de Jesús en Honduras, nace en el año de 1980...</p></div>
-                            <div class="social-links">
-                                <a href="#"><span class="fa fa-facebook-f"></span></a>
-                                <a href="#"><span class="fa fa-twitter"></span></a>
-                                <a href="#"><span class="fa fa-google-plus"></span></a>
-                                <a href="#"><span class="fa fa-linkedin"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                
-                <!--Column-->
-                <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-                    <div class="inner-box">
-                        <figure class="image"><a href="mailto:mail@email.com"><img src="/static/images/resource/team-image-3.jpg" alt=""></a></figure>
-                        <div class="member-info">
-                            <h3>CEHPRODEC</h3>
-                            <div class="designation"><img src="https://cdn.icon-icons.com/icons2/40/PNG/128/flagofHonduras_6508.png" alt="" width="25px"> Honduras</div>
-                        </div>
-                        <div class="content">
-                            <div class="text"><p>Organización sin fines de lucro fundada para fortalecer la soberanía alimentaria...</p></div>
-                            <div class="social-links">
-                                <a href="#"><span class="fa fa-facebook-f"></span></a>
-                                <a href="#"><span class="fa fa-twitter"></span></a>
-                                <a href="#"><span class="fa fa-google-plus"></span></a>
-                                <a href="#"><span class="fa fa-linkedin"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                
-                <!--Column-->
-                <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms">
-                    <div class="inner-box">
-                        <figure class="image"><a href="mailto:mail@email.com"><img src="/static/images/resource/team-image-4.jpg" alt=""></a></figure>
-                        <div class="member-info">
-                            <h3>ASOMUPRO</h3>
-                            <div class="designation"><img src="https://cdn.icon-icons.com/icons2/40/PNG/128/NicaraguaFlag_6444.png" alt="" width="25px"> Nicaragua</div>
-                        </div>
-                        <div class="content">
-                            <div class="text"><p>Somos un movimiento gremial, nacional, autónomo, de pequeñas y medianas productoras agroecológicas...</p></div>
-                            <div class="social-links">
-                                <a href="#"><span class="fa fa-facebook-f"></span></a>
-                                <a href="#"><span class="fa fa-twitter"></span></a>
-                                <a href="#"><span class="fa fa-google-plus"></span></a>
-                                <a href="#"><span class="fa fa-linkedin"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                
+                {% endfor %}
             </div>
-            
+
         </div>
     </section>
 {% endblock content %}

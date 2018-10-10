@@ -2,73 +2,79 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="main-content prueba">
-    <div class="container ">
-        <div class="row stickem-container prueba">
-        	<section>
-                    <div class="blog-details-top mb40">
-                        <div class="blog-details-top__text-content">
-				        	<form action="." method="POST" class="form-inline" enctype="multipart/form-data">{% csrf_token %}
-				        		{% if form.errors %}
-                                    {{form.errors}}
-                                {% endif %}
+<div data-bac="#fcfcfc">
+    <section class="welcome-section pt-20 pb-20">
+        <div class="auto-container">
+            <div class="row clearfix perfil">
+                <div class="panel panel-default">
+                    <div class="panel-title double-line line-left">
+                        <div style="flex-grow:10">
+                            <h3 class="inner-title ">Edición de nota</h3>
+                        </div> 
 
-								{{ form.media }}
-								{{form|crispy}}
+                    </div>
+                    <div class="panel-body">
+                        <form action="." method="POST" class="form-inline" enctype="multipart/form-data">{% csrf_token %}
+                            {% if form.errors %}
+                            {{form.errors}}
+                            {% endif %}
+                            {{ form.media }}
+                            {{form|crispy}}
 
-							<h4 class="blog-details__title">Imagenes</h4>
-                            <hr>
-
+                            <h4 class="inner-title double-line line-left">Imagenes</h4>
                             <div class="row">
                                 {{ form2.management_form }}
                                 {{form2.media}}
 
                                 {% if request.path == '/notas/crear/' %}
-                                    {{form2.as_p}}
+                                {{form2.as_p}}
                                 {% else %}
-                                    {% for img in form2 %}
-                                    <div class="col-sm-12  col-md-6 form-group">
-                                        {{img.id}} <br>
-                                        {{img.nombre_img}} <br>
-                                        {{img.foto}} <br>
-                                        Tags: {{img.tags_img}} {{img.tags_img.help_text}}
-                                        Eliminar: {{img.DELETE}}
+                                {% for img in form2 %}
+                                <div class="col-sm-12  col-md-6 form-group">
+                                    <div style="height:220px;">
+                                        <div>{{img.id}}</div>
+                                        <div>Nombre: {{img.nombre_img}}</div><br>
+                                        <div>{{img.foto}}</div><br>
+                                        <div>Tags: {{img.tags_img}} {{img.tags_img.help_text}}</div>
+                                        <div>Eliminar: {{img.DELETE}}</div>
                                     </div>
-                                    {% endfor %}
+                                    <hr>                    
+                                </div>
+
+                                {% endfor %}
                                 {% endif %}
-                                
-                                
                             </div>
-
-							<h4 class="blog-details__title">Documentos</h4>
-                            <hr>
-
+                            <h4 class="inner-title double-line line-left">Documentos</h4>
                             <div class="row">
                                 {{ form3.management_form }}
                                 {{form3.media}}
                                 {% if request.path == '/notas/crear/' %}
-                                    {{form3.as_p}}
+                                {{form3.as_p}}
                                 {% else %}
-                                    {% for doc in form3 %}
-                                    <div class="col-sm-12  col-md-6 form-group">
+                                {% for doc in form3 %}
+                                <div class="col-sm-12  col-md-6 form-group ">
+                                    <div style="height:240px;">
                                         {{doc.id}} <br>
-                                        {{doc.nombre_doc}} <br>
-                                        {{doc.adjunto}} <br>
-                                        Tags: {{doc.tags_doc}} {{doc.tags_doc.help_text}}
-                                        Eliminar: {{doc.DELETE}}
+                                        <div>Nombre: {{doc.nombre_doc}}</div> <br>
+                                        <div>{{doc.adjunto}}</div> <br>
+                                        <div>Tags: {{doc.tags_doc}} {{doc.tags_doc.help_text}}</div>
+                                        <div>Eliminar: {{doc.DELETE}}</div>
+                                        
                                     </div>
-                                    {% endfor %}
+                                    <hr>
+                                </div>
+                                {% endfor %}
                                 {% endif %}
                             </div>
-                            <input 
-								<input type="submit" name="Editar" value="Actualizar">
-							</form>
-						</div>
-					</div>
-			</section>
+                            
+                            <input class="theme-btn btn-style-two admin-btn" type="submit" name="Editar" value="Actualizar">
+                        </form>
+                    </div>
+                </div>
 
-		</div>
-    </div>
+            </div>
+        </div>
+    </section>
 </div>
 {% endblock content %}
 

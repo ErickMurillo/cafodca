@@ -2,49 +2,70 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div data-bac="#fcfcfc">
+    <section class="welcome-section pt-20 pb-20">
+        <div class="auto-container">
+            <div class="row clearfix perfil">
+                <div class="panel panel-default">
+                    <div class="panel-title double-line line-left">
+                        <div style="flex-grow:10">
+                            <h3 class="inner-title ">Edición de nota</h3>
+                        </div> 
+
+                    </div>
+                    <div class="panel-body">
+                      <form action="." method="POST" class="form-inline" enctype="multipart/form-data">{% csrf_token %}
+                        {% if form.errors %}
+                        {{form.errors}}
+                        {% endif %}
+
+                        {{ form.media }}
+                        {{form|crispy}}
+
+                        <h4 class="inner-title double-line line-left">Documentos</h4>
+                        <div class="row">
+                          {{ form1.management_form }}
+                          {{form1.media}}
+
+                          {% if request.path == '/agendas/crear/' %}
+                          {{form1.as_p}}
+                          {% else %}
+                          {% for doc in form1 %}
+                          <div class="col-sm-12  col-md-6 form-group">
+                            <div style="height:240px;">
+                                {{doc.id}}
+                                <div>Nombre: {{doc.nombre_doc}}</div><br>
+                                <div>Adjunto: {{doc.adjunto}}</div><br>
+                                <div>Tags: {{doc.tags_doc}} <br> {{doc.tags_doc.help_text}}</div>                    
+                                  
+                                Eliminar: {{doc.DELETE}}
+                            </div>
+                          </div>
+                          {% endfor %}
+                          {% endif %}
+
+
+                        </div>
+                        {% if request.path == '/agendas/crear/' %}
+                        <input class="theme-btn btn-style-two" type="submit" name="Nuevo" value="Nuevo">
+                        {% else %}
+                        <input class="theme-btn btn-style-two" type="submit" name="Actualizar" value="Actualizar">
+                        {% endif %}
+                      </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
 <div class="main-content prueba">
     <div class="container ">
         <div class="row stickem-container prueba">
         	<section>
                     <div class="blog-details-top mb40">
                         <div class="blog-details-top__text-content">
-				        	<form action="." method="POST" class="form-inline" enctype="multipart/form-data">{% csrf_token %}
-				        		{% if form.errors %}
-                                    {{form.errors}}
-                                {% endif %}
 
-								{{ form.media }}
-								{{form|crispy}}
-
-							<h4 class="blog-details__title">Documentos</h4>
-                            <hr>
-
-                            <div class="row">
-                                {{ form1.management_form }}
-                                {{form1.media}}
-
-                                {% if request.path == '/agendas/crear/' %}
-                                    {{form1.as_p}}
-                                {% else %}
-                                    {% for doc in form1 %}
-                                    <div class="col-sm-12  col-md-6 form-group">
-                                        {{doc.id}} <br>
-                                        {{doc.nombre_doc}} <br>
-                                        {{doc.adjunto}} <br>
-                                        Tags: {{doc.tags_doc}} {{doc.tags_doc.help_text}}
-                                        Eliminar: {{doc.DELETE}}
-                                    </div>
-                                    {% endfor %}
-                                {% endif %}
-                                
-                                
-                            </div>
-                            {% if request.path == '/agendas/crear/' %}
-	                            <input type="submit" name="Nuevo" value="Nuevo">
-	                        {% else %}
-                             <input type="submit" name="Actualizar" value="Actualizar">
-                             {% endif %}
-							</form>
 						</div>
 					</div>
 			</section>

@@ -30,6 +30,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="/static/css/bootstrap-margin-padding.css" rel="stylesheet">
 <link href="/static/css/responsive.css" rel="stylesheet"`>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
 <link href="/static/css/newstyle.css" rel="stylesheet">
 <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
@@ -48,7 +49,7 @@
         <!-- Header Top -->
         <div class="header-top">
             <div class="auto-container clearfix">
-                 
+
                  <!--Info Outer-->
                  <div class="info-outer">
                     <!--Info Box-->
@@ -73,11 +74,11 @@
                             <a href="#" class="facebook img-circle"><span class="fa fa-facebook-f"></span></a>
                             <a href="#" class="twitter img-circle"><span class="fa fa-twitter"></span></a>
                             <a href="#" class="google-plus img-circle"><span class="fa fa-google-plus"></span></a>
-                            
+
                         </div>
                     </div>
                  </div>
-                
+
             </div>
         </div><!-- Header Top End -->
 
@@ -105,7 +106,7 @@
                     </a>
                 </div>
                 <div class="btn-group">
-                    <a type="button" class="btn btn-nav">
+                    <a href="/foros/" type="button" class="btn btn-nav {% if '/foros/' in request.path %}active{% endif %}">
                         <span class="fa fa-comments"></span>
                         <p>Foro</p>
                     </a>
@@ -139,12 +140,12 @@
     </div>
 
     {% block content %}
-        
+
     {% endblock content %}
      <!--Main Footer-->
     <footer class="main-footer" style="background-image:url(/static/images/background/footer-bg.jpg);">
-        
-        <!--Footer Upper-->        
+
+        <!--Footer Upper-->
         <div class="footer-upper">
             <div class="auto-container">
                 <div class="row clearfix">
@@ -157,13 +158,13 @@
                                 <h4>Programa Medios de Vida Sostenible</h4>
                                 <p>CAFOD is the official Catholic Aid Agency for England and Wales</p>
                             </div> -->
-                            
+
                             <ul class="contact-info">
                                 <li><span class="icon fa fa-map-marker"></span> Direccion</li>
                                 <li><span class="icon fa fa-phone"></span> (505) 2277-5975</li>
                                 <li><span class="icon fa fa-envelope-o"></span> Correo@gmail.com</li>
                             </ul>
-                            
+
                             <div class="social-links-two clearfix">
                                 <a href="#" class="facebook img-circle"><span class="fa fa-facebook-f"></span></a>
                                 <a href="#" class="twitter img-circle"><span class="fa fa-twitter"></span></a>
@@ -171,10 +172,10 @@
                                 <a href="#" class="linkedin img-circle"><span class="fa fa-pinterest-p"></span></a>
                                 <a href="#" class="linkedin img-circle"><span class="fa fa-linkedin"></span></a>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                     <!--Footer Column-->
                     <div class="col-lg-2 col-sm-6 col-xs-12 column">
                         <h2>Enlaces de interés</h2>
@@ -193,25 +194,25 @@
                     <!--Footer Column-->
                     <div class="col-lg-3 col-sm-6 col-xs-12 column">
                         <div class="footer-widget news-widget">
-                            <h2>Últimas Noticias</h2>   
-                            
+                            <h2>Últimas Noticias</h2>
+
                             <!--News Post-->
                             <div class="news-post">
                                 <div class="icon"></div>
                                 <div class="news-content"><figure class="image-thumb"><img src="http://cafodca.org/uploads/fotos/30707245_1938608242816258_7960736666413432832_o.380x250.jpg" alt=""></figure><a href="#">Oficial de Proyectos visita fincas agro ecológicas en Honduras</a></div>
                                 <div class="time"> 2 Agosto 2018</div>
                             </div>
-                            
+
                             <!--News Post-->
                             <div class="news-post">
                                 <div class="icon"></div>
                                 <div class="news-content"><figure class="image-thumb"><img src="http://cafodca.org/uploads/fotos/descarga.380x250.jpg" alt=""></figure><a href="#">Encuentro Regional del Programa Medios de Vida Sostenible</a></div>
                                 <div class="time">2 Agosto 2018</div>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                     <!--Footer Column-->
                     <div class="col-lg-4 col-sm-6 col-xs-12 column">
                         <div class="footer-widget contact-widget">
@@ -225,12 +226,12 @@
 
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
         </div>
-        
+
         <!--Footer Bottom-->
         <div class="footer-bottom">
             <div class="auto-container clearfix">
@@ -238,9 +239,9 @@
                 <div class="copyright text-center">Copyright 2018 &copy; Plataforma desarrollada por <a href="#">SIMAS</a></div>
             </div>
         </div>
-        
+
     </footer>
-    
+
 </div>
 <!--End pagewrapper-->
 
@@ -249,38 +250,12 @@
 <div class="scroll-to-top scroll-to-target" data-target=".page-wrapper"><span class="fa fa-long-arrow-up"></span></div>
 
 
-<script src="/static/js/jquery.js"></script> 
+<script src="/static/js/jquery.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/jquery.fancybox.pack.js"></script>
-<script src="/static/js/jquery.fancybox-media.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="/static/js/owl.js"></script>
-<script src="/static/js/wow.js"></script>
-<script src="/static/js/jquery.bxslider.min.js"></script>
+
 <script src="/static/js/script.js"></script>
-<!--<script>
-    var activeEl = 0;
-    $(function() {
-        var items = $('.btn-nav');
-        $( items[activeEl] ).addClass('active');
-        $( ".btn-nav" ).click(function() {
-            $( items[activeEl] ).removeClass('active');
-            $( this ).addClass('active');
-            activeEl = $( ".btn-nav" ).index( this );
-        });
-    });
-</script>-->
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#example, #example2').dataTable( {
-        "order": [[ 3, "desc" ]],
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-        }
-    } );
-} );
-</script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
+
 {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>
