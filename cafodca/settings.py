@@ -119,6 +119,7 @@ STATICFILES_DIRS = [
 
 THUMBNAIL_DEBUG = True
 
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_MEDIA_PREFIX = '/files/media/ckeditor/'
 CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, 'static_media/uploads/')
 
@@ -142,7 +143,7 @@ CKEDITOR_CONFIGS = {
             'autolink',
             'embed',
             'autoembed',
-            
+
             'autogrow',
             # 'devtools',
             'widget',

@@ -1,4 +1,4 @@
-{% extends "baseadmin.html"%}
+{% extends "admin/base_admin.html"%}
 
 {% block extra_js %}
 <link href="/files/css/jquery.autocomplete.css" rel="stylesheet" type="text/css">
@@ -10,7 +10,7 @@
 <script type="text/javascript">
         $(function() {
                 $elem = $('#actionbuttons');
-                
+
                 // detectar el scroll de la ventana y fixear el elemento
             $(window).bind('scroll', function() {
                 var windowTop = $(this).scrollTop();
@@ -20,15 +20,15 @@
                         // volver elemento a su lugar
                         $elem.removeClass('fixed');
                 }
-            }); 
+            });
 
             $('a[href^="/uploads/fotos"]').each(function(index, item){
                 $(item).html('');
                 $(item).append('<img src="'+$(item).attr('href')+'" width="60" height="60">');
             });
-            
+
             $('p:has(input[type="file"])').each(function(index, item){
-                $(item).children('a').addClass('imgpreview').siblings('input').addClass('inputreplace');                
+                $(item).children('a').addClass('imgpreview').siblings('input').addClass('inputreplace');
                 $(item).html(function(id, html){
                         return html.replace('Actualmente:', '').replace('Modificar:', '');
                 });
@@ -43,7 +43,7 @@
 
 {% endblock %}
 
-{% block contenido%}
+{% block content%}
 <div class="row">
     <div class="encabezado">
       <div class="container">
@@ -123,7 +123,7 @@
                                                         <hr>
                                                   </div>
                                                 </div>
-                                                <div class="clean"></div> 
+                                                <div class="clean"></div>
                                         </div>
                                 </div>
                         </div>

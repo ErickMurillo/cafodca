@@ -2,18 +2,22 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.forms import inlineformset_factory
+from django.contrib.contenttypes.forms import generic_inlineformset_factory
+
 from .models import *
 from agendas.models import *
 from notas.models import *
 from contrapartes.models import *
 from notas.forms import *
 from .forms import *
-from django.contrib.auth.decorators import login_required
-from django.forms import inlineformset_factory
-from django.contrib.contenttypes.forms import generic_inlineformset_factory
+
 from tagging.models import Tag
 from tagging.models import TaggedItem
-
+#from threading import Thread
+import thread
 # Create your views here.
 @login_required
 def perfil(request, template='admin/perfil.html'):
@@ -225,7 +229,7 @@ def crear_foro(request):
                 form5_uncommitd.content_object = form_uncommited
                 form5_uncommitd.save()
 
-            thread.start_new_thread(notify_all_foro, (form_uncommited,))
+            #thread.start_new_thread(notify_all_foro, (form_uncommited,))
 
             return HttpResponseRedirect('/foros')
 
@@ -271,7 +275,7 @@ def ver_foro(request, foro_id):
                 form5_uncommitd.content_object = form_uncommited
                 form5_uncommitd.save()
 
-            thread.start_new_thread(notify_all_aporte, (form_uncommited,))
+            #thread.start_new_thread(notify_all_aporte, (form_uncommited,))
 
             return HttpResponseRedirect('/foros/ver/%d' % discusion.id)
     else:
@@ -281,3 +285,183 @@ def ver_foro(request, foro_id):
         form4 = VideoForm()
         form5 = AudioForm()
     return render(request, 'foros/ver_foro.html',  locals())
+
+@login_required
+def comentario_foro(request, aporte_id):
+    aporte = get_object_or_404(Aportes, id=aporte_id)
+
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            form1_uncommited = form.save(commit=False)
+            form1_uncommited.usuario = request.user
+            form1_uncommited.aporte = aporte
+            form1_uncommited.save()
+
+            #thread.start_new_thread(notify_user_comentario, (form1_uncommited,))
+
+            return HttpResponse('/foros/ver/%d/#cmt%s' % (aporte.foro_id, form.instance.id))
+    else:
+        form = ComentarioForm()
+    return render(request, 'foros/comentario.html', locals())
+
+@login_required
+def editar_foro(request, id):
+    foro = get_object_or_404(Foros, id=id)
+    ForoImgFormSet = generic_inlineformset_factory(Imagen, extra=5, max_num=5)
+    ForoDocuFormSet = generic_inlineformset_factory(Documentos, extra=5, max_num=5)
+    ForoVideoFormSet = generic_inlineformset_factory(Videos, extra=5, max_num=5)
+    ForoAudioFormSet = generic_inlineformset_factory(Audios, extra=5, max_num=5)
+    form2 = ForoImgFormSet(instance=foro)
+    form3 = ForoDocuFormSet(instance=foro)
+    form4 = ForoVideoFormSet(instance=foro)
+    form5 = ForoAudioFormSet(instance=foro)
+
+    if not foro.contraparte == request.user and not request.user.is_superuser:
+        return HttpResponse("Usted no puede editar este Foro")
+
+    if request.method == 'POST':
+        form = ForosForm(request.POST, instance=foro)
+        form2 = ForoImgFormSet(data=request.POST, files=request.FILES, instance=foro)
+        form3 = ForoDocuFormSet(data=request.POST, files=request.FILES, instance=foro)
+        form4 = ForoVideoFormSet(data=request.POST, files=request.FILES, instance=foro)
+        form5 = ForoAudioFormSet(data=request.POST, files=request.FILES, instance=foro)
+
+        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid() and form5.is_valid():
+            form_uncommited = form.save(commit=False)
+            form_uncommited.contraparte = request.user
+            form_uncommited.save()
+
+            form2.save()
+            form3.save()
+            form4.save()
+            form5.save()
+            return HttpResponseRedirect('/foros/ver/'+id+'/?b=editado')
+
+    else:
+        form = ForosForm(instance=foro)
+        form2 = ForoImgFormSet(instance=foro)
+        form3 = ForoDocuFormSet(instance=foro)
+        form4 = ForoVideoFormSet(instance=foro)
+        form5 = ForoAudioFormSet(instance=foro)
+
+    return render(request, 'foros/crear_foro.html',  locals())
+
+
+@login_required
+def borrar_foro(request, id):
+    foro = get_object_or_404(Foros, id=id)
+    if foro.contraparte == request.user or request.user.is_superuser:
+        foro.delete()
+        return redirect('/foros/?b=borrado')
+    else:
+        return redirect('/')
+
+def notify_all_foro(foros):
+    site = Site.objects.get_current()
+    users = User.objects.all() #.exclude(username=foros.contraparte.username)
+    contenido = render_to_string('foros/notify_new_foro.txt', {'foro': foros,
+                                 'url': '%s/foros/ver/%s' % (site, foros.id),
+                                 'url_aporte': '%s/foros/ver/%s/#formaporte' % (site, foros.id),
+                                 })
+    send_mail('Nuevo Foro en CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in users if user.email])
+
+def notify_all_aporte(aportes):
+    site = Site.objects.get_current()
+    users = User.objects.all() #.exclude(username=foros.contraparte.username)
+    contenido = render_to_string('foros/notify_new_aporte.txt', {'aporte': aportes,
+                                 #'url': '%s/foros/ver/%s' % (site, foros.id),
+                                 'url_aporte': '%s/foros/ver/%s/#%s' % (site, aportes.foro.id, aportes.id),
+                                 })
+    send_mail('Nuevo Aporte en CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in users if user.email])
+
+def notify_user_comentario(comentario):
+    site = Site.objects.get_current()
+    contenido = render_to_string('foros/notify_new_comment.txt', {
+                                   'comentario': comentario,
+                                   'url': '%s/foros/ver/%s' % (site, comentario.aporte.foro.id)
+                                    })
+    send_mail('Nuevo comentario CAFOD', contenido, 'cafod@cafodca.org', [comentario.aporte.user.email])
+
+@login_required
+def editar_aporte(request, aporte_id):
+    aporte = get_object_or_404(Aportes, id=aporte_id)
+
+    AporteImgFormSet = generic_inlineformset_factory(Imagen, extra=5, max_num=5)
+    AporteDocuFormSet = generic_inlineformset_factory(Documentos, extra=5, max_num=5)
+    AporteVideoFormSet = generic_inlineformset_factory(Videos, extra=5, max_num=5)
+    AporteAudioFormSet = generic_inlineformset_factory(Audios, extra=5, max_num=5)
+    form2 = AporteImgFormSet(instance=aporte)
+    form3 = AporteDocuFormSet(instance=aporte)
+    form4 = AporteVideoFormSet(instance=aporte)
+    form5 = AporteAudioFormSet(instance=aporte)
+
+    if not aporte.user == request.user and not request.user.is_superuser:
+        return HttpResponse("Usted no puede editar este Foro")
+
+    if request.method == 'POST':
+        form = AporteForm(request.POST, instance=aporte)
+        form2 = AporteImgFormSet(data=request.POST, files=request.FILES, instance=aporte)
+        form3 = AporteDocuFormSet(data=request.POST, files=request.FILES, instance=aporte)
+        form4 = AporteVideoFormSet(data=request.POST, files=request.FILES, instance=aporte)
+        form5 = AporteAudioFormSet(data=request.POST, files=request.FILES, instance=aporte)
+
+        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid() and form5.is_valid():
+            form_uncommited = form.save(commit=False)
+            form_uncommited.contraparte = request.user
+            form_uncommited.save()
+
+            form2.save()
+            form3.save()
+            form4.save()
+            form5.save()
+            return HttpResponseRedirect('/foros')
+
+    else:
+        form = AporteForm(instance=aporte)
+        form2 = AporteImgFormSet(instance=aporte)
+        form3 = AporteDocuFormSet(instance=aporte)
+        form4 = AporteVideoFormSet(instance=aporte)
+        form5 = AporteAudioFormSet(instance=aporte)
+
+    return render(request, 'foros/editar_aporte.html', locals())
+
+@login_required
+def editar_comentario(request, comen_id):
+    comentario = get_object_or_404(Comentarios, id=comen_id)
+
+    if not comentario.usuario == request.user and not request.user.is_superuser:
+        return HttpResponse("Usted no puede editar este Comentario")
+
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST, instance=comentario)
+        if form.is_valid():
+            form_uncommited = form.save(commit=False)
+            form_uncommited.usuario = request.user
+            form_uncommited.save()
+    else:
+        form = ComentarioForm(instance=comentario)
+
+    return render(request, 'foros/comentario.html',  locals())
+
+@login_required
+def borrar_aporte(request, id):
+    aporte = get_object_or_404(Aportes, id=id)
+    if aporte.user == request.user or request.user.is_superuser:
+        aporte.delete()
+        print 'si me borra'
+        return redirect('/foros/lista')
+    else:
+        print 'mierda no me barra'
+        return redirect('/foros/lista')
+
+@login_required
+def borrar_comentario(request, id):
+    comentario = get_object_or_404(Comentarios, id=id)
+    if comentario.usuario == request.user or request.user.is_superuser:
+        comentario.delete()
+        print 'siiii borre comentario'
+        return redirect('/foros/lista')
+    else:
+        print 'Mierda no se pudo borrar el puto comentario'
+        return redirect('/')

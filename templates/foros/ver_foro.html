@@ -46,7 +46,7 @@
 <script type="text/javascript" src="/static/js/slick.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
-                
+
 <script type="text/javascript">
 $('.single-item, .gallery{{respuesta.id}}').slick({
   dots: true,
@@ -91,7 +91,7 @@ $('[data-fancybox]').fancybox({
             <div class="row clearfix padd-top-30">
                 <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                     <section class="blog-news-section blog-detail no-padd-bottom no-padd-top padd-right-20">
-                            
+
                         <!--News Column-->
                         <div class="column blog-news-column foro_content">
                             <article class="inner-box">
@@ -109,16 +109,16 @@ $('[data-fancybox]').fancybox({
                                         <a class="btn-theme btn-style-three" href="/uploads/{{doc.adjunto}}" target="_blank">{{doc.nombre_doc}} <span class="fa fa-download"></span></a>
                                     {% endfor %}
                                 </div>
-                            
+
                             </article>
-                        </div>                        
+                        </div>
                     </section>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                     <aside class="sidebar sidebar_foro">
                         {% if discusion.contraparte == request.user or request.user.is_superuser %}
                             <div class="widget">
-                                <div class="text-right">                        
+                                <div class="text-right">
                                     <a class="theme-btn btn-style-two" href="/foros/editar/{{discusion.id}}"><i class="fa fa-pencil"></i> Editar</a>
                                     <a class="theme-btn btn-style-danger" data-toggle="modal" href='#modal-id'  ><i class="fa fa-trash"></i> Borrar</a>
                                 </div>
@@ -135,8 +135,8 @@ $('[data-fancybox]').fancybox({
                                                     <p>El foro y todos sus aportes serán borrados permanentemente y no podrán ser recuperados</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    
-                                                    <button type="button" class="btn btn-danger">Borrar Permanentemente</button>
+
+                                                    <a href="/foros/borrar/{{discusion.id}}" class="btn btn-danger">Borrar Permanentemente</a>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                                 </div>
                                             </div>
@@ -221,9 +221,10 @@ $('[data-fancybox]').fancybox({
             <!--Comments Area-->
             <div class="comments-area">
                 <div class="group-title text-uppercase"><h2>APORTES</h2></div>
-                
+
                 <div class="comment-box ">
                     {% for respuesta in discusion.aportes_set.all %}
+
                         <div class="comment wow fadeInUp box_shadow" data-wow-delay="0ms" data-wow-duration="1500ms" id="{{respuesta.id}}">
                             {%if respuesta.user.userprofile.avatar %}
                                 <div class="author-thumb"><img src="http://cafodca.org/{{respuesta.user.userprofile.avatar.url_70x60}}" alt=""></div>
@@ -231,24 +232,43 @@ $('[data-fancybox]').fancybox({
                             {%else%}
                                 <div class="author-thumb"><img src="https://via.placeholder.com/70x60"></div>
                             {%endif%}
-                            
+
                             <div class="comment-info">
                                 <strong rel="tooltip" title="{{respuesta.user.first_name}} - {{respuesta.user.userprofile.contraparte}}">{{respuesta.user}}</strong>
                                 <div class="comment-time">{{respuesta.fecha|date:"d \d\e F \d\e\l Y"}}</div>
                             </div>
                             <div class="text">{{respuesta.contenido|safe}}</div>
-                            
+
                             <a class="reply-btn" data-fancybox data-type="iframe" data-src="/foros/ver_comentario/{{respuesta.id}}" href="javascript:;">
                                 <span class="txt">Comentar</span>
                             </a>
                             {% if respuesta.user == request.user or request.user.is_superuser %}
                             <br>
                                 <a class="btn-theme btn-style-two btn-sm" href="/foros/aporte/editar/{{respuesta.id}}"><span class="txt fa fa-pencil"></span></a>
-                                <a class="btn-theme btn-style-danger btn-sm" data-toggle="modal" data-target="#myModalAporte"><span class="txt fa fa-trash"></span></a>
+                                <a class="btn-theme btn-style-danger btn-sm" data-toggle="modal" data-target="#myModalAporte-{{respuesta.id}}"><span class="txt fa fa-trash"></span></a>
                             {% endif %}
+                            <div class="modal fade" id="myModalAporte-{{respuesta.id}}">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h4 class="modal-title">¿Está seguro?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>El aporte será borrado permanentemente y no podrá ser recuperado</p>
+                            </div>
+                            <div class="modal-footer">
+                                 <a href="/foros/aporte/borrar/{{respuesta.id}}" class="btn btn-danger">Borrar Permanentemente</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                             <hr>
                             <div class="attached_comment">
-                                
+
                                 <div class="row">
                                     {%if respuesta.fotos.all%}
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -315,14 +335,33 @@ $('[data-fancybox]').fancybox({
                                     <div class="comment-time">{{comentario.fecha|date:"d \d\e F \d\e\l Y"}}</div>
                                 </div>
                                 <div class="text">{{comentario.comentario|safe}}</div>
-                                {% if respuesta.user == request.user or request.user.is_superuser %}
+                                {% if comentario.user == request.user or request.user.is_superuser %}
                                 <br>
                                     <a class="btn-theme btn-style-two btn-sm" href="/foros/comentario/editar/{{comentario.id}}"><span class="txt fa fa-pencil"></span></a>
                                     <a class="btn-theme btn-style-danger btn-sm" data-toggle="modal" data-target="#myModalcomment"><span class="txt fa fa-trash"></span></a>
                                 {% endif %}
+                                <div class="modal fade" id="myModalcomment">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h4 class="modal-title">¿Está seguro?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>El comentario será borrado permanentemente y no podrá ser recuperado</p>
+                            </div>
+                            <div class="modal-footer">
+                                 <a href="/foros/comentario/borrar/{{comentario.id}}" class="btn btn-danger">Borrar Permanentemente</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                                 <hr>
                                 <div class="attached_comment">
-                                    
+
                                     <div class="row">
                                         {%if respuesta.fotos.all%}
                                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -380,53 +419,15 @@ $('[data-fancybox]').fancybox({
                     {% endfor %}
 
 
-                    
-                </div>
-            </div>
-            <div class="modal fade" id="myModalAporte">
-                <div class="vertical-alignment-helper">
-                    <div class="modal-dialog vertical-align-center">
-                        <div class="modal-content">
-                            <div class="modal-header">
 
-                                <h4 class="modal-title">¿Está seguro?</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>El aporte será borrado permanentemente y no podrá ser recuperado</p>
-                            </div>
-                            <div class="modal-footer">
-                                 <a href="/foros/aporte/borrar/{{respuesta.id}}" class="btn btn-danger">Borrar Permanentemente</a>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="myModalcomment">
-                <div class="vertical-alignment-helper">
-                    <div class="modal-dialog vertical-align-center">
-                        <div class="modal-content">
-                            <div class="modal-header">
-
-                                <h4 class="modal-title">¿Está seguro?</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>El comentario será borrado permanentemente y no podrá ser recuperado</p>
-                            </div>
-                            <div class="modal-footer">
-                                 <a href="/foros/comentario/borrar/{{comentario.id}}" class="btn btn-danger">Borrar Permanentemente</a>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!--End Comments Area-->
             <!--Comment Form -->
             <div class="comment-form wow fadeInUp well" data-wow-delay="200ms" data-wow-duration="1500ms">
-                    
+
                 <div class="group-title text-uppercase"><h2>AGREGAR APORTE A ESTE FORO</h2><div class="default-line-left"></div></div>
-                
+
                 <!--Comment Form-->
                 <form  enctype="multipart/form-data" action="." method="post">{% csrf_token %}
                     {{ form.media }}
@@ -434,7 +435,7 @@ $('[data-fancybox]').fancybox({
                         {%if form.errors%}
                                 <div class="alert alert-error"><b>Favor corregir los siguientes errores</b><br>{{form.errors}}</div>
                         {%endif%}
-                        
+
                         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 form-group">
                             {{form.as_p}}
                         </div>
@@ -502,18 +503,18 @@ $('[data-fancybox]').fancybox({
                                 </div>
                             </div>
                             <input class="theme-btn btn-style-two" type="submit" id="submitfoo" value="Guardar"></input>
-                            
+
                         </div>
 
-                        
+
                     </div>
                 </form>
-                    
+
             </div>
 
         </div>
     </div>
-    
+
 
 </div>
 <!--
