@@ -9,6 +9,7 @@ from django.forms.fields import DateField, ChoiceField, MultipleChoiceField
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from django.forms.extras.widgets import SelectDateWidget
 from contrapartes.widgets import ColorPickerWidget
+from django.forms import ModelMultipleChoiceField
 
 class ContraparteForms(forms.ModelForm):
     temas = forms.CharField(widget=CKEditorUploadingWidget())
@@ -36,9 +37,15 @@ class UserProfileForm(ModelForm):
 	model = UserProfile
 	fields = ('avatar',)
 
+class UserModelMultipleChoiceField(ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        #user_profile = UserProfile.objects.get(user__id=obj.pk)
+        #print obj.userprofile.contraparte.siglas
+        print dir(obj)
+        return "%s" % (obj.username)
+
 class MensajeForm(forms.ModelForm):
-    user = forms.ModelMultipleChoiceField(queryset = User.objects.order_by('username'),
-                                          widget = forms.CheckboxSelectMultiple())
+    user = UserModelMultipleChoiceField(queryset = User.objects.order_by('username'))
     class Meta:
         #widgets = {'user': forms.CheckboxSelectMultiple}
     	model = Mensajero
