@@ -39,10 +39,14 @@ class UserProfileForm(ModelForm):
 
 class UserModelMultipleChoiceField(ModelMultipleChoiceField):
     def label_from_instance(self, obj):
-        #user_profile = UserProfile.objects.get(user__id=obj.pk)
+        try:
+            user_profile = UserProfile.objects.get(user=obj)
+            return "%s - %s" % (obj.username, user_profile.contraparte.siglas)
+        except:
+            pass
         #print obj.userprofile.contraparte.siglas
-        print dir(obj)
-        return "%s" % (obj.username)
+
+
 
 class MensajeForm(forms.ModelForm):
     user = UserModelMultipleChoiceField(queryset = User.objects.order_by('username'))

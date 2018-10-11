@@ -42,11 +42,11 @@ class Contraparte(models.Model):
     nombre = models.CharField(max_length=200)
     siglas = models.CharField("Siglas o nombre corto",help_text="Siglas o nombre corto de la oganización",max_length=200,blank=True, null=True)
     logo = ImageWithThumbsField(upload_to=get_file_path,
-                                   sizes=((350,250), (70,60),(180,160)), 
+                                   sizes=((350,250), (70,60),(180,160)),
                                    null=True, blank=True)
     fileDir = 'contrapartes/logos/'
     pais = models.ForeignKey(Pais)
-    fundacion = models.CharField('Año de fundación', max_length=200, 
+    fundacion = models.CharField('Año de fundación', max_length=200,
                                  blank=True, null=True)
     temas = RichTextUploadingField(blank=True, null=True)
     generalidades = RichTextUploadingField(blank=True, null=True)
@@ -85,7 +85,7 @@ class UserProfile(models.Model):
     # Other fields here
     contraparte = models.ForeignKey(Contraparte)
     avatar = ImageWithThumbsField(upload_to=get_file_path,
-                                   sizes=((350,250), (70,60),(180,160)), 
+                                   sizes=((350,250), (70,60),(180,160)),
                                    null=True, blank=True)
     fileDir = 'usuario/avatar/'
 
@@ -99,7 +99,7 @@ class UserProfile(models.Model):
         return '/usuario/%d/' % (self.user.id)
 
 class Mensajero(models.Model):
-    user = models.ManyToManyField(User)
+    user = models.ManyToManyField(User, related_name='Destinatario')
     fecha = models.DateField(auto_now_add=True)
     mensaje = RichTextUploadingField()
     usuario = models.CharField(max_length=200,blank=True, null=True)

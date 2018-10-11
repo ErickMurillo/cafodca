@@ -76,12 +76,10 @@ def enviar_mensaje(request):
 
     if request.method == 'POST':
         form = MensajeForm(request.POST)
-        #form.fields['user'].queryset = User.objects.exclude(id=request.user.id)
+        form.fields['user'].queryset = User.objects.exclude(id=request.user.id)
         if form.is_valid():
-            #form.save()
             form_uncommited = form.save(commit=False)
             form_uncommited.usuario = request.user
-            #form_uncommited.user = form.cleaned_data['user']
             form_uncommited.save()
             form.save_m2m()
 
@@ -92,7 +90,7 @@ def enviar_mensaje(request):
 
     else:
         form = MensajeForm()
-        #form.fields['user'].queryset = User.objects.exclude(id=request.user.id)
+        form.fields['user'].queryset = User.objects.exclude(id=request.user.id)
     return render(request, 'contrapartes/mensaje.html', locals())
 
 def notify_user_mensaje(mensaje):
