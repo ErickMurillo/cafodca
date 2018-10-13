@@ -1,13 +1,120 @@
 {% extends "admin/base_admin.html" %}
+{% load crispy_forms_tags %}
 
-{% block extra_js %}
+{% block extra_css %}
 <link href="/files/css/jquery.autocomplete.css" rel="stylesheet" type="text/css">
+
+{% endblock extra_css %}
+
+{% block content%}
+<div data-bac="#fcfcfc">
+    <section class="welcome-section pt-20 pb-20">
+        <div class="auto-container">
+            <div class="row clearfix perfil">
+                <div class="panel panel-default">
+                    <div class="panel-title double-line line-left">
+                        <div style="flex-grow:10">
+                            <h3 class="inner-title ">CREAR UN FORO</h3>
+                        </div> 
+
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-inline" enctype="multipart/form-data" action="." method="post">{% csrf_token %}
+
+                            {{ form.media }}
+                            {# {{form|crispy}} #}
+                            
+                            <div class="crea_foro">
+                                {%if form.errors%}
+                                        <div class="alert alert-warning"><b>Favor corregir los siguientes errores</b><br>{{form.errors}}</div>
+                                {%endif%}
+                                {{form.as_p}}
+                                <div class="comment-form">
+                                    <h4 class="inner-title double-line line-left">Adjunto</h4>
+                                    <!--Accordion Box-->
+                                    <div class="form-group">
+                                        <div class="accordion-box">
+                                            <!-- Accordion -->
+                                            <div class="accordion accordion-block">
+                                                <div class="accord-btn"><h4>Fotos e imágenes</h4></div>
+                                                <div class="accord-content">
+                                                    {{ form2.management_form }}
+                                                    {% for foto in form2 %}
+                                                    <div class="media-form-inline">
+                                                            {{foto.label_tag}}
+                                                            {{foto}}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-box">
+                                            <!-- Accordion -->
+                                            <div class="accordion accordion-block">
+                                                <div class="accord-btn"><h4>Documentos</h4></div>
+                                                <div class="accord-content">
+                                                    {{ form3.management_form }}
+                                                    {% for docu in form3 %}
+                                                    <div class="media-form-inline">
+                                                            {{docu.label_tag}}
+                                                            {{docu}}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-box">
+                                            <!-- Accordion -->
+                                            <div class="accordion accordion-block">
+                                                <div class="accord-btn"><h4>Videos</h4></div>
+                                                <div class="accord-content">
+                                                    {{ form4.management_form }}
+                                                    {% for video in form4 %}
+                                                    <div class="media-form-inline">
+                                                            {{video.label_tag}}
+                                                            {{video}}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-box">
+                                            <!-- Accordion -->
+                                            <div class="accordion accordion-block">
+                                                <div class="accord-btn"><h4>Audios</h4></div>
+                                                <div class="accord-content">
+                                                    {{ form5.management_form }}
+                                                    {% for audio in form5 %}
+                                                    <div class="media-form-inline">
+                                                            {{audio.label_tag}}
+                                                            {{audio}}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input class="theme-btn btn-style-two admin-btn" type="submit" name="Nuevo" id="submitfoo" value="Guardar">
+
+
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock%}
+{% block extra_js %}
 <script type="text/javascript" src="/files/js/autocompletejs/jquery.autocomplete.js"></script>
 
-<style type="text/css">
-        .fixed{position: fixed; top: 10px;}
-</style>
 <script type="text/javascript">
+
         $(function() {
                 $elem = $('#actionbuttons');
 
@@ -40,109 +147,10 @@
             $('.nav-tab-media').height(alto);
         });
 </script>
-
-{% endblock %}
-
-{% block content%}
-<div class="row">
-    <div class="encabezado">
-      <div class="container">
-            <div class="row">
-                <div class="span5">
-                    <div class="encabezado-title">
-                        CREAR UN FORO
-                    </div>
-                </div>
-                <div class="span7">
-                </div>
-            </div>
-      </div>
-    </div>
-</div>
-<div class="row">
-        <div class="container">
-                <div class="row">
-                    <form enctype="multipart/form-data" action="." method="post">{% csrf_token %}
-                        {{ form.media }}
-                        <div class="span9">
-                                <div class="well foro">
-                                        {%if form.errors%}
-                                                <div class="alert alert-error"><b>Favor corregir los siguientes errores</b><br>{{form.errors}}</div>
-                                        {%endif%}
-                                          {{form.as_p}}
-                                        <div class="tabbable tabs-left">
-                                                <ul class="nav nav-tabs nav-tab-media">
-                                                  <li class="active"><a href="#fotos" data-toggle="tab"><i class="icon-camera"></i>Fotos e imágenes</a></li>
-                                                  <li><a href="#documentos" data-toggle="tab"><i class="icon-file"></i>Documentos</a></li>
-                                                  <li><a href="#videos" data-toggle="tab"><i class="icon-film"></i>Videos</a></li>
-                                                  <li><a href="#audios" data-toggle="tab"><i class="icon-volume-up"></i>Audios</a></li>
-                                                </ul>
-                                                <div class="tab-content tab-media">
-                                                  <div class="tab-pane active" id="fotos">
-                                                       <span class="label label-warning">FOTOS</span><hr>
-                                                       {{ form2.management_form }}
-                                                        {% for foto in form2 %}
-                                                        <div class="media-form-inline">
-                                                                {{foto.label_tag}}
-                                                                {{foto}}
-                                                        </div>
-                                                        {% endfor %}
-                                                        <hr>
-                                                  </div>
-                                                  <div class="tab-pane" id="documentos">
-                                                        <span class="label label-warning">DODCUMENTOS</span><hr>
-                                                        {{ form3.management_form }}
-                                                        {% for docu in form3 %}
-                                                        <div class="media-form-inline">
-                                                                {{docu.label_tag}}
-                                                                {{docu}}
-                                                        </div>
-                                                        {% endfor %}
-                                                        <hr>
-                                                  </div>
-                                                  <div class="tab-pane" id="videos">
-                                                        <span class="label label-warning">VIDEOS</span><hr>
-                                                        {{ form4.management_form }}
-                                                        {% for video in form4 %}
-                                                        <div class="media-form-inline">
-                                                                {{video.label_tag}}
-                                                                {{video}}
-                                                        </div>
-                                                        {% endfor %}
-                                                        <hr>
-                                                  </div>
-                                                  <div class="tab-pane" id="audios">
-                                                        <span class="label label-warning">AUDIOS</span><hr>
-                                                        {{ form5.management_form }}
-                                                        {% for audio in form5 %}
-                                                        <div class="media-form-inline">
-                                                                {{audio.label_tag}}
-                                                                {{audio}}
-                                                        </div>
-                                                        {% endfor %}
-                                                        <hr>
-                                                  </div>
-                                                </div>
-                                                <div class="clean"></div>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="span3">
-                                <div class="alert "><i class="icon-info-sign"></i>
-                                  Formulario para la creación de foros
-                                </div>
-                                <div class="well" id="actionbuttons">
-                                <input class="btn btn-large btn-success " style="" type="submit" id="submitfoo" value="Guardar" />
-                                <a href="/foros" class="btn btn-large">Cerrar</a>
-                                </div>
-                        </div>
-                        </form>
-                </div>
-        </div>
-</div>
-
-
-
-
-    </form>
-{% endblock%}
+<script type="text/javascript">
+    $( "input, select" ).addClass( "form-control" );
+    $( "input[type='submit']" ).removeClass( "form-control" ).addClass( "btn" );
+    $( "input[type='file']" ).removeClass( "form-control" );
+    
+</script>
+{% endblock extra_js %}

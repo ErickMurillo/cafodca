@@ -4260,6 +4260,7 @@ li.col-xs-12:before{
 .comment-form .form-group input[type="password"],
 .comment-form .form-group input[type="tel"],
 .comment-form .form-group input[type="email"],
+.comment-form .form-group input[type="url"],
 .comment-form .form-group select{
 	position:relative;
 	display:block;
@@ -5030,7 +5031,7 @@ li.col-xs-12:before{
 .gallery-section .filter-btns li{
 	position:relative;
 	display:inline-block;
-	padding:9px 25px;
+	padding:9px 20px;
 	line-height:24px;
 	border:2px solid #e9e9e9;
 	color:#808080;

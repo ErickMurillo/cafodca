@@ -81,10 +81,52 @@
 
             </div>
         </div><!-- Header Top End -->
+        <div class="lower-part visible-xs">
+            <div class="auto-container clearfix">
+
+                <!--Outer Box-->
+                <div class="outer-box clearfix">
+
+                    <!--Btn Box-->
+                    <div class="btn-box">
+                        <a href="/" class="theme-btn donate-btn" data-target="#donate-popup"><img class="logocafod" src="/static/images/logo2.png" alt="Greenture"></a>
+                    </div>
+
+                    <!-- Main Menu -->
+                    <nav class="main-menu">
+
+                        <div class="navbar-header">
+                            <!-- Toggle Button -->
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="navbar-collapse collapse clearfix">
+                            <ul class="navigation">
+
+                                <li><a href="/foros/perfil/">Perfil</a></li>
+                                <li><a href="/foros/privado/nota/">Notas</a></li>
+                                <li><a href="/foros/privado/agenda/">Eventos</a></li>
+                                <li><a href="/foros/lista/">Foro</a></li>
+                                <li><a href="/foros/privado/documento/">Documentos</a></li>
+                                <li><a href="/foros/privado/multimedia_fotos/">Multimedia</a></li>
+                                <li><a href="/contrapartes/mensaje/ver/">Mensajes</a></li>
+                                <li><a href="/">Web</a></li>
+
+                            </ul>
+                        </div>
+                    </nav><!-- Main Menu End-->
+
+                </div>
+            </div>
+        </div><!-- Lower Part End-->
 
     </header><!--End Main Header -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row hidden-xs">
             <div class="btn-group btn-group-justified menu-admin">
                 <div class="btn-group ">
                     <a href="/foros/perfil/" type="button" class="btn btn-nav {% if '/foros/perfil/' in request.path %}active{% endif %}">
@@ -138,6 +180,7 @@
             </div>
         </div>
     </div>
+    <div class="clearfix visible-xs pb-60"></div>
 
     {% block content %}
 

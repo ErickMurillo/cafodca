@@ -1,39 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<!-- Stylesheets -->
+	<link href="../../../static/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link href="../../..../../../static/css/style.css" rel="stylesheet">
+	<!-- Responsive -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link href="../../../static/css/bootstrap-margin-padding.css" rel="stylesheet">
+	<link href="../../../static/css/responsive.css" rel="stylesheet"`>
+	<link href="../../../static/css/newstyle.css" rel="stylesheet">
+</head>
+<body>
+	<div class="page-wrapper">
+		<div data-bac="#fcfcfc">
+    		<div class="sidebar-page pt-20 pb-20">
+    			<div class="container">
+				 	<!--Comment Form -->
+				    <div class="comment-form wow fadeInUp box_shadow panel-body" data-wow-delay="200ms" data-wow-duration="1500ms">
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <link type="text/css" rel="stylesheet"  href="/files/bootstrap/css/bootstrap.css" >
-  <script type="text/javascript" src="/files/bootstrap/js/bootstrap.js"></script>
-  <link type="text/css" rel="stylesheet/less" href="/files/css/cafod.less">
-  <script type="text/javascript" src="/files/js/less.min.js"></script>
+				        <div class="group-title text-uppercase"><h2>Agregue su comentario</h2><div class="default-line-left"></div></div>
 
-<style type="text/css">
-#id_comentario{
-	width:480px;
-	height:150px;
-}
-</style>
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#boton-preguntar").click(function() {	
-		$.post('.', {
-			comentario: $('#id_comentario').val(),
-			csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
-		}, function (data){
-			window.top.location.href=data;			
-			window.top.location.reload();
-			window.parent.jQuery.fancybox.close();
+				        <!--Comment Form-->
+				        
+				        <form id="commentform"action="." method="POST">{% csrf_token %}
+				        	<div class="row">
+					        	<div class="col-lg-12">
+					        		<div class="form-group">
+						        		{{form.comentario}}
+						        	</div>
+					        	</div>
+					        </div>
+				        	
+				        	<hr>
+							 <input class="theme-btn btn-style-two admin-btn" id="boton-preguntar" type="submit" value="Comentar">
+						        
+						 </form>
+
+				    </div>
+			    </div>
+			</div>
+		</div>
+	 </div>
+
+
+
+
+	<script src="../../../static/js/jquery.js"></script>
+	<script src="../../../static/js/bootstrap.min.js"></script>
+
+	<script src="../../../static/js/script.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#boton-preguntar").click(function() {	
+				$.post('.', {
+					comentario: $('#id_comentario').val(),
+					csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+				}, function (data){
+					window.top.location.href=data;			
+					window.top.location.reload();
+					window.parent.jQuery.fancybox.close();
+				});
+				
+				return false;
+			});
 		});
-		
-		return false;
-	});
-});
-</script>
+	</script>
+</body>
+</html>
 
-<br>
-<center><h6>Agregue su comentario</h6></center>
-<hr>
-<form id="commentform"action="." method="POST">{% csrf_token %}
-        	{{form.comentario}}
-	 <input class="btn btn-success" id="boton-preguntar" type="submit" value="Comentar">
-        
- </form>
+
+
+
 

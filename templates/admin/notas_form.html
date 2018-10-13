@@ -9,8 +9,13 @@
                 <div class="panel panel-default">
                     <div class="panel-title double-line line-left">
                         <div style="flex-grow:10">
-                            <h3 class="inner-title ">Edición de nota</h3>
-                        </div> 
+                            {% if request.path == '/notas/crear/' %}
+                                <h3 class="inner-title ">Crear nota</h3>
+                            {% else %}
+                                <h3 class="inner-title ">Edición de nota</h3>
+                            {% endif %}
+                        </div>
+
 
                     </div>
                     <div class="panel-body">
@@ -22,52 +27,66 @@
                             {{form|crispy}}
 
                             <h4 class="inner-title double-line line-left">Imagenes</h4>
-                            <div class="row">
+                            
                                 {{ form2.management_form }}
                                 {{form2.media}}
 
                                 {% if request.path == '/notas/crear/' %}
-                                {{form2.as_p}}
-                                {% else %}
-                                {% for img in form2 %}
-                                <div class="col-sm-12  col-md-6 form-group">
-                                    <div style="height:220px;">
-                                        <div>{{img.id}}</div>
-                                        <div>Nombre: {{img.nombre_img}}</div><br>
-                                        <div>{{img.foto}}</div><br>
-                                        <div>Tags: {{img.tags_img}} {{img.tags_img.help_text}}</div>
-                                        <div>Eliminar: {{img.DELETE}}</div>
-                                    </div>
-                                    <hr>                    
+                                <div>
+                                    {{form2.as_p}}
                                 </div>
-
-                                {% endfor %}
+                                {% else %}
+                                <div class="row">
+                                    {% for img in form2 %}
+                                        <div class="col-sm-12  col-md-6 form-group">
+                                            <div style="height:220px;">
+                                                <div>{{img.id}}</div>
+                                                <div>Nombre: {{img.nombre_img}}</div><br>
+                                                <div>{{img.foto}}</div><br>
+                                                <div>Tags: {{img.tags_img}} {{img.tags_img.help_text}}</div>
+                                                <div>Eliminar: {{img.DELETE}}</div>
+                                            </div>
+                                            <hr>                    
+                                        </div>
+                                    {% endfor %}
+                                </div>
                                 {% endif %}
-                            </div>
+                            
                             <h4 class="inner-title double-line line-left">Documentos</h4>
-                            <div class="row">
+                        
                                 {{ form3.management_form }}
                                 {{form3.media}}
                                 {% if request.path == '/notas/crear/' %}
-                                {{form3.as_p}}
-                                {% else %}
-                                {% for doc in form3 %}
-                                <div class="col-sm-12  col-md-6 form-group ">
-                                    <div style="height:240px;">
-                                        {{doc.id}} <br>
-                                        <div>Nombre: {{doc.nombre_doc}}</div> <br>
-                                        <div>{{doc.adjunto}}</div> <br>
-                                        <div>Tags: {{doc.tags_doc}} {{doc.tags_doc.help_text}}</div>
-                                        <div>Eliminar: {{doc.DELETE}}</div>
-                                        
-                                    </div>
-                                    <hr>
+                                <div>
+                                    {{form3.as_p}}
                                 </div>
-                                {% endfor %}
+                                {% else %}
+                                <div class="row">
+                                    {% for doc in form3 %}
+                                        <div class="col-sm-12  col-md-6 form-group ">
+                                            <div style="height:240px;">
+                                                {{doc.id}} <br>
+                                                <div>Nombre: {{doc.nombre_doc}}</div> <br>
+                                                <div>{{doc.adjunto}}</div> <br>
+                                                <div>Tags: {{doc.tags_doc}} {{doc.tags_doc.help_text}}</div>
+                                                <div>Eliminar: {{doc.DELETE}}</div>
+                                                
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    {% endfor %}
+                                </div>
                                 {% endif %}
-                            </div>
                             
-                            <input class="theme-btn btn-style-two admin-btn" type="submit" name="Editar" value="Actualizar">
+                                {% if request.path == '/notas/crear/' %}
+                                    <hr>
+                                    <input class="theme-btn btn-style-two admin-btn" type="submit" name="Editar" value="Nuevo">
+                                {% else %}
+                                    <input class="theme-btn btn-style-two admin-btn" type="submit" name="Editar" value="Actualizar">
+                                {% endif %}
+                            
+                            
+                            
                         </form>
                     </div>
                 </div>
@@ -82,5 +101,7 @@
 <script type="text/javascript">
 	$( "input, select" ).addClass( "form-control" );
 	$( "input[type='submit']" ).removeClass( "form-control" ).addClass( "btn" );
+    $( "input[type='file']" ).removeClass( "form-control" );
+    
 </script>
 {% endblock extra_js %}
