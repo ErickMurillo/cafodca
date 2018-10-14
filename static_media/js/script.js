@@ -151,17 +151,18 @@
 					items:1
 				},
 				600:{
-					items:1
+					items:4
 				},
 				1024:{
-					items:2
+					items:4
 				},
 				1400:{
-					items:2
+					items:5
 				}
 			}
 		});    		
 	}
+
 
 	//Testimonials Carousel Slider
 	if ($('.testimonials-carousel').length) {
@@ -171,7 +172,7 @@
 			autoplayHoverPause:false,
 			autoplay: 5000,
 			smartSpeed: 700,
-			dots:true,
+			dots:false,
 			nav:true,
 			navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
 			responsive:{
@@ -185,10 +186,10 @@
 					items:2
 				},
 				1024:{
-					items:3
+					items:4
 				},
 				1100:{
-					items:3
+					items:4
 				}
 			}
 		});    		
@@ -249,6 +250,35 @@
 				},
 				1200:{
 					items:2
+				}
+			}
+		});    		
+	}
+	//Sponsors Slider
+	if ($('.mensaje').length) {
+		$('.mensaje').owlCarousel({
+			loop:true,
+			margin:20,
+			dots:false,
+			nav:true,
+			smartSpeed: 500,
+			autoplay: false,
+			navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
+			responsive:{
+				0:{
+					items:1
+				},
+				480:{
+					items:1
+				},
+				600:{
+					items:1
+				},
+				800:{
+					items:1
+				},
+				1200:{
+					items:1
 				}
 			}
 		});    		

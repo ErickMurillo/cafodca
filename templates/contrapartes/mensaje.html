@@ -4,8 +4,9 @@
 <link rel="stylesheet" href="/static/css/select2.min.css" type="text/css"/>
 {% endblock extra_css %}
 
-  {%block extra_js%}
-  <script type="text/javascript" src="/static/js/select2.min.js"></script>
+{%block extra_js%}
+
+<script type="text/javascript" src="/static/js/select2.min.js"></script>
 <script type="text/javascript">
   $(".form-group #id_user").addClass( "form-control input-group__input" );
   $('.form-group #id_user').select2();
@@ -19,77 +20,88 @@
   {%endif%}
   {%endblock%}
 {% block content %}
-<div class="row" >
-    <div class="encabezado">
-      <div class="container">
-        <div class="row">
-          <div class="span5">
-            <div class="encabezado-title">
-            MENSAJES
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-{%if request.GET.guardado == 'ok'%}
-                        <div class="modal fade hide" id="myModal">
-                          <div class="modal-header">
-                            <a class="close" data-dismiss="modal">×</a>
-                            <h3>Enviado con éxito</h3>
-                          </div>
-                          <div class="modal-body">
-                            <p>Su mensaje ha sido enviado con éxito a todos los destinatarios</p>
-                          </div>
-                          <div class="modal-footer">
-                            <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
-                          </div>
-                        </div>
-    {%endif%}
-<div class="row">
-    <div class="container">
-        <div class="row">
-            <div class="span6">
-                <div class="alert alert-success">Crear mensaje</div>
-                <div class="well mensajeform">
-                    <form name='fl' action="." method="post" accept-charset="utf-8">{% csrf_token %}
-                        {{form.media}}
-                        <div class="form-group">
-                              <h5>Destinatarios</h5>
-                                {{form.user}}
-                        </div>
-                        <div class="clean"></div><br>
-                        {{form.mensaje}}<Br>
-                        <input type="submit" class="btn btn-success" name="enviar" value="Enviar">
-                    </form>
+<div data-bac="#fcfcfc">
+    <section class="sidebar-page pt-20 pb-20">
+        <div class="auto-container">
+            <div class="row clearfix perfil">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <form name='fl' action="." method="post" accept-charset="utf-8">{% csrf_token %}
+                            <div class="panel-body">
+                                {%if request.GET.guardado == 'ok'%}
+                                    <div class="alert alert-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <strong>Enviado con éxito!</strong>
+                                        <p>
+                                            Su mensaje ha sido enviado con éxito a todos los destinatarios
+                                        </p> 
+                                    </div>
+                                
+                                {%endif%}
+
+                                <!-- Comment Form -->
+                                <div class="comment-form wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+                                        
+                                    <div class="group-title text-uppercase"><h3>Crear mensaje</h3><div class="default-line-left"></div></div>
+                                    
+                                    <!--Comment Form-->
+                                    <form method="post" action="blog.html">
+                                        <div class="row clearfix">
+                                            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                                <label for="">Destinatarios</label>
+                                                {{form.user}}
+                                            </div>
+                                            
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                                <label for="">Mensaje</label>
+                                                {{form.mensaje}}
+                                            </div>
+                                            
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                                <input type="submit" class="theme-btn btn-style-two" name="enviar" value="Enviar">
+                                            </div>
+                                            
+                                        </div>
+                                    </form>
+                                        
+                                </div><!--End Comment Form -->
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="span6">
-                <div class="alert">Mensajes recibidos</div>
-                <table class="table table-bordered table-condensed table-striped">
-                    <tbody>
-                        {% for a in mensajes %}
-                        <tr>
-                            <td>
-                                <div style="float:right;margin:10px 10px;"class="opacidad-70">
-                                <span class="badge badge-info">Enviado por {{a.usuario}}</span>
-                                <span class="badge">{{a.fecha}}</span>
-                                </div>
-                                <div class="clean"></div>
-                                {{a.mensaje|safe}}
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="column default-featured-column blog-news-column  style-three">
+                        <h4 class="inner-title double-line line-left">MENSAJES ENVADOS</h4>
+                        <div class="mensaje owl-carousel owl-nav-style owl-nav3">
+                            {% for a in mensajes %}
+                                <article class="inner-box mb-xs-60">
+                                    <div class="content-box">
+                                        <div class="post-info clearfix">
+                                            <div class="post-options clearfix">
+                                                <a class="comments-count">Enviado por {{a.usuario}}</a>
+                                                <a class="comments-count">{{a.fecha}}</a>
 
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                            </div>
+                                        </div>
+                                        <div class="text">{{a.mensaje|safe}}</div>
+                                    </div>
+                                </article>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                    <aside class="sidebar">
 
 
+
+                    </aside>
+                </div>
+                
             </div>
         </div>
-    </div>
-
-
+    </section>
 </div>
+
 
 {% endblock %}

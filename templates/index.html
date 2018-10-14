@@ -260,7 +260,7 @@
     </section>
 
     <!--Team Section-->
-    <section class="team-section">
+    <section class="team-section pb-20">
         <div class="auto-container">
             <div class="sec-title clearfix">
                 <div class="pull-left">
@@ -272,12 +272,12 @@
                 </div>
             </div>
 
-            <div class="row clearfix">
+            <div class="testimonials-carousel row">
                 {% for empresa in  contrapartes %}
                     <!--Column-->
-                    <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                    <article class="column team-member " data-wow-delay="0ms" data-wow-duration="1500ms">
                         <div class="inner-box">
-                            <figure class="image"><img src="/static/images/resource/team-image-1.jpg" alt=""></figure>
+                            <figure class="image"><img src="https://via.placeholder.com/380x250" alt=""></figure>
                             <div class="member-info">
                                 <h3><a href="">{{empresa.siglas}}</a><h3>
                                 <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px"> {{empresa.pais}}</div>
@@ -294,27 +294,7 @@
                         </div>
                     </article>
                 {% endfor %}
-                {% for empresa in  contrapartes %}
-                    <!--Column-->
-                    <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <figure class="image"><img src="/static/images/resource/team-image-1.jpg" alt=""></figure>
-                            <div class="member-info">
-                                <h3><a href="">{{empresa.siglas}}</a><h3>
-                                <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px"> {{empresa.pais}}</div>
-                            </div>
-                            <div class="content">
-                                <div class="text cont_org"><p>{{empresa.generalidades|safe|striptags|truncatewords:20}}<p></div>
-                                <div class="social-links">
-                                    <a href="#"><span class="fa fa-facebook-f"></span></a>
-                                    <a href="#"><span class="fa fa-twitter"></span></a>
-                                    <a href="#"><span class="fa fa-google-plus"></span></a>
-                                    <a href="#"><span class="fa fa-linkedin"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                {% endfor %}
+    
             </div>
 
         </div>
