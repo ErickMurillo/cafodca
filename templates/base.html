@@ -268,6 +268,10 @@
 <script src="/static/js/jquery.countTo.js"></script>
 
 <script src="/static/js/script.js"></script>
+<script type="text/javascript">
+$( "a.endless_page_link:contains('>')" ).text( "Siguiente" ).addClass("next").append( '&ensp;<span class="fa fa-angle-right"></span>' );
+$( "a.endless_page_link:contains('<')" ).text( "Anterior" ).addClass("prev").prepend( '<span class="fa fa-angle-left"></span>&ensp;' );
+</script>
 {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>

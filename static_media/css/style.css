@@ -4034,9 +4034,9 @@ li.col-xs-12:before{
 	margin:0px 5px 10px;	
 }
 
-.styled-pagination li a{
+.styled-pagination a, .endless_page_current{
 	position:relative;
-	display:block;
+	display:inline-block;
 	line-height:24px;
 	padding:6px 5px;
 	font-size:16px;
@@ -4054,13 +4054,13 @@ li.col-xs-12:before{
 	-moz-transition:all 500ms ease;
 }
 
-.styled-pagination li a.next,
-.styled-pagination li a.prev{
+.styled-pagination  a.next,
+.styled-pagination a.prev{
 	padding:6px 25px;	
 }
 
-.styled-pagination li a:hover,
-.styled-pagination li a.active{
+.styled-pagination  a:hover,
+.styled-pagination a.active, .endless_page_current{
 	color:#ffffff;
 	background:#3a3a3a;
 	border-color:#3a3a3a;	

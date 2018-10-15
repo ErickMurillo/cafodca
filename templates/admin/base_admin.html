@@ -55,12 +55,12 @@
                     <!--Info Box-->
                     <div class="info-box">
                         <div class="icon"><span class="fa fa-user"></span></div>
-                        <strong>{{user.get_full_name|default:user.username}}</strong>
+                        <strong><a href="/contrapartes/usuario/editar/">Editar perfil</a>, {{user.get_full_name|default:user.username}}</strong>
                     </div>
                     <!--Info Box-->
                     <div class="info-box">
                         <div class="icon"><span class="fa fa-bar-chart"></span></div>
-                        <strong><a href="">Estadisticas</a></strong>
+                        <strong><a href="/contrapartes/estadisticas/ver/">Estadisticas</a></strong>
                     </div>
                     <!--Info Box-->
                     <div class="info-box">
@@ -114,6 +114,8 @@
                                 <li><a href="/foros/privado/documento/">Documentos</a></li>
                                 <li><a href="/foros/privado/multimedia_fotos/">Multimedia</a></li>
                                 <li><a href="/contrapartes/mensaje/ver/">Mensajes</a></li>
+                                <li><a href="/contrapartes/usuario/editar/">Editar perfil</a></li>
+                                <li><a href="/contrapartes/estadisticas/ver/">Estadisticas</a></li>
                                 <li><a href="/">Web</a></li>
 
                             </ul>
