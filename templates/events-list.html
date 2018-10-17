@@ -17,35 +17,14 @@
     <div class="sidebar-page">
         <div class="auto-container">
             <!--Filters Section-->
-            <div class="filters-section">
-                <div class="filter-form">
-                    <form method="post" action="index.html">
-                        <div class="row clearfix">
-                            <div class="form-group col-md-5 col-sm-5 col-xs-12">
-                                <div class="field-label">Fecha del evento</div>
-                                <input type="text" name="date" class="datepicker" value="" placeholder="Fecha">
-                            </div>
-                            <div class="form-group col-md-5 col-sm-5 col-xs-12">
-                                <div class="field-label">Buscar</div>
-                                <input type="text" name="keyword" value="" placeholder="Búsqueda">
-                            </div>
-                            <div class="form-group col-md-2 col-sm-2 col-xs-12">
-                                <div class="field-label">&nbsp;</div>
-                                <button type="button" class="theme-btn btn-style-two">Buscar eventos</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
             <div class="row clearfix">
-                
-                <!--Content Side--> 
+
+                <!--Content Side-->
                 <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                    
+
                     <!--Events Section / List View-->
                     <section class="events-section events-list-section list-view pb-0 pt-0 pr-20">
-                            
+
                         <!--Featured Column-->
                         {% paginate 4 object_list %}
                         {% for object in object_list %}
@@ -66,7 +45,7 @@
                                             <div class="post-tag">{{object.inicio|date:'d M Y'}}</div>
                                         </figure>
                                     </div>
-                                    
+
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="content-box">
                                             <h3><a href="{% url 'agenda-detail' object.id %}">{{object.evento}}</a></h3>
@@ -78,13 +57,13 @@
                                             <a href="{% url 'agenda-detail' object.id %}" class="theme-btn btn-style-four btn-sm mr-10">Leer más</a>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </article>
                         </div>
                         {% endfor %}
-                        
-                        
+
+
                         <!-- Styled Pagination -->
                         <div class="styled-pagination mb-20">
                             <ul>
@@ -97,31 +76,31 @@
                             </ul>
                         </div>
                     </section>
-                
-                    
+
+
                 </div>
                 <!--Content Side-->
-                
-                <!--Sidebar-->  
+
+                <!--Sidebar-->
                 <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                     <aside class="sidebar">
-                    
+
                         <!-- Search Form -->
-                        <!--<div class="widget search-box">
-                            
+                        <div class="widget search-box">
+
                             <form method="post" action="index.html">
                                 <div class="form-group">
                                     <input type="search" name="search-field" value="" placeholder="Buscar">
                                     <button type="submit"><span class="icon flaticon-tool-5"></span></button>
                                 </div>
                             </form>
-                            
-                        </div>-->                     
-                        
+
+                        </div>
+
                         <!-- Recent Posts -->
                         <div class="widget recent-posts wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="sidebar-title"><h3>Últimas Noticias</h3></div>
-                            
+
                             {% for nota in ultimas_notas %}
                             <article class="post">
                                 <figure class="post-thumb">
@@ -130,37 +109,37 @@
                                             <img src="{{ im.url }}">
                                         {% endthumbnail %}
                                     {% elif nota.fotos.all %}
-                                        {%for thumb in nota.fotos.all|slice:"1"%} 
+                                        {%for thumb in nota.fotos.all|slice:"1"%}
                                         <img src="{{thumb.foto.url_380x250}}" alt="">
                                         {% endfor %}
                                     {% else %}
                                     <img src="https://via.placeholder.com/380x250">
                                     {% endif %}
-                                    
+
                                 </figure>
                                 <h4><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo}}</a></h4>
                                 <div class="post-info"><span class="icon flaticon-people-1"></span> Por {{nota.user.get_full_name}} </div>
                             </article>
                             {% endfor %}
-                            
+
                         </div>
-                        
+
                         <!-- Archives -->
                         <div class="widget archives-list wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="sidebar-title"><h3>Pais</h3></div>
-                            
+
                             <ul class="list">
                                 {% for pais in paises %}
                                     <li><a href="{% url 'events_list_pais' pais.id %}">{{pais}}</a></li>
                                 {% endfor %}
                             </ul>
-                            
+
                         </div>
-                        
+
                         <!-- Popular Tags -->
                         <!--<div class="widget popular-tags">
                             <div class="sidebar-title"><h3>Palabras claves</h3></div>
-                            
+
                                 <a href="#">acciones</a>
                                 <a href="#">agricultura</a>
                                 <a href="#">agua</a>
@@ -171,16 +150,16 @@
                                 <a href="#">energia</a>
                                 <a href="#">familias</a>
                                 <a href="#">igualdad</a>
-                            
+
                         </div>-->
-                                
+
                     </aside>
-                
-                    
+
+
                 </div>
                 <!--Sidebar-->
-                
-                
+
+
             </div>
         </div>
     </div>
