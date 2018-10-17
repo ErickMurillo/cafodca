@@ -277,7 +277,15 @@
                     <!--Column-->
                     <article class="column team-member " data-wow-delay="0ms" data-wow-duration="1500ms">
                         <div class="inner-box">
-                            <figure class="image"><img src="https://via.placeholder.com/380x250" alt=""></figure>
+                            <figure class="image">
+                                 {% if empresa.logo %}
+                                        {% thumbnail empresa.logo "380x250" as im %}
+                                            <img src="{{ im.url }}" alt="{{empresa.siglas}}">
+                                        {% endthumbnail %}
+                                {% else %}
+                                        <img src="https://via.placeholder.com/380x250" alt="{{empresa.siglas}}">
+                                {% endif %}
+                            </figure>
                             <div class="member-info">
                                 <h3><a href="">{{empresa.siglas}}</a><h3>
                                 <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px"> {{empresa.pais}}</div>
@@ -294,7 +302,7 @@
                         </div>
                     </article>
                 {% endfor %}
-    
+
             </div>
 
         </div>
