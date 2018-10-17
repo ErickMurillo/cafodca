@@ -106,6 +106,17 @@ def documento(request, template='admin/documentos.html'):
 	return render(request, template, locals())
 
 @login_required
+def busqueda_tag(request, tags):
+    tag_sel = get_object_or_404(Tag, name=tags)
+    tags = []
+    for docu in Documentos.objects.all():
+        for tag in Tag.objects.filter(name=docu.tags_doc):
+            tags.append(tag)
+    todos = TaggedItem.objects.get_by_model(Documentos, tag_sel.name)
+    return render(request, 'admin/documentos_tag.html', locals())
+
+
+@login_required
 def multimedia_fotos(request, template='admin/fotos.html'):
 	imagenes = Imagen.objects.all()
 	tags = []
@@ -137,6 +148,17 @@ def multimedia_fotos(request, template='admin/fotos.html'):
 	return render(request, template, locals())
 
 @login_required
+def multimedia_fotos_tag(request, tags):
+    tag_sel = get_object_or_404(Tag, name=tags)
+    tags = []
+    for docu in Imagen.objects.all():
+        for tag in Tag.objects.filter(name=docu.tags_img):
+            tags.append(tag)
+    imagenes = TaggedItem.objects.get_by_model(Imagen, tag_sel.name)
+    return render(request, 'admin/fotos.html', locals())
+
+
+@login_required
 def multimedia_videos(request, template='admin/videos.html'):
 	videos = Videos.objects.all()
 	tags = []
@@ -166,6 +188,17 @@ def multimedia_videos(request, template='admin/videos.html'):
 		videos = list(set(lista))
 
 	return render(request, template, locals())
+
+@login_required
+def multimedia_videos_tag(request, tags):
+    tag_sel = get_object_or_404(Tag, name=tags)
+    tags = []
+    for docu in Videos.objects.all():
+        for tag in Tag.objects.filter(name=docu.tags_vid):
+            tags.append(tag)
+    videos = TaggedItem.objects.get_by_model(Videos, tag_sel.name)
+    return render('admin/videos.html',  locals())
+
 
 @login_required
 def multimedia_audios(request, template='admin/audios.html'):

@@ -1,7 +1,6 @@
 {% extends "admin/base_admin.html" %}
 
 
-
 {% block content %}
 <div data-bac="#fcfcfc">
      <section class="gallery-section">
@@ -9,10 +8,10 @@
             <!--Filter-->
             <div class="filters text-center">
                 <ul class="filter-btns clearfix btngallery_admin">
-                    
+
                     <li class=""><a class="" href="/foros/privado/multimedia_fotos/">Imagenes</a></li>
-                    <li class="active"><a href="/foros/privado/multimedia_videos/">Videos</a></li>
-                    <li class=""><a href="/foros/privado/multimedia_audios/">Audios</a></li>
+                    <li class=""><a href="/foros/privado/multimedia_videos/">Videos</a></li>
+                    <li class="active"><a href="/foros/privado/multimedia_audios/">Audios</a></li>
                 </ul>
             </div>
 
@@ -20,7 +19,7 @@
                 <div class="panel-title double-line line-left">
                     <div style="flex-grow: 8">
                         <h3 class="inner-title ">Audios</h3>
-                    </div> 
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -35,14 +34,14 @@
                             </thead>
                             <tbody>
                                 {% for audio in audios %}
-                                <tr>                                    
+                                <tr>
                                     <td>{{audio.id}}</td>
                                     <td>{{audio.nombre_audio}}</td>
                                     <td>{{audio.tags_aud}}</td>
                                     <td><a href="/media/{{audio.audio}}" download>Descargar</a></td>
                                 </tr>
                                 {% endfor %}
-                                
+
 
                             </tbody>
                         </table>

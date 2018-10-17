@@ -13,9 +13,9 @@
                             <div class="sidebar-title"><h3>Palabras claves</h3></div>
 
                             <ul class="list">
-                                {% for tag in tags %}
-                                <li><a href="/foros/privado/documento_tag/{{tag}}"><i class="icon-tag pdr10"></i>{{tag}}</a></li>
-                            {% endfor %}
+                                {% for t in tags %}
+                                    <li {%if t == tag_sel%}class="active"{%endif%} ><a href="/foros/privado/documento_tag/{{t}}"><i class="icon-tag"></i>{{t}}</a></li>
+                                {% endfor %}
                             </ul>
 
                         </div>
@@ -49,7 +49,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for doc in documentos %}
+                                            {% for doc in todos %}
                                             <tr>
                                                 <td>{{doc.id}}</td>
                                                 <td>{{doc.nombre_doc}}</td>
