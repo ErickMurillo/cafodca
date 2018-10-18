@@ -51,7 +51,7 @@
                                             <div class="news-date">{{object.fecha|date:'d'}}<span class="month">{{object.fecha|date:'M'}}</span></div>
                                         </figure>
                                         <div class="content-box">
-                                            <h3><a href="{% url 'notas-detail' object.id %}">{{object.titulo|truncatewords:8}}</a></h3>
+                                            <h3><a href="{% url 'notas-detail' object.id %}">{{object.titulo|truncatewords:6}}</a></h3>
                                             <div class="post-info clearfix">
                                                 <div class="post-author">Por <span class="theme_color">{{object.user.get_full_name}}</span></div>
                                                 <div class="post-options clearfix">
