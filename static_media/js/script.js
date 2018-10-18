@@ -168,7 +168,6 @@
 	if ($('.testimonials-carousel').length) {
 		$('.testimonials-carousel').owlCarousel({
 			loop:true,
-			margin:60,
 			autoplayHoverPause:false,
 			autoplay: 5000,
 			smartSpeed: 700,

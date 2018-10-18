@@ -11,7 +11,7 @@
 
     body{
       width: 100%;
-      background: #93C55E;
+      background: #a0a916;
     }
 
     @-webkit-keyframes HeroBG {
@@ -192,7 +192,7 @@
     .btn-login:hover,
     .btn-login:focus {
       color: #fff;
-      background-color: #93C55E;
+      background-color: #a0a916;
     }
     .forgot-password {
       text-decoration: underline;

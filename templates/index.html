@@ -188,7 +188,7 @@
                                     </div>
                                 </div>
                                 <div class="text">{{nota.contenido|safe|striptags|truncatechars:130}}</div>
-                                <a href="#" class="theme-btn btn-style-four btn-sm">Leer más</a>
+                                <a href="{% url 'notas-detail' nota.id %}" class="theme-btn btn-style-four btn-sm">Leer más</a>
                             </div>
                         </article>
                         {% endfor %}

@@ -74,10 +74,10 @@
     }
 }
 .menu-admin .btn {
-  border: 1px solid #93C55E;
+  border: 1px solid #a0a916;
   border-radius: 5px;
   background: transparent;
-  color: #93C55E;
+  color: #a0a916;
   font-size: 16px;
   display: inline-block;
   min-width: 122px;
@@ -88,19 +88,19 @@
 
 .menu-admin .btn:hover {
   background: #fff;
-  color: #f14b05;
-  border-color: #f14b05;
+  color: #ff6309;
+  border-color: #ff6309;
 }
 .menu-admin .btn.active{
-background: #f14b05;
+background: #ff6309;
   color: #fff;
-  border-color: #f14b05;
+  border-color: #ff6309;
 }
 
 .menu-admin .btn.base-bg {
-  border-color: #93C55E;
+  border-color: #a0a916;
   color: #fff;
-  background: #93C55E;
+  background: #a0a916;
 }
 
 .detalle-perfil ul li {
@@ -114,32 +114,32 @@ background: #f14b05;
   color: #25292f;
 }
 .detalle-perfil ul li a:hover{
-  color: #93C55E;
+  color: #a0a916;
 }
 .pais .icon_text{
-  border:0px solid #93C55E;
+  border:0px solid #a0a916;
   color: #fff;
   padding: 10px;
   text-align: center;
-  background: #93C55E;
+  background: #a0a916;
 }
 .pais .icon{
-  border:2px solid #93C55E;
-  color: #93C55E;
+  border:2px solid #a0a916;
+  color: #a0a916;
   padding: 10px;
   text-align: center;
   background: white;
 }
 .fundacion .icon_text{
-  border:0px solid #f14b05;
+  border:0px solid #ff6309;
   color: #fff;
   padding: 10px;
   text-align: center;
-  background: #f14b05;
+  background: #ff6309;
 }
 .fundacion .icon{
-  border:2px solid #f14b05;
-  color: #f14b05;
+  border:2px solid #ff6309;
+  color: #ff6309;
   padding: 10px;
   text-align: center;
   background: white;
@@ -168,23 +168,23 @@ background: #f14b05;
     line-height:32px;
     border-radius:50%;
     text-align:center;
-    border:1px solid #f14b05;
+    border:1px solid #ff6309;
     color:#fff;
     transition:all 300ms ease;
     -webkit-transition:all 300ms ease;
     -ms-transition:all 300ms ease;
     -o-transition:all 300ms ease;
     -moz-transition:all 300ms ease;
-    background: #f14b05;
+    background: #ff6309;
 }
 
 .detalle-perfil .social-links a:hover{
-    background-color:#93C55E;
+    background-color:#a0a916;
     color:#ffffff;
-    border-color:#93C55E;
+    border-color:#a0a916;
 }
 .theme_color_two{
-    color: #f14b05 !important;
+    color: #ff6309 !important;
 }
 .cont_org{
   max-height: 76px;
@@ -256,7 +256,7 @@ background: #f14b05;
 .btn-style-danger:hover{
   background:#ffffff;
   color:#c9302c !important;
-  border-color:#93C55E; 
+  border-color:#a0a916; 
 }
 .column.blog-news-column.foro_content  .content-box{
   padding: 0px !important;
@@ -343,8 +343,8 @@ input[type=file]{
 
 .testimonials-carousel .owl-nav .owl-prev:hover,
 .testimonials-carousel .owl-nav .owl-next:hover  {
-    background: rgba(235, 83, 16, 0.85) !important;
-    border-color: #93C55E !important;
+    background: rgba(255, 99, 9, 0.85) !important;
+    border-color: #a0a916 !important;
     color: #fff !important;
 }
 
@@ -364,5 +364,15 @@ input[type=file]{
   padding: 10px 0px 0px;
 }
 .select2-container--default.select2-container--focus .select2-selection--multiple{
-  border: solid #93c55e 1px !important;
+  border: solid #a0a916 1px !important;
 }
+.blog-news-section .blog-news-column h3{
+  height: 60px;
+}
+.blog-news-section .blog-news-column .content-box .text{
+  height: 50px;
+}
+.blog-news-section .blog-news-column .inner-box {
+  min-height: 493px;
+}
+    
