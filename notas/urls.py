@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^crear/$', crear_nota, name="crear-nota"),
     # url(r'^editar/(?P<id>\d+)/$', 'editar_nota', name='editar-nota'),
     # url(r'^borrar/(?P<id>\d+)/$', 'borrar_nota', name='borrar-nota'),
+    url(r'^imagenes/$', ver_imagenes, name="imagenes-nota"),
+    url(r'^videos/$', ver_videos, name="videos-nota"),
     ]

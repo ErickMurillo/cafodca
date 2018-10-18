@@ -11,6 +11,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import *
 from notas.models import Notas
+from foros.models import Foros, Aportes, Comentarios
+from agendas.models import Agendas
 
 # Create your views here.
 @login_required

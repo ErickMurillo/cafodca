@@ -14,6 +14,9 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.forms import generic_inlineformset_factory
 
+from tagging.models import Tag
+from tagging.models import TaggedItem
+
 # Create your views here.
 def logout_page(request):
 	logout(request)
@@ -80,3 +83,62 @@ def crear_nota(request, template='admin/notas_form.html'):
 		form3 = AdjuntoForm()
 
 	return render(request, template, locals())
+
+
+def ver_imagenes(request):
+	imagenes = Imagen.objects.all()
+	tags = []
+	for docu in Imagen.objects.all():
+		for tag in Tag.objects.filter(name=docu.tags_img):
+			tags.append(tag)
+
+	query = request.GET.get('q', '')
+	if query:
+		result_fotos = Imagen.objects.filter(nombre_img__icontains=query)
+		result_tags = Tag.objects.filter(name__icontains=query)
+		lista = []
+		tags_lista = []
+		for n in result_fotos:
+			lista.append(n)
+		for rtag in result_tags:
+			TaggedItems = TaggedItem.objects.get_by_model(Imagen, rtag.name)
+			if not rtag.items.all().count() == 0:
+				li = []
+				for it in rtag.items.all():
+					if it.object:
+						li.append(it)
+				tags_lista.append({'name':rtag.name, 'count': len(li)})
+			for item in TaggedItems:
+				lista.append(item)
+		#tags.sort(key=operator.itemgetter('count'), reverse=True)
+		imagenes = list(set(lista))
+	return render(request, 'publico_imagenes.html', locals())
+
+def ver_videos(request):
+	videos = Videos.objects.all()
+	tags = []
+	for docu in Videos.objects.all():
+		for tag in Tag.objects.filter(name=docu.tags_vid):
+			tags.append(tag)
+
+	query = request.GET.get('q', '')
+	if query:
+		result_fotos = Videos.objects.filter(nombre_video__icontains=query)
+		result_tags = Tag.objects.filter(name__icontains=query)
+		lista = []
+		tags_lista = []
+		for n in result_fotos:
+			lista.append(n)
+		for rtag in result_tags:
+			TaggedItems = TaggedItem.objects.get_by_model(Videos, rtag.name)
+			if not rtag.items.all().count() == 0:
+				li = []
+				for it in rtag.items.all():
+					if it.object:
+						li.append(it)
+				tags_lista.append({'name':rtag.name, 'count': len(li)})
+			for item in TaggedItems:
+				lista.append(item)
+		#tags.sort(key=operator.itemgetter('count'), reverse=True)
+		videos = list(set(lista))
+	return render(request, 'publico_videos.html', locals())

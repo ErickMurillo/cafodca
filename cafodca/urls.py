@@ -36,5 +36,6 @@ urlpatterns = [
     # url(r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
     url(r'^foros/', include('foros.urls')),
     # url(r'^busqueda/$', include('django_google_cse.urls')),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

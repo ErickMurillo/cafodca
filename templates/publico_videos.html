@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load el_pagination_tags %}
+{% load embed_video_tags %}
+
+{% block content %}
+ <!--Page Title-->
+<section class="page-title" style="background-image:url(http://www.vielva.cl/img/Category/5/AGRICOLA.png);">
+    <div class="auto-container">
+        <div class="sec-title">
+            <h1>Videos</h1>
+            <div class="bread-crumb"><a href="/">Inicio</a> / <a href="/videos/" class="current">Videos</a></div>
+        </div>
+    </div>
+</section>
+
+  <section class="gallery-section">
+    <div class="auto-container">
+        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+            <div class="row clearfix">
+                {% paginate 12 videos %}
+                {% for vid in videos %}
+                    <div class="column col-md-6 col-sm-6 col-xs-12">
+                        {% video vid.url '420x250' %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="styled-pagination mb-20">
+                <ul>
+                    {% show_pages %}
+                </ul>
+            </div>
+
+    </div>
+</section>
+
+
+{% endblock content %}
