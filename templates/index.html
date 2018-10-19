@@ -165,11 +165,11 @@
                                 <a href="{% url 'notas-detail' nota.id %}">
                                     {% if nota.foto %}
                                         {% thumbnail nota.foto "380x250" as im %}
-                                            <img src="{{ im.url }}">
+                                            <img src="{{ im.url }}" alt="{{nota.titulo}}">
                                         {% endthumbnail %}
                                     {% elif nota.fotos.all %}
                                         {%for thumb in nota.fotos.all|slice:"1"%}
-                                        <img src="http://cafodca.org{{thumb.foto.url_380x250}}" alt="">
+                                        <img src="{{thumb.foto.url_380x250}}" alt="{{nota.titulo}}">
                                         {% endfor %}
                                     {% else %}
                                         <img src="https://via.placeholder.com/380x250">
@@ -293,10 +293,9 @@
                             <div class="content">
                                 <div class="text cont_org"><p>{{empresa.generalidades|safe|striptags|truncatewords:20}}<p></div>
                                 <div class="social-links">
-                                    <a href="#"><span class="fa fa-facebook-f"></span></a>
-                                    <a href="#"><span class="fa fa-twitter"></span></a>
-                                    <a href="#"><span class="fa fa-google-plus"></span></a>
-                                    <a href="#"><span class="fa fa-linkedin"></span></a>
+                                    {% for red in empresa.redes_set.all %}
+                                        <a href="{{red.url}}"><span class="fa fa-{{red.opcion|lower}}"></span></a>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

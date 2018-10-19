@@ -2,7 +2,7 @@
 
 {% block content %}
 <div data-bac="#fcfcfc">
-        
+
         <section class="welcome-section pt-20 pb-20">
             <div class="auto-container">
                 <div class="row clearfix perfil">
@@ -17,13 +17,13 @@
                             <li class="fundacion">
                                 <span class="fa fa-calendar icon"></span><span class="icon_text">Fundación {{contraparte.fundacion}}</span>
                             </li>
-                            
+
                         </ul>
                         <div class="row clearfix">
                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                 <h5 class="inner-title double-line line-left">Contacto</h5>
                                 <ul class="list-inline">
-                                    <li><span class="fa fa-envelope theme_color"></span> <a href="">simas@simas.com</a></li>
+                                    <li><span class="fa fa-envelope theme_color"></span> <a href="">{{contraparte.correo}}</a></li>
                                     <li><span class="fa fa-phone theme_color"> </span> <a href="">{{contraparte.telefono}}</a></li>
                                     <!--<li><span class="fa fa-globe theme_color"></span> <a href="">www.simas.com.ni</a></li>-->
                                 </ul>
@@ -33,8 +33,8 @@
                                 <div class="info-box social-box">
                                     <div class="social-links clearfix">
                                         {% for red in contraparte.redes_set.all %}
-                                        <a href="{{red.url}}" class="img-circle" target="_blank"><span class="{% if red.opcion == 'Sitio web' %}
-                                                                fa fa-globe
+                                        <a href="{{red.url}}" class="img-circle" target="_blank"><span class="{% if red.opcion == 'chrome' %}
+                                                                fa fa-chrome
                                                             {% elif red.opcion == 'Facebook' %}
                                                                 fa fa-facebook
                                                             {% elif red.opcion == 'Twitter' %}
@@ -57,13 +57,13 @@
                                                                 fa fa-link
                                                             {% endif %}"></span></a>
                                         {% endfor %}
-                                       
+
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
 
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 logo-perfil">
@@ -72,7 +72,7 @@
                         <div class="">
                             <a class="theme-btn btn-style-two ml-40" href="{% url 'editar-contraparte' contraparte.id %}">Editar</a>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -85,15 +85,15 @@
                         <div class="content-box">
                             <h4 class="inner-title double-line line-left">GENERALIDADES</h4>
                             <p class="text">
-                                {{contraparte.generalidades|safe}} 
+                                {{contraparte.generalidades|safe}}
                             </p>
                             <br>
                             <h4 class="inner-title double-line line-left">TEMAS</h4>
                             <p class="text">
-                                {{contraparte.temas|safe}} 
+                                {{contraparte.temas|safe}}
                             </p>
-                            
-                            
+
+
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                     <div class="col-lg-12 org-contenido">
                         <div class="content-box">
                             <h4 class="inner-title double-line line-left">Estadisticas</h4>
-                            <div class="fact-counter">         
+                            <div class="fact-counter">
                                 <div class="row clearfix">
                                     <!--Column-->
                                     <article class="col-md-3 col-sm-3 col-xs-12 column wow fadeIn" data-wow-duration="0ms">
@@ -117,7 +117,7 @@
                                             <div class="count-outer"><span class="count-text" data-speed="1000" data-stop="53">0</span></div>
                                          </div>
                                     </article>
-                                    
+
                                     <!--Column-->
                                     <article class="col-md-3 col-sm-3 col-xs-12 column wow fadeIn" data-wow-duration="0ms">
                                         <div class="inner">
@@ -126,7 +126,7 @@
                                             <div class="count-outer"><span class="count-text" data-speed="1500" data-stop="25">0</span></div>
                                         </div>
                                     </article>
-                                    
+
                                     <!--Column-->
                                     <article class="col-md-3 col-sm-3 col-xs-12 column wow fadeIn" data-wow-duration="0ms">
                                         <div class="inner">
@@ -144,18 +144,18 @@
                                             <div class="count-outer"><span class="count-text" data-speed="2500" data-stop="39">0</span></div>
                                         </div>
                                     </article>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </section>
 </div>
 {% endblock content %}
-    
 
-  
-   
+
+
+

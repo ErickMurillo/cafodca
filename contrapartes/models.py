@@ -55,6 +55,7 @@ class Contraparte(models.Model):
     sitio_web = models.URLField(blank=True, null=True)
     rss = models.CharField(max_length=200,blank=True, null=True)
     font_color = ColorField(blank=True,unique=True)
+    correo = models.EmailField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Contrapartes"
@@ -66,7 +67,7 @@ class Contraparte(models.Model):
     def get_absolute_url(self):
         return '/contrapartes/%d/' % (self.id,)
 
-REDES_CHOICES = (('Sitio web','Sitio web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
+REDES_CHOICES = (('chrome','Sitio web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
                     ('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),
                     ('Flickr','Flickr'),('Pinterest','Pinterest'),('Vimeo','Vimeo'),('Otra','Otra'),)
 
