@@ -260,7 +260,7 @@
     </section>
 
     <!--Team Section-->
-    <section class="team-section pb-20">
+    <section class="team-section team-index pb-20">
         <div class="auto-container">
             <div class="sec-title clearfix">
                 <div class="pull-left">
@@ -279,11 +279,11 @@
                         <div class="inner-box">
                             <figure class="image">
                                  {% if empresa.logo %}
-                                        {% thumbnail empresa.logo "380x250" as im %}
+                                        {% thumbnail empresa.logo "270x270" as im %}
                                             <img src="{{ im.url }}" alt="{{empresa.siglas}}">
                                         {% endthumbnail %}
                                 {% else %}
-                                        <img src="https://via.placeholder.com/380x250" alt="{{empresa.siglas}}">
+                                        <img src="https://via.placeholder.com/350x350" alt="{{empresa.siglas}}">
                                 {% endif %}
                             </figure>
                             <div class="member-info">
@@ -308,3 +308,7 @@
         </div>
     </section>
 {% endblock content %}
+{% block extra_js %}
+    <script src="/static/js/jquery.fancybox.pack.js"></script>
+    <script src="/static/js/jquery.fancybox-media.js"></script>
+{% endblock extra_js %}

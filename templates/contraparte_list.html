@@ -26,11 +26,11 @@
                                 <figure class="image">
                                     <a href="{% url 'detalle-contraparte' object.id %}">
                                         {% if object.logo %}
-                                            {% thumbnail object.logo "270x178" as im %}
+                                            {% thumbnail object.logo "270x270" as im %}
                                                 <img src="{{ im.url }}" width="100%">
                                             {% endthumbnail %}
                                         {% else %}
-                                            <img src="https://via.placeholder.com/380x250" width="100%">
+                                            <img src="https://via.placeholder.com/270x270" width="100%">
                                         {% endif %}
                                     </a>
                                 </figure>
