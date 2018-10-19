@@ -22,34 +22,8 @@
         <div class="auto-container">
 
             <div class="row clearfix">
-                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-                    <aside class="sidebar">
 
-                        <!-- Search Form -->
-                        <div class="widget search-box">
-
-                            <form method="post" action="index.html">
-                                <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Buscar">
-                                    <button type="submit"><span class="icon flaticon-tool-5"></span></button>
-                                </div>
-                            </form>
-
-                        </div>
-                        <div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                            <div class="sidebar-title"><h3>Palabras claves</h3></div>
-
-                            <ul class="list">
-                                {% for tag in tags %}
-                                    <li {%if tag == tag_sel%}class="active"{%endif%}><a href="/foros/privado/multimedia_fotos_tag/{{tag}}" class="pdr10"><i class="icon-tag"></i>{{tag}}</a></li>
-                                {% endfor %}
-                            </ul>
-
-                        </div>
-
-                    </aside>
-                </div>
-                <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="row clearfix">
 
                         <!--Column-->
