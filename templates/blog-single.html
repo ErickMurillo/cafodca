@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load thumbnail %}
-
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
+{% endblock extra_css %}
 {% block content %}
        <!--Page Title-->
     <section class="page-title" style="background-image:url(http://www.vielva.cl/img/Category/5/AGRICOLA.png);">
@@ -57,9 +59,13 @@
                                     <div class="text">
                                         {{object.contenido|safe}}  
 
-                                        {% for fotos in object.fotos.all %}
-                                             <img src="{{fotos.foto.url_380x250}}" alt="">
-                                         {% endfor %} 
+                                    </div>
+                                    <div class="mb-40">
+                                        <h4><b>Documentos adjuntos</b></h4>
+                                        <hr>
+                                        {% for adjunto in object.adjunto.all %}
+                                            <a class="btn-theme btn-style-three" href="/uploads/{{adjunto.adjunto}}" target="_blank">{{adjunto.nombre_doc}} <span class="fa fa-download"></span></a>
+                                        {% endfor %} 
                                     </div>
                                 </div>
                                 
@@ -71,6 +77,7 @@
                                         <a href="#" class="google-plus img-circle"><span class="fa fa-google-plus"></span></a>
                                     </div>
                                 </div>
+                                
                                 
                             </article>
                         </div>                        
@@ -94,6 +101,19 @@
                                 </div>
                             </form>
                             
+                        </div>
+
+                        <!-- Galeria -->
+                        <div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="sidebar-title"><h3>Imágenes</h3></div>
+
+                            <ul class="img_notas">
+                                {% for fotos in object.fotos.all %}
+                                    <li><a data-fancybox="gallery" href="{{fotos.foto.url_640x480}}" data-caption="{{fotos.nombre_img}}"><img src="{{fotos.foto.url_80x80}}" ></a></li>
+                                {% endfor %} 
+
+                            </ul>
+
                         </div>
                         
                         <!-- Popular Categories -->
@@ -180,3 +200,6 @@
     </div>
 
 {% endblock content %}
+{% block extra_js %}
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+{% endblock extra_js %}

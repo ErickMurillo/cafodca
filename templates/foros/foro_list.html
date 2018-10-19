@@ -72,35 +72,6 @@
         </div>
     </section>
 </div>
-<div class="row">
-    <div class="encabezado">
-      <div class="container">
-            <div class="row">
-                <div class="span5">
-                    <div class="encabezado-title">
-                        LISTA DE FOROS ABIERTOS
-                    </div>
-                </div>
-                <div class="span7">
-                    <div class="btn-group filtrospais">
-                        <a href="/foros/crear" class="btn"><i class="icon-plus-sign"></i></a>
-                    </div>
-                </div>
-            </div>
-      </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="container">
-        {% if request.GET.b == 'borrado' %}
-            <div class="alert fade in">
-                Se ha eliminado el foro de forma permanente
-                <a class="close" href="#" data-dismiss="alert">x</a>
-            </div>
-        {% endif %}
-        
-    </div>
-</div>
 
 {% endblock %}

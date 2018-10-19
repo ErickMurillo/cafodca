@@ -8,7 +8,7 @@
             <div class="tp-banner">
                 <ul>
                 {% for portada in  site_config.fotosportada_set.all %}
-                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="/uploads/{{portada.foto}}"  data-saveperformance="off"  data-title="Awesome Title Here">
+                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="/uploads/{{portada.foto}}"  data-saveperformance="off"  data-title="{{portada.titulo|safe}}">
                     <img src="/uploads/{{portada.foto}}"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
 
@@ -36,7 +36,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><div class="text">{{portada.descripcion|safe|truncatewords:12}}</div></div>
+                    data-endeasing="Power4.easeIn"><div class="text">{{portada.descripcion|safe|truncatewords:25}}</div></div>
 
                     </li>
                     {% endfor %}
@@ -55,10 +55,10 @@
                 <!--Cause Column-->
                 <div class="column default-featured-column links-column col-lg-4 col-md-12">
                     <article class="inner-box mb-md-60">
-                        <h4 class="inner-title double-line line-left">PRÓXIMOS EVENTOS</h4>
+                        <h4 class="inner-title double-line line-left">EVENTOS</h4>
                         <div class="vertical-links-outer events-post">
                             <div class="text-uppercase p-20 mb-5" data-bac="#393d42">
-                                <h2 class="white_color fw-b fs-24 mr-xs-80 mr-xxs-0">Nuestros siguientes<span class="theme_color"> eventos</span></h2>
+                                <h2 class="white_color fw-b fs-24 mr-xs-80 mr-xxs-0">Próximas actividades <span class="theme_color"> Copartes</span></h2>
                             </div>
 
                             <div class="bx-event-carousel-style2">
@@ -149,7 +149,7 @@
     <section class="main-features parallax-section theme-overlay overlay-deep-white" style="background-image:url(http://monitoreo-finca.cafodca.org/static/img/10.JPG);">
         <div class="auto-container">
             <div class="title-box text-center mb-0">
-                <h1 class="fs-36 mb-15">SISTEMAS DE MONITOREOS</h1>
+                <h1 class="fs-36 mb-15">SISTEMAS DE INFORMACIÓN</h1>
                 <div class="text">El Programa Medios de Vida Sostenible con enfoque en la gestión de riesgo y el cambio climático de CAFOD, implementa el sistema de monitoreo de finca que tiene como fin identificar la mejoría del bienestar de vida de familias campesinas atendidas por el programa a través de co-partes en territorio.</div>
                 <div class="">
                     <a class="theme-btn btn-style-four" href="http://monitoreo-finca.cafodca.org/">Ver mapa finca</a>
@@ -164,7 +164,7 @@
         <div class="container">
             <div class="row">
                 <div class="sec-title text-center">
-                    <h2>Nuestra <span class="normal-font theme_color">Galería</span></h2>
+                    <h2>GALERÍA DE  <span class="normal-font theme_color">IMÁGENES</span></h2>
                 </div>
             </div>
         </div>
@@ -206,11 +206,11 @@
         <div class="auto-container">
             <div class="sec-title clearfix">
                 <div class="pull-left">
-                    <h2>Nuestros <span class="normal-font theme_color">Miembros</span></h2>
+                    <h2>NUESTRAS <span class="normal-font theme_color">COPARTES</span></h2>
 
                 </div>
                 <div class="pull-right padd-top-30">
-                    <a class="theme-btn btn-style-three" href="/contrapartes/">Todos los miembros</a>
+                    <a class="theme-btn btn-style-three" href="/contrapartes/">Todas las copartes</a>
                 </div>
             </div>
 
@@ -249,7 +249,7 @@
         </div>
     </section>
 {% endblock content %}
-{% block extra_js %}
+{% block extra_fancy %}
     <script src="/static/js/jquery.fancybox.pack.js"></script>
     <script src="/static/js/jquery.fancybox-media.js"></script>
-{% endblock extra_js %}
+{% endblock extra_fancy %}

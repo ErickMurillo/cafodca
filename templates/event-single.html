@@ -37,7 +37,7 @@
                                 </figure>
                                 <div class="content-box padd-top-40">
                                     <div class="row detail-header clearfix">
-                                        <div class="col-md-8 col-sm-12">
+                                        <div class="col-md-12 col-sm-12">
                                             <h3 class="fs-28">{{object.evento}}</h3>
                                             <ul class="event-held list-inline">
                                                 <li class="theme_color "><i class="black_color fa fa-calendar"></i> {{object.inicio|date:'d F Y'}}</li>
@@ -45,20 +45,20 @@
                                                 <li class="theme_color "> <i class="black_color fa fa-map-marker mr-5"></i>{{object.lugar}}</li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-4 col-sm-12 pull-right text-right"><a href="#" class="theme-btn btn-style-two">Confirmar Asistencia</a></div>
                                     </div>
                                     <hr>
                                     
                                     <div class="text">
                                         {{object.descripcion|safe}}
                                     </div>
-                                    
                                     <br>
-                                    
-                                    <ul class="styled-list-one normal-font">
-                                        <li><a href="">Agenda</a></li>
-                                        <li><a href="">Documento Adjunto</a> </li>
-                                    </ul>
+                                    <div class="mb-40">
+                                        <h4><b>Documentos adjuntos</b></h4>
+                                        <hr>
+                                        {% for adjunto in object.adjunto.all %}
+                                            <a class="btn-theme btn-style-three" href="/uploads/{{adjunto.adjunto}}" target="_blank">{{adjunto.nombre_doc}} <span class="fa fa-download"></span></a>
+                                        {% endfor %} 
+                                    </div>
                                     
                                     <br><br>
                                     

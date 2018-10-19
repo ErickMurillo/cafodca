@@ -60,11 +60,7 @@
                         <div class="icon"><span class="fa fa-user"></span></div>
                         <strong><a href="/foros/perfil/">{{user.get_full_name|default:user.username}}</a></strong>
                     </div>
-                    <!--Info Box-->
-                    <div class="info-box">
-                        <div class="icon"><span class="fa fa-bar-chart"></span></div>
-                        <strong><a href="#">Estadisticas</a></strong>
-                    </div>
+
                     <!--Info Box-->
                     <div class="info-box">
                         <div class="icon"><span class="fa fa-power-off"></span></div>
@@ -269,7 +265,7 @@
 <script src="/static/js/circle-progress.js"></script>
 <script src="/static/js/jquery.appear.js"></script>
 <script src="/static/js/jquery.countTo.js"></script>
-
+{% block extra_fancy %}{% endblock extra_fancy %}
 <script src="/static/js/script.js"></script>
 <script type="text/javascript">
 $( "a.endless_page_link:contains('>')" ).text( "Siguiente" ).addClass("next").append( '&ensp;<span class="fa fa-angle-right"></span>' );
