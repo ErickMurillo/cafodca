@@ -7,9 +7,9 @@
         <div class="tp-banner-container">
             <div class="tp-banner">
                 <ul>
-
-                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="/static/images/1.jpg"  data-saveperformance="off"  data-title="Awesome Title Here">
-                    <img src="/static/images/1.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                {% for portada in  site_config.fotosportada_set.all %}
+                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="/uploads/{{portada.foto}}"  data-saveperformance="off"  data-title="Awesome Title Here">
+                    <img src="/uploads/{{portada.foto}}"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
 
                     <div class="tp-caption sfl sfb tp-resizeme"
@@ -23,7 +23,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h3 class="bg-color">Programa Medios de Vida Sostenible y Gestión de Riesgo</h3></div>
+                    data-endeasing="Power4.easeIn"><h3 class="bg-color">{{portada.titulo|safe}}</h3></div>
 
                     <div class="tp-caption sfl sfb tp-resizeme text-center prueba"
                     data-x="center" data-hoffset="0"
@@ -36,68 +36,10 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><div class="text">Fortaleciendo la alianza entre las organizaciones socias del programa "Medios de vida sostenible" de CAFOD en Centroamérica, para mejorar el aprendizaje e impacto de los proyectos</div></div>
+                    data-endeasing="Power4.easeIn"><div class="text">{{portada.descripcion|safe|truncatewords:12}}</div></div>
 
                     </li>
-
-                   <!--  <li data-transition="slidedown" data-slotamount="1" data-masterspeed="1000" data-thumb="images/main-slider/2.jpg"  data-saveperformance="off"  data-title="Awesome Title Here">
-                    <img src="images/main-slider/2.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-
-
-                    <div class="tp-caption sfl sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="-120"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h2 class="normal-font"><span>Help us</span> <strong class="theme_color">to save</strong></h2></div>
-
-                    <div class="tp-caption sfr sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="-30"
-                    data-speed="1500"
-                    data-start="1000"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h2>the <span class="theme_color">Homeless</span> People</h2></div>
-
-                    <div class="tp-caption sfl sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="50"
-                    data-speed="1500"
-                    data-start="1500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h4>All of our afford can bring back the life</h4></div>
-
-                    <div class="tp-caption sfr sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="120"
-                    data-speed="1500"
-                    data-start="2000"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-five mr-10">Join With Us</a><a href="#" class="theme-btn btn-style-two">Donate Now</a></div>
-
-                    </li> -->
-
+                    {% endfor %}
                 </ul>
 
             </div>

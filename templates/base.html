@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static solo_tags %}
 <html>
 <head>
+    {% get_solo 'configuracion.SiteConfiguration' as site_config %}
 <meta charset="utf-8">
-<title>CAFOD - Centroamérica</title>
+<title>{{ site_config.site_name }}</title>
 <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
@@ -159,7 +161,7 @@
 
                             <ul class="contact-info">
                                 <li>
-                                    <span class="icon fa fa-map-marker"></span> 
+                                    <span class="icon fa fa-map-marker"></span>
                                     De Enacal Altamira 2 Cuadras arriba, Casa#83 <br> Colonial Los Robles, Managua, Nicaraguaa
                                 </li>
                                 <li><span class="icon fa fa-phone"></span> (505) 2270-0240 ext 105</li>

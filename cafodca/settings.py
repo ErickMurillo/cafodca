@@ -30,11 +30,13 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'el_pagination',
     'crispy_forms',
+    'solo',
 
     'foros',
     'notas',
     'contrapartes',
     'agendas',
+    'configuracion',
 ]
 
 SITE_ID = 1
