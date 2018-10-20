@@ -9,6 +9,7 @@ from django.template.defaultfilters import slugify
 # from south.modelsinspector import add_introspection_rules
 from ckeditor_uploader.fields import RichTextUploadingField
 from sorl.thumbnail import ImageField
+from tagging.fields import TagField
 
 # add_introspection_rules ([], ["^ckeditor\.fields\.RichTextField"])
 
@@ -17,11 +18,13 @@ from sorl.thumbnail import ImageField
 class Notas(models.Model):
     titulo = models.CharField(max_length=200)
     foto = ImageField(upload_to='notas/',null=True, blank=True)
+    video = models.URLField(null=True, blank=True, verbose_name="url video portada")
     slug = models.SlugField(max_length=200,editable=False)
     fecha = models.DateField('Fecha de publicación', auto_now_add=True)
     contenido = RichTextUploadingField()
     fotos = GenericRelation(Imagen)
     adjuntos = GenericRelation(Documentos)
+    tags = TagField("Tags",help_text='Separar elementos con "," ', blank=True)
 
     user = models.ForeignKey(User)
 

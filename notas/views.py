@@ -115,6 +115,7 @@ def ver_imagenes(request):
 	return render(request, 'publico_imagenes.html', locals())
 
 def ver_videos(request):
+	video_notas = Notas.objects.exclude(video__isnull=True).exclude(video__exact='')
 	videos = Videos.objects.all()
 	tags = []
 	for docu in Videos.objects.all():
