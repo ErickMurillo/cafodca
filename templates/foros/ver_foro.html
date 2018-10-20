@@ -196,7 +196,7 @@ $('[data-fancybox]').fancybox({
 
                         <div class="comment wow fadeInUp box_shadow" data-wow-delay="0ms" data-wow-duration="1500ms" id="{{respuesta.id}}">
                             {%if respuesta.user.userprofile.avatar %}
-                                <div class="author-thumb"><img src="http://cafodca.org/{{respuesta.user.userprofile.avatar.url_70x60}}" alt=""></div>
+                                <div class="author-thumb"><img src="{{respuesta.user.userprofile.avatar.url_70x60}}" alt=""></div>
 
                             {%else%}
                                 <div class="author-thumb"><img src="https://via.placeholder.com/70x60"></div>
