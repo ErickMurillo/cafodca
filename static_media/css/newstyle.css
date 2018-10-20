@@ -370,6 +370,10 @@ input[type=file]{
 .lista_noticias .blog-news-column .inner-box {
   min-height: 493px;
 }
+.lista_noticias .blog-news-column .inner-box .image-box iframe{
+  width: 100%;
+  min-height: 266px;
+}
 .lista_noticias .blog-news-column{
   height: 500px;
 }
