@@ -229,7 +229,7 @@
                                 {% endif %}
                             </figure>
                             <div class="member-info">
-                                <h3><a href="">{{empresa.siglas}}</a><h3>
+                                <h3><a href="{% url 'detalle-contraparte' empresa.id %}">{{empresa.siglas}}</a><h3>
                                 <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px"> {{empresa.pais}}</div>
                             </div>
                             <div class="content">
