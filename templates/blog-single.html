@@ -76,7 +76,7 @@
 
                                 <div class="post-share-options clearfix">
                                     <div class="pull-left tags"><strong>Tag</strong> :
-                                        {% tag_cloud_for_model notas.notas as tags%}
+                                        {% tags_for_object object as tags%}
                                         {% for tag  in tags  %}
                                                 <a>{{tag}}</a> {% if forloop.last %} {%else%},{% endif %}
                                         {% endfor %}
@@ -170,7 +170,7 @@
                         <!-- Popular Tags -->
                         <div class="widget popular-tags">
                             <div class="sidebar-title"><h3>Palabras claves</h3></div>
-                             {% tag_cloud_for_model notas.notas as notas_tag%}
+                             {% tags_for_object object as notas_tag%}
                              {% for a in notas_tag %}
                                     <a>{{a}}</a>
                              {% endfor %}
