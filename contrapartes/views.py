@@ -7,7 +7,10 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.forms import inlineformset_factory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.contrib.sites.models import Site
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
+import thread
 
 from .models import *
 from notas.models import Notas
@@ -85,10 +88,10 @@ def enviar_mensaje(request):
             form_uncommited.save()
             form.save_m2m()
 
-            #thread.start_new_thread(notify_user_mensaje, (form_uncommited, ))
+            thread.start_new_thread(notify_user_mensaje, (form_uncommited, ))
             guardado=1
 
-            return HttpResponseRedirect('/contrapartes/mensaje/ver/?guardado=ok')
+            return HttpResponseRedirect('/contrapartes/mensaje/ver/')
 
     else:
         form = MensajeForm()
@@ -104,6 +107,7 @@ def notify_user_mensaje(mensaje):
     msg = EmailMultiAlternatives('Nuevo mensaje CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in mensaje.user.all() if user.email])
     msg.attach_alternative(contenido, "text/html")
     msg.send()
+    print msg
     #send_mail('Nuevo mensaje CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in mensaje.user.all() if user.email])
 
 @login_required

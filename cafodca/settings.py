@@ -183,3 +183,4 @@ CKEDITOR_CONFIGS = {
 
 LOGIN_REDIRECT_URL = '/foros/perfil/'
 AUTH_PROFILE_MODULE = 'contrapartes.UserProfile'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
