@@ -179,10 +179,10 @@
 					items:1
 				},
 				600:{
-					items:1
+					items:2
 				},
 				760:{
-					items:2
+					items:3
 				},
 				1024:{
 					items:4
