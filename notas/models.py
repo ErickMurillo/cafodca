@@ -20,7 +20,7 @@ class Notas(models.Model):
     foto = ImageField(upload_to='notas/',null=True, blank=True)
     video = models.URLField(null=True, blank=True, verbose_name="url video portada")
     slug = models.SlugField(max_length=200,editable=False)
-    fecha = models.DateField('Fecha de publicación')
+    fecha = models.DateField('Fecha de publicación', auto_now_add=True)
     contenido = RichTextUploadingField()
     fotos = GenericRelation(Imagen)
     adjuntos = GenericRelation(Documentos)
