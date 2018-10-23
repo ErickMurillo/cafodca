@@ -6,7 +6,7 @@
 
 {% block content %}
     <!--Page Title-->
-    <section class="page-title" style="background-image:url(http://www.vielva.cl/img/Category/5/AGRICOLA.png);">
+    <section class="page-title" style="background-image:url(/static/images/banner/2.jpg);">
     	<div class="auto-container">
         	<div class="sec-title">
                 <h1>Noticias</h1>
@@ -59,7 +59,7 @@
                                             <div class="post-info clearfix">
                                                 <div class="post-author">Por <span class="theme_color">{{object.user.get_full_name}}</span></div>
                                                 <div class="post-options clearfix">
-                                                    <a href="#" class="comments-count"><span class="icon fa fa-eye"></span> 6</a>
+                                                    <a href="#" class="comments-count"><span class="icon fa fa-calendar"></span>{{object.fecha}}</a>
 
                                                 </div>
                                             </div>
