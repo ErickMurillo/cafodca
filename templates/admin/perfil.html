@@ -1,5 +1,7 @@
 {% extends "admin/base_admin.html" %}
 
+{% load thumbnail %}
+
 {% block content %}
 <div data-bac="#fcfcfc">
 
@@ -67,7 +69,13 @@
 
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 logo-perfil">
-                        <img src="{{contraparte.logo.url_350x250}}" alt="" width="180px" class="pt-10 pb-10">
+                    {% if contraparte.logo %}
+                        {% thumbnail contraparte.logo "270x270" as im %}
+                            <img src="{{ im.url }}" width="100%" class="pt-10 pb-10">
+                        {% endthumbnail %}
+                    {% else %}
+                        <img src="https://via.placeholder.com/270x270" width="100%" class="pt-10 pb-10">
+                    {% endif %}
 
                         <div class="">
                             <a class="theme-btn btn-style-two ml-40" href="{% url 'editar-contraparte' contraparte.id %}">Editar</a>
