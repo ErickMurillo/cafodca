@@ -89,13 +89,14 @@ def enviar_mensaje(request):
             form.save_m2m()
 
             thread.start_new_thread(notify_user_mensaje, (form_uncommited, ))
-            guardado=1
+            guardado='ok'
 
-            return HttpResponseRedirect('/contrapartes/mensaje/ver/')
+            return HttpResponseRedirect('/contrapartes/mensaje/ver/?guardado=ok')
 
     else:
         form = MensajeForm()
         form.fields['user'].queryset = User.objects.exclude(id=request.user.id)
+        guardado=0
     return render(request, 'contrapartes/mensaje.html', locals())
 
 def notify_user_mensaje(mensaje):
@@ -107,7 +108,6 @@ def notify_user_mensaje(mensaje):
     msg = EmailMultiAlternatives('Nuevo mensaje CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in mensaje.user.all() if user.email])
     msg.attach_alternative(contenido, "text/html")
     msg.send()
-    print msg
     #send_mail('Nuevo mensaje CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in mensaje.user.all() if user.email])
 
 @login_required

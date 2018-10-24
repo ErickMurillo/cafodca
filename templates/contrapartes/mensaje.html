@@ -28,42 +28,41 @@
                     <div class="panel panel-default">
                         <form name='fl' action="." method="post" accept-charset="utf-8">{% csrf_token %}
                             <div class="panel-body">
-                                {%if request.GET.guardado == 'ok'%}
-                                    <div class="alert alert-success">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <strong>Enviado con éxito!</strong>
-                                        <p>
-                                            Su mensaje ha sido enviado con éxito a todos los destinatarios
-                                        </p> 
-                                    </div>
-                                
-                                {%endif%}
-
                                 <!-- Comment Form -->
                                 <div class="comment-form wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
-                                        
+
                                     <div class="group-title text-uppercase"><h3>Crear mensaje</h3><div class="default-line-left"></div></div>
-                                    
+
                                     <!--Comment Form-->
-                                    <form method="post" action="blog.html">
+                                    <form method="POST" action="."> {% csrf_token %}
+                                        {% if request.GET.guardado == 'ok'  %}
+                                            <div class="alert alert-success">
+                                                <strong>Enviado con éxito!</strong>
+                                                <p>
+                                                    Su mensaje ha sido enviado con éxito a todos los destinatarios
+                                                </p>
+                                            </div>
+
+                                    {%endif%}
                                         <div class="row clearfix">
                                             <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                                {{form.media}}
                                                 <label for="">Destinatarios</label>
                                                 {{form.user}}
                                             </div>
-                                            
+
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
                                                 <label for="">Mensaje</label>
                                                 {{form.mensaje}}
                                             </div>
-                                            
+
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
                                                 <input type="submit" class="theme-btn btn-style-two" name="enviar" value="Enviar">
                                             </div>
-                                            
+
                                         </div>
                                     </form>
-                                        
+
                                 </div><!--End Comment Form -->
                             </div>
                         </form>
@@ -97,7 +96,7 @@
 
                     </aside>
                 </div>
-                
+
             </div>
         </div>
     </section>

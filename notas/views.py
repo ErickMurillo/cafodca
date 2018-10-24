@@ -13,6 +13,10 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.forms import generic_inlineformset_factory
+import thread
+from django.contrib.sites.models import Site
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 from tagging.models import Tag
 from tagging.models import TaggedItem
@@ -75,7 +79,7 @@ def crear_nota(request, template='admin/notas_form.html'):
 			form3_uncommited.content_object = form_uncommited
 			form3_uncommited.save()
 
-			# thread.start_new_thread(notify_all_notas, (form_uncommited,))
+			thread.start_new_thread(notify_all_notas, (form_uncommited,))
 			return redirect('notas-personales')
 	else:
 		form = NotasForms()
@@ -83,6 +87,16 @@ def crear_nota(request, template='admin/notas_form.html'):
 		form3 = AdjuntoForm()
 
 	return render(request, template, locals())
+
+
+def notify_all_notas(notas):
+    site = Site.objects.get_current()
+    users = User.objects.all() #.exclude(username=foros.contraparte.username)
+    contenido = render_to_string('contrapartes/notify_new_nota.txt', {'nota': notas,
+                                 'url': '%s/notas/%s' % (site, notas.id),
+                                 #'url_aporte': '%s/foros/ver/%s/#aporte' % (site, foros.id),
+                                 })
+    send_mail('Nueva Nota en CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in users if user.email])
 
 
 def ver_imagenes(request):
