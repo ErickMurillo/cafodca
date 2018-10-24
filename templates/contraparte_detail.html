@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+
+{% load thumbnail %}
+
 {% block title %}{{contra.nombre}}{% endblock %}
 {% block extra_js %}
     <script type="text/javascript">
@@ -85,8 +88,13 @@
 
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 logo-perfil">
-                        <img src="{{contra.logo.url_350x250}}" alt="" width="180px" class="pt-10 pb-10">
-
+                    {% if contraparte.logo %}
+                        {% thumbnail contraparte.logo "270x270" as im %}
+                            <img src="{{ im.url }}" width="100%" class="pt-10 pb-10">
+                        {% endthumbnail %}
+                    {% else %}
+                        <img src="https://via.placeholder.com/270x270" width="100%" class="pt-10 pb-10">
+                    {% endif %}
                     </div>
 
                 </div>
