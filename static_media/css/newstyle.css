@@ -59,20 +59,8 @@
 @keyframes pulsate {
  50% { color: #FFFAFA; }
 }
-@media (max-width: 480px) {
-    .btn-group {
-        display: block !important;
-        float: none !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-}
-@media (max-width: 600px) {
-    .btn-nav .glyphicon {
-        padding-top: 12px;
-        font-size: 26px;
-    }
-}
+
+
 .menu-admin .btn {
   border: 1px solid #a0a916;
   border-radius: 5px;
@@ -397,23 +385,7 @@ input[type=file]{
   height: auto;
   min-height: 500px; 
 }
-@media (max-width: 600px){
 
-  .blog-news-column .inner-box .text img {
-    width: 100% !important;
-    height: auto !important;
-    margin:10px 0px !important;
-  }
-  .default-featured-column .inner-box .text img {
-    width: 100% !important;
-    height: auto !important;
-    margin:10px 0px !important;
-  }
-  .image-box iframe{
-
-    min-height: 300px; 
-  }
-}
 @media (min-width: 768px){
   .crea_foro .comment-form .form-group input {
     width: auto;
@@ -425,4 +397,35 @@ input[type=file]{
     min-width: 60% !important;
   }
 
+}
+@media (max-width: 600px){
+
+  .blog-news-column .inner-box .text img, .default-featured-column .inner-box .text img, .default-section .text_about img{
+    width: 100% !important;
+    height: auto !important;
+    margin:10px 0px !important;
+  }
+  .image-box iframe{
+
+    min-height: 300px; 
+  }
+   .btn-nav .glyphicon {
+        padding-top: 12px;
+        font-size: 26px;
+    }
+    .team-section .team-member .image {
+      height: auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-group {
+        display: block !important;
+        float: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .team-section .team-member .image {
+      height: auto !important;
+    }
 }

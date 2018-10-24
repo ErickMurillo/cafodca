@@ -106,15 +106,15 @@
                             <figure class="image-box">
                                 <a href="{% url 'notas-detail' nota.id %}">
                                     {% if nota.foto %}
-                                        {% thumbnail nota.foto "380x250" as im %}
+                                        {% thumbnail nota.foto "640x480" as im %}
                                             <img src="{{ im.url }}" alt="{{nota.titulo}}">
                                         {% endthumbnail %}
                                     {% elif nota.fotos.all %}
                                         {%for thumb in nota.fotos.all|slice:"1"%}
-                                        <img src="{{thumb.foto.url_380x250}}" alt="{{nota.titulo}}">
+                                        <img src="{{thumb.foto.url_640x480}}" alt="{{nota.titulo}}">
                                         {% endfor %}
                                     {% else %}
-                                        <img src="https://via.placeholder.com/380x250">
+                                        <img src="https://via.placeholder.com/640x480">
                                     {% endif %}
                                 </a>
 
