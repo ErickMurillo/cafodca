@@ -28,9 +28,28 @@ def perfil(request, template='admin/perfil.html'):
     user_profile = get_object_or_404(UserProfile, user = usuario)
     contraparte = get_object_or_404(Contraparte, id = user_profile.contraparte.id)
 
-    foros = Foros.objects.filter(contraparte_id=request.user.id)
-    agendas = Agendas.objects.filter(user_id=request.user.id)
+    #foros = Foros.objects.filter(contraparte_id=request.user.id)
+    agendas = Agendas.objects.filter(user_id=request.user.id).count()
     notas = Notas.objects.filter(user_id=request.user.id).count()
+    aportes = Aportes.objects.filter(user_id=request.user.id).count()
+
+    lista_documentos_aporte = []
+    lista_imagen_aporte = []
+    lista_videos_aporte = []
+    lista_audios_aporte = []
+
+    for aporte in Aportes.objects.filter(user_id=request.user.id):
+        for documento in aporte.adjuntos.all():
+            lista_documentos_aporte.append(documento)
+        for imagen in aporte.fotos.all():
+            lista_imagen_aporte.append(imagen)
+        for video in aporte.video.all():
+            lista_videos_aporte.append(video)
+        for audio in aporte.audio.all():
+            lista_audios_aporte.append(audio)
+
+    multimedia = len(lista_documentos_aporte) + len(lista_imagen_aporte) + \
+                             len(lista_videos_aporte) + len(lista_audios_aporte)
 
     return render(request, template, locals())
 
