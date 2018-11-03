@@ -34,7 +34,7 @@ def index(request,template='index.html'):
 	eventos = Agendas.objects.filter(inicio__gte = hoy,publico=True).order_by('-inicio','-hora_inicio')[:4]
 	paises = Pais.objects.all()
 	contrapartes = Contraparte.objects.all()
-	imagenes = Imagen.objects.order_by('-id')[:8]
+	imagenes = Imagen.objects.exclude(foto__exact='').order_by('-id')[:8]
 
 	return render(request, template, locals())
 
