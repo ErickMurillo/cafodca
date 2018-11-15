@@ -3,6 +3,24 @@
 {% load thumbnail %}
 {% load tagging_tags %}
 {% load embed_video_tags %}
+{% block share_fb %}
+    <meta property="og:title" content="{{object.titulo}}" />
+    <meta property="og:type" content="article" />
+    {% if object.video %}
+        <meta property="og:video" content="{{object.video}}?version=3&autohide=1 " />
+        <meta property="og:video:width" content="398">
+        <meta property="og:video:height" content="264">
+    {% else %}
+        <meta property="og:image" content="http://cafodca.org/static/uploads/{{object.foto}}">
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
+
+    {% endif %}
+    
+    <meta property="og:description" content="{{object.contenido|striptags}}" />
+    <meta property="og:url" content="http://cafodca.org{{request.path}}" />
+    <meta property="og:locale" content="es_ES" />
+{% endblock share_fb %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
@@ -20,6 +38,7 @@
             </div>
         </div>
     </section>
+
 
 
     <!--Sidebar Page-->
@@ -65,13 +84,16 @@
                                     <div class="text">
                                         {{object.contenido|safe}}
                                     </div>
-                                    {% for adjunto in object.adjunto.all %}
-                                        <div class="mb-40">
-                                            <h4><b>Documentos adjuntos</b></h4>
-                                            <hr>
-                                            <a class="btn-theme btn-style-three" href="/uploads/{{adjunto.adjunto}}" target="_blank">{{adjunto.nombre_doc}} <span class="fa fa-download"></span></a>
-                                        </div>
-                                    {% endfor %}
+                                    {% if object.adjunto %}
+                                        {% for adjunto in object.adjunto.all %}
+                                            <div class="mb-40">
+                                                <h4><b>Documentos adjuntos</b></h4>
+                                                <hr>
+                                                <a class="btn-theme btn-style-three" href="/uploads/{{adjunto.adjunto}}" target="_blank">{{adjunto.nombre_doc}} <span class="fa fa-download"></span></a>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    
                                 </div>
 
                                 <div class="post-share-options clearfix">
@@ -84,9 +106,15 @@
 
                                     </div>
                                     <div class="pull-right social-links-two clearfix">
-                                        <a href="#" class="facebook img-circle"><span class="fa fa-facebook-f"></span></a>
-                                        <a href="#" class="twitter img-circle"><span class="fa fa-twitter"></span></a>
-                                        <a href="#" class="google-plus img-circle"><span class="fa fa-google-plus"></span></a>
+                                        <a href="https://www.facebook.com/sharer.php?u=http://cafodca.org{{request.path}}" class="facebook img-circle customer share">
+                                            <span class="fa fa-facebook-f"></span>
+                                        </a>
+                                        <a href="https://twitter.com/share?url=http://cafodca.org{{request.path}}&amp;text=Share popup on &amp;hashtags=codepen" class="twitter img-circle customer share">
+                                            <span class="fa fa-twitter"></span>
+                                        </a>
+                                        <a href="https://plus.google.com/share?url=http://cafodca.org{{request.path}}" class="google-plus img-circle customer share">
+                                            <span class="fa fa-google-plus"></span>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -187,4 +215,5 @@
 {% endblock content %}
 {% block extra_js %}
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+    <script src="/static/js/share.js"></script>
 {% endblock extra_js %}
