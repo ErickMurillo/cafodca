@@ -16,7 +16,7 @@
         <meta property="og:image:height" content="300" />
 
     {% endif %}
-    
+
     <meta property="og:description" content="{{object.contenido|striptags}}" />
     <meta property="og:url" content="http://cafodca.org{{request.path}}" />
     <meta property="og:locale" content="es_ES" />
@@ -84,7 +84,7 @@
                                     <div class="text">
                                         {{object.contenido|safe}}
                                     </div>
-                                    {% if object.adjunto %}
+                                    {% if object.adjunto.all %}
                                         {% for adjunto in object.adjunto.all %}
                                             <div class="mb-40">
                                                 <h4><b>Documentos adjuntos</b></h4>
@@ -93,7 +93,7 @@
                                             </div>
                                         {% endfor %}
                                     {% endif %}
-                                    
+
                                 </div>
 
                                 <div class="post-share-options clearfix">
