@@ -5,21 +5,27 @@
 {% load embed_video_tags %}
 {% block share_fb %}
     <meta property="og:title" content="{{object.titulo}}" />
-    <meta property="og:type" content="article" />
+    
     {% if object.video %}
-        <meta property="og:video" content="{{object.video}}?version=3&autohide=1 " />
+        <meta property="og:type" content="article" />
+        <meta property="og:video" content="{{object.video}} " />
         <meta property="og:video:width" content="398">
         <meta property="og:video:height" content="264">
     {% else %}
+        <meta property="og:type" content="article" />
         <meta property="og:image" content="http://cafodca.org/static/uploads/{{object.foto}}">
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="300" />
-
     {% endif %}
-    
     <meta property="og:description" content="{{object.contenido|striptags}}" />
     <meta property="og:url" content="http://cafodca.org{{request.path}}" />
     <meta property="og:locale" content="es_ES" />
+
+    <meta name="twitter:title" content="{{object.titulo}}">
+    <meta name="twitter:description" content="{{object.contenido|striptags}}">
+    <meta name="twitter:image" content="http://cafodca.org/static/uploads/{{object.foto}}">
+    <meta name="twitter:site" content="@CAFOD">
+    <meta name="twitter:creator" content="@CAFOD">
 {% endblock share_fb %}
 
 {% block extra_css %}
