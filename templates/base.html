@@ -119,6 +119,7 @@
 
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation">
+
                                 <li><a href="/">Inicio</a></li>
                                 <li><a href="/notas">Noticias</a></li>
                                 <li><a href="/acerca/">Acerca de</a></li>
@@ -130,6 +131,12 @@
                                         <li><a href="/notas/videos/">Videos</a></li>
                                     </ul>
                                 </li>
+                                {% if user.is_authenticated %}
+                                    <li class="visible-xs"><a href="/foros/perfil/">{{user.get_full_name|default:user.username}}</a></li>
+                                    <li class="visible-xs"><a href="/accounts/logout/">Salir</a></li>
+                                {% else %}
+                                    <li class="visible-xs"><a href="/accounts/login/">Iniciar sesion</a></li>
+                                {% endif %}
 
 
                             </ul>
