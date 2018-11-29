@@ -110,8 +110,8 @@
                                         {% thumbnail nota.foto "640x480" as im %}
                                             <img src="{{ im.url }}" alt="{{nota.titulo}}">
                                         {% endthumbnail %}
-                                    {% elif object.video %}
-                                        {% video object.video '405x266' %}
+                                    {% elif nota.video %}
+                                        {% video nota.video '405x266' %}
                                     {% elif nota.fotos.all %}
                                         {%for thumb in nota.fotos.all|slice:"1"%}
                                         <img src="{{thumb.foto.url_640x480}}" alt="{{nota.titulo}}">
