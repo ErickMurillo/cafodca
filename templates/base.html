@@ -119,12 +119,6 @@
 
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation">
-                                 {% if user.is_authenticated %}
-                                    <li><a href="/foros/perfil/">{{user.get_full_name|default:user.username}}</a></li>
-                                    <li><a href="/accounts/logout/">Salir</a></li>
-                                {% else %}
-                                    <li><a href="/accounts/login/">Iniciar sesion</a></li>
-                                {% endif %}
                                 <li><a href="/">Inicio</a></li>
                                 <li><a href="/notas">Noticias</a></li>
                                 <li><a href="/acerca/">Acerca de</a></li>
