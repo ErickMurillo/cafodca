@@ -382,17 +382,16 @@ input[type=file]{
 }
 .image-box iframe{
   width: 100%;
-  height: auto;
-  min-height: 500px; 
+
 }
 
 @media (min-width: 768px){
   .crea_foro .comment-form .form-group input {
     width: auto;
   }
-  .image-box iframe{
+  /* .lista_noticias .blog-news-column .inner-box .image-box iframe{
     min-height: 450px; 
-  }
+  } */
   .form-inline  .textInput{
     min-width: 60% !important;
   }
@@ -405,10 +404,10 @@ input[type=file]{
     height: auto !important;
     margin:10px 0px !important;
   }
-  .image-box iframe{
+  /* .lista_noticias .blog-news-column .inner-box .image-box iframe{
 
     min-height: 300px; 
-  }
+  } */
    .btn-nav .glyphicon {
         padding-top: 12px;
         font-size: 26px;
