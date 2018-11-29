@@ -139,6 +139,12 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_CONFIGS = {
     'default': {
+        "removePlugins": "stylesheetparser",
+        'allowedContent': True,
+        'extraAllowedContent': 'iframe[*]',
+        'extraAllowedContent': 'p(*)',
+        'extraAllowedContent': 'blockquote[*]',
+        'extraAllowedContent': 'script[*]',
         'extraPlugins': ','.join([
             # 'image2',
             'uploadimage', # the upload image feature
@@ -147,7 +153,7 @@ CKEDITOR_CONFIGS = {
             'autolink',
             'embed',
             'autoembed',
-
+            'youtube',
             'autogrow',
             # 'devtools',
             'widget',
