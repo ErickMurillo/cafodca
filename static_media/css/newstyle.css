@@ -384,6 +384,9 @@ input[type=file]{
   width: 100%;
 
 }
+.lista_copartes .social-links{
+  height: 39px;
+}
 
 @media (min-width: 768px){
   .crea_foro .comment-form .form-group input {
@@ -426,5 +429,8 @@ input[type=file]{
     }
     .team-section .team-member .image {
       height: auto !important;
+    }
+    .logo-perfil .theme-btn{
+      margin:0 !important;
     }
 }

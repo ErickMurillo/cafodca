@@ -18,7 +18,7 @@
     <div class="team-section pb-0">
     	<div class="auto-container">
 
-        	<div class="row clearfix">
+        	<div class="row clearfix lista_copartes">
                 {% paginate 8 object_list %}
                     {% for object in object_list %}
                         <article class="column team-member col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
@@ -41,9 +41,9 @@
                                 <div class="content">
                                     <div class="text  cont_org"><p>{{object.generalidades|safe|striptags|truncatechars:130}}</p></div>
                                     <div class="social-links">
-                                       {% for red in object.redes_set.all %}
-                                        <a href="{{red.url}}"><span class="fa fa-{{red.opcion|lower}}"></span></a>
-                                    {% endfor %}
+                                        {% for red in object.redes_set.all %}
+                                            <a href="{{red.url}}"><span class="fa fa-{{red.opcion|lower}}"></span></a>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
