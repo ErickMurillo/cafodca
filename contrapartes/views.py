@@ -105,10 +105,10 @@ def notify_user_mensaje(mensaje):
                                    'mensajes': mensaje,
                                    'url': '%s/contrapartes/mensaje/ver/' % (site,)
                                     })
-    msg = EmailMultiAlternatives('Nuevo mensaje CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in mensaje.user.all() if user.email])
+    msg = EmailMultiAlternatives('Nuevo mensaje CAFOD', contenido, 'cafodca@gmail.com', [user.email for user in mensaje.user.all() if user.email])
     msg.attach_alternative(contenido, "text/html")
     msg.send()
-    #send_mail('Nuevo mensaje CAFOD', contenido, 'cafod@cafodca.org', [user.email for user in mensaje.user.all() if user.email])
+    #send_mail('Nuevo mensaje CAFOD', contenido, 'cafodca@gmail.com', [user.email for user in mensaje.user.all() if user.email])
 
 @login_required
 def estadisticas(request):
