@@ -54,7 +54,7 @@
             <div class="row clearfix">
 
                 <!--Cause Column-->
-                <div class="column default-featured-column links-column col-lg-4 col-md-5 col-sm-12 col-xs-12">
+                {% comment %} <div class="column default-featured-column links-column col-lg-4 col-md-5 col-sm-12 col-xs-12">
                     <article class="inner-box mb-md-60">
                         <h4 class="inner-title double-line line-left">EVENTOS</h4>
                         <div class="vertical-links-outer events-post">
@@ -96,10 +96,10 @@
 
                         </div>
                     </article>
-                </div>
+                </div> {% endcomment %}
 
                 <!--Featured Column-->
-                <div class="column default-featured-column blog-news-column  style-three col-lg-8 col-md-7 col-sm-12 col-xs-12">
+                <div class="column default-featured-column blog-news-column  style-three col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h4 class="inner-title double-line line-left">NOTICIAS RECIENTES</h4>
                     <div class="featured-project owl-carousel owl-nav-style owl-nav3">
                         {% for nota in notas %}
@@ -107,11 +107,11 @@
                             <figure class="image-box">
                                 <a href="{% url 'notas-detail' nota.id %}">
                                     {% if nota.foto %}
-                                        {% thumbnail nota.foto "640x480" as im %}
+                                        {% thumbnail nota.foto "640x480" crop="center" as im %}
                                             <img src="{{ im.url }}" alt="{{nota.titulo}}">
                                         {% endthumbnail %}
                                     {% elif nota.video %}
-                                        {% video nota.video '375x220' %}
+                                        {% video nota.video '375x275' %}
                                     {% elif nota.fotos.all %}
                                         {%for thumb in nota.fotos.all|slice:"1"%}
                                         <img src="{{thumb.foto.url_640x480}}" alt="{{nota.titulo}}">
@@ -132,7 +132,7 @@
 
                                     </div>
                                 </div>
-                                <div class="text">{{nota.contenido|safe|striptags|truncatechars:130}}</div>
+                                <div class="text">{{nota.contenido|safe|striptags|truncatechars:160}}</div>
                                 <a href="{% url 'notas-detail' nota.id %}" class="theme-btn btn-style-four btn-sm">Leer más</a>
                             </div>
                         </article>
@@ -233,7 +233,7 @@
                             </figure>
                             <div class="member-info">
                                 <h3><a href="{% url 'detalle-contraparte' empresa.id %}">{{empresa.siglas}}</a><h3>
-                                <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px"> {{empresa.pais}}</div>
+                                <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" > <span>{{empresa.pais}}</span></div>
                             </div>
                             <div class="content">
                                 <div class="text cont_org"><p>{{empresa.generalidades|safe|striptags|truncatewords:20}}<p></div>
