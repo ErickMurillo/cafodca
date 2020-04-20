@@ -28,7 +28,7 @@
                             <article class="inner-box">
                                 <figure class="image-box">
                                     {% if object.foto %}
-                                        {% thumbnail object.foto "640x480" as im %}
+                                        {% thumbnail object.foto "640x480" crop="center" as im %}
                                             <img src="{{ im.url }}">
                                         {% endthumbnail %}
                                     {% else %}
@@ -150,7 +150,7 @@
                             <article class="post">
                                 <figure class="post-thumb">
                                     {% if nota.foto %}
-                                        {% thumbnail nota.foto "380x250" as im %}
+                                        {% thumbnail nota.foto "380x250" crop="center" as im %}
                                             <img src="{{ im.url }}">
                                         {% endthumbnail %}
                                     {% elif nota.fotos.all %}

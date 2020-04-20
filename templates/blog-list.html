@@ -39,11 +39,11 @@
                                         <figure class="image-box">
                                             <a href="{% url 'notas-detail' object.id %}">
                                                 {% if object.foto %}
-                                                    {% thumbnail object.foto "380x250" as im %}
+                                                    {% thumbnail object.foto "640x480" crop="center" as im %}
                                                         <img src="{{ im.url }}">
                                                     {% endthumbnail %}
                                                 {% elif object.video %}
-                                                    {% video object.video '405x266' %}
+                                                    {% video object.video '405x283' %}
                                                 {% elif object.fotos.all %}
                                                     {%for thumb in object.fotos.all|slice:"1"%}
                                                     <img src="{{thumb.foto.url_380x250}}" alt="">
@@ -55,7 +55,7 @@
                                             <div class="news-date">{{object.fecha|date:'d'}}<span class="month">{{object.fecha|date:'M'}}</span></div>
                                         </figure>
                                         <div class="content-box">
-                                            <h3><a href="{% url 'notas-detail' object.id %}">{{object.titulo|truncatewords:6}}</a></h3>
+                                            <h3><a href="{% url 'notas-detail' object.id %}">{{object.titulo|truncatewords:10}}</a></h3>
                                             <div class="post-info clearfix">
                                                 <div class="post-author">Por <span class="theme_color">{{object.user.get_full_name}}</span></div>
                                                 <div class="post-options clearfix">
@@ -112,7 +112,7 @@
                             <article class="post">
                                 <figure class="post-thumb">
                                     {% if nota.foto %}
-                                        {% thumbnail nota.foto "380x250" as im %}
+                                        {% thumbnail nota.foto "380x250" crop="center" as im %}
                                             <img src="{{ im.url }}">
                                         {% endthumbnail %}
                                     {% elif nota.fotos.all %}
