@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load thumbnail %}
+{% load embed_video_tags %}
 
 {% block title %}{{contra.nombre}}{% endblock %}
 {% block extra_js %}
@@ -14,115 +15,164 @@
     </script>
 {% endblock %}
 {% block content %}
-        <section class="page-title" style="background-image:url(/static/images/banner/4.jpg);">
-            <div class="auto-container">
-                <div class="sec-title">
-                    <h1>Detalles Contrapartes</h1>
-                    <div class="bread-crumb"><a href="/">Inicio</a> / <a href="/contrapartes/" class="current">Contrapartes</a> / <a>Detalles Contrapartes</a></div>
-                </div>
-            </div>
-        </section>
-        <section class="orgdetail-section pt-20 pb-20">
-            <div class="auto-container">
-                <div class="row clearfix perfil">
-                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 detalle-perfil ">
-                        <h3 class="theme_color"><b>{{contra.nombre}} </b></h3>
-                        <h3 class="theme_color_two"><b>{{contra.siglas}}</b></h3>
-                        <ul class="list-inline">
-                            <li class="pais">
-                                <!-- <img src="https://icon-icons.com/icons2/40/PNG/48/NicaraguaFlag_6444.png" alt="" width="20px"> -->
-                                <span class="fa fa-map-marker icon"></span><span class="icon_text">{{contra.pais}}</span>
-                            </li>
-                            <li class="fundacion">
-                                <span class="fa fa-calendar icon"></span><span class="icon_text">Fundación {{contra.fundacion}}</span>
-                            </li>
+<section class="page-title" style="background-image:url(/static/images/banner/4.jpg);">
+    <div class="auto-container">
+        <div class="sec-title">
+            <h1>Detalles Contrapartes</h1>
+            <div class="bread-crumb"><a href="/">Inicio</a> / <a href="/contrapartes/" class="current">Contrapartes</a> / <a>Detalles Contrapartes</a></div>
+        </div>
+    </div>
+</section>
+<section class="orgdetail-section pt-20 pb-20">
 
-                        </ul>
-                        <div class="row clearfix">
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <h5 class="inner-title double-line line-left">Contacto</h5>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+
+                <div class="perfil">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 detalle-perfil ">
+                                <h3 class="theme_color"><b>{{contra.nombre}} </b></h3>
+                                <h3 class="theme_color_two"><b>{{contra.siglas}}</b></h3>
                                 <ul class="list-inline">
-                                    {% if  contra.correo %}
-                                        <li><span class="fa fa-envelope theme_color"></span> <a href="">{{contra.correo}}</a></li>
-                                    {% endif %}
-                                    <li><span class="fa fa-phone theme_color"> </span> <a href="">{{contra.telefono}}</a></li>
-                                    <!--<li><span class="fa fa-globe theme_color"></span> <a href="">www.simas.com.ni</a></li>-->
-                                </ul>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <h5 class="inner-title double-line line-left">Redes</h5>
-                                <div class="info-box social-box">
-                                    <div class="social-links clearfix">
-                                        {% for red in contra.redes_set.all %}
-                                        <a href="{{red.url}}" class="img-circle" target="_blank"><span class="{% if red.opcion == 'chrome' %}
-                                                                fa fa-chrome
-                                                            {% elif red.opcion == 'Facebook' %}
-                                                                fa fa-facebook
-                                                            {% elif red.opcion == 'Twitter' %}
-                                                                fa fa-twitter
-                                                            {% elif red.opcion == 'Youtube' %}
-                                                                fa fa-youtube
-                                                            {% elif red.opcion == 'Google+' %}
-                                                                fa fa-google
-                                                            {% elif red.opcion == 'Instagram' %}
-                                                                fa fa-instagram
-                                                            {% elif red.opcion == 'Linkedin' %}
-                                                                fa fa-linkedin
-                                                            {% elif red.opcion == 'Flickr' %}
-                                                                fa fa-flickr
-                                                            {% elif red.opcion == 'Pinterest' %}
-                                                                fa fa-pinterest
-                                                            {% elif red.opcion == 'Vimeo' %}
-                                                                fa fa-vimeo
-                                                            {% elif red.opcion == 'Otra' %}
-                                                                fa fa-link
-                                                            {% endif %}"></span></a>
-                                        {% endfor %}
+                                    <li class="pais">
+                                        <!-- <img src="https://icon-icons.com/icons2/40/PNG/48/NicaraguaFlag_6444.png" alt="" width="20px"> -->
+                                        <span class="fa fa-map-marker icon"></span><span class="icon_text">{{contra.pais}}</span>
+                                    </li>
+                                    <li class="fundacion">
+                                        <span class="fa fa-calendar icon"></span><span class="icon_text">Fundación {{contra.fundacion}}</span>
+                                    </li>
 
+                                </ul>
+                                <div class="row clearfix">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <h5 class="inner-title double-line line-left">Contacto</h5>
+                                        <ul class="list-inline">
+                                            {% if  contra.correo %}
+                                                <li><span class="fa fa-envelope theme_color"></span> <a href="">{{contra.correo}}</a></li>
+                                            {% endif %}
+                                            <li><span class="fa fa-phone theme_color"> </span> <a href="">{{contra.telefono}}</a></li>
+                                            <!--<li><span class="fa fa-globe theme_color"></span> <a href="">www.simas.com.ni</a></li>-->
+                                        </ul>
                                     </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <h5 class="inner-title double-line line-left">Redes</h5>
+                                        <div class="info-box social-box">
+                                            <div class="social-links clearfix">
+                                                {% for red in contra.redes_set.all %}
+                                                <a href="{{red.url}}" class="img-circle" target="_blank"><span class="{% if red.opcion == 'chrome' %}
+                                                                        fa fa-chrome
+                                                                    {% elif red.opcion == 'Facebook' %}
+                                                                        fa fa-facebook
+                                                                    {% elif red.opcion == 'Twitter' %}
+                                                                        fa fa-twitter
+                                                                    {% elif red.opcion == 'Youtube' %}
+                                                                        fa fa-youtube
+                                                                    {% elif red.opcion == 'Google+' %}
+                                                                        fa fa-google
+                                                                    {% elif red.opcion == 'Instagram' %}
+                                                                        fa fa-instagram
+                                                                    {% elif red.opcion == 'Linkedin' %}
+                                                                        fa fa-linkedin
+                                                                    {% elif red.opcion == 'Flickr' %}
+                                                                        fa fa-flickr
+                                                                    {% elif red.opcion == 'Pinterest' %}
+                                                                        fa fa-pinterest
+                                                                    {% elif red.opcion == 'Vimeo' %}
+                                                                        fa fa-vimeo
+                                                                    {% elif red.opcion == 'Otra' %}
+                                                                        fa fa-link
+                                                                    {% endif %}"></span></a>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 logo-perfil">
+                                {% if contra.logo %}
+                                    {% thumbnail contra.logo "270x270" as im %}
+                                            <img src="{{ im.url }}" width="100%" class="pt-10 pb-10">
+                                    {% endthumbnail %}
+                                {% else %}
+                                    <img src="https://via.placeholder.com/270x270" width="100%" class="pt-10 pb-10">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="welcome-section pb-60" >
+                    <div class="auto-container" data-bac="#fff">
+
+                        <div class="row clearfix">
+                            <div class="col-lg-12 org-contenido">
+                                <div class="content-box">
+                                    <h4 class="inner-title double-line line-left">GENERALIDADES</h4>
+                                    <p class="text">
+                                        {{contra.generalidades|safe}}
+                                    </p>
+                                    <br>
+                                    <h4 class="inner-title double-line line-left">TEMAS</h4>
+                                    <p class="text">
+                                        {{contra.temas|safe}}
+                                    </p>
+
+
                                 </div>
                             </div>
-
                         </div>
 
-
                     </div>
-                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 logo-perfil">
-                    {% if contra.logo %}
-                        {% thumbnail contra.logo "270x270" as im %}
-                                <img src="{{ im.url }}" width="100%" class="pt-10 pb-10">
-                        {% endthumbnail %}
-                    {% else %}
-                        <img src="https://via.placeholder.com/270x270" width="100%" class="pt-10 pb-10">
-                    {% endif %}
-                    </div>
-
-                </div>
+                </section>
             </div>
-        </section>
-        <section class="welcome-section pb-60" >
-            <div class="auto-container" data-bac="#fff">
-
-                <div class="row clearfix">
-                    <div class="col-lg-12 org-contenido">
-                        <div class="content-box">
-                            <h4 class="inner-title double-line line-left">GENERALIDADES</h4>
-                            <p class="text">
-                                {{contra.generalidades|safe}}
-                            </p>
-                            <br>
-                            <h4 class="inner-title double-line line-left">TEMAS</h4>
-                            <p class="text">
-                                {{contra.temas|safe}}
-                            </p>
-
-
-                        </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <!--Featured Column-->
+                <div class="column default-featured-column style-three">
+                    <h4 class="inner-title double-line line-left">Noticias recientes</h4>
+                    <div class="featured-project owl-carousel owl-nav-style owl-nav3">
+                        {% for noticias in notas %}
+                        <article class="inner-box mb-xs-60">
+                            <figure class="image-box">
+                                {% if noticias.foto %}
+                                    {% thumbnail noticias.foto "640x480" crop="center" as im %}
+                                        <a href="{% url 'notas-detail' noticias.id %}"><img src="{{ im.url }}"></a>
+                                    {% endthumbnail %}
+                                {% elif noticias.video %}
+                                    {% video noticias.video '375x282' %}
+                                {% elif noticias.fotos.all %}
+                                    {%for thumb in noticias.fotos.all|slice:"1"%}
+                                        <a href="{% url 'notas-detail' noticias.id %}"><img src="{{thumb.foto.url_380x250}}" alt=""></a>
+                                    {% endfor %}
+                                {% else %}
+                                    <a href="{% url 'notas-detail' noticias.id %}"><img src="https://via.placeholder.com/640x480" alt=""></a>
+                                {% endif %}
+                            </figure>
+                            <div class="content-box">
+                                <h3><a href="{% url 'notas-detail' noticias.id %}">{{noticias.titulo}}</a></h3>
+                                <div class="text">{{noticias.contenido|safe|striptags|truncatewords:50}}</div>
+                                <a href="{% url 'notas-detail' noticias.id %}" class="theme-btn btn-style-four btn-sm">LEER MÁS</a>
+                            </div>
+                        </article>
+                        {% endfor %}
                     </div>
+                </div>
+                <div class="text-center">
+                    <a class="theme-btn btn-style-two mt-20 text-center" href="{% url 'notas_list_copartes' contra.id%}">Todas las noticias</a>
                 </div>
 
             </div>
-        </section>
+        </div>
+    </div>
+
+</section>
+
 
 <!--
 <div class="row">

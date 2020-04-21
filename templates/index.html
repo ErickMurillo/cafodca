@@ -11,11 +11,23 @@
                 {% for portada in  site_config.fotosportada_set.all %}
                     <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="/uploads/{{portada.foto}}"  data-saveperformance="off"  data-title="{{portada.titulo|safe}}">
                     <img src="/uploads/{{portada.foto}}"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-
+                    <div class="overlay-black"></div>
+                    <div class="tp-caption sfr sfb tp-resizeme"
+                    data-x="left" data-hoffset="0"
+                    data-y="center" data-voffset="-50"
+                    data-speed="1500"
+                    data-start="1000"
+                    data-easing="easeOutExpo"
+                    data-splitin="none"
+                    data-splitout="none"
+                    data-elementdelay="0.01"
+                    data-endelementdelay="0.3"
+                    data-endspeed="1200"
+                    data-endeasing="Power4.easeIn"><h1>{{portada.titulo|safe}}</h1></div>
 
                     <div class="tp-caption sfl sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="-20"
+                    data-x="left" data-hoffset="0"
+                    data-y="center" data-voffset="30"
                     data-speed="1500"
                     data-start="1500"
                     data-easing="easeOutExpo"
@@ -24,9 +36,9 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h3 class="bg-color">{{portada.titulo|safe}}</h3></div>
+                    data-endeasing="Power4.easeIn"><h3 class="bg-color">{{portada.descripcion|safe|truncatechars:102}}</h3></div>
 
-                    <div class="tp-caption sfl sfb tp-resizeme text-center prueba"
+                    {% comment %} <div class="tp-caption sfl sfb tp-resizeme text-center prueba"
                     data-x="center" data-hoffset="0"
                     data-y="center" data-voffset="50"
                     data-speed="1500"
@@ -37,7 +49,8 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><div class="text">{{portada.descripcion|safe}}</div></div>
+                    data-endeasing="Power4.easeIn"><div class="text"></div></div> {% endcomment %}
+
 
                     </li>
                     {% endfor %}
@@ -54,7 +67,7 @@
             <div class="row clearfix">
 
                 <!--Cause Column-->
-                <div class="column default-featured-column links-column col-lg-4 col-md-5 col-sm-12 col-xs-12">
+                {% comment %} <div class="column default-featured-column links-column col-lg-4 col-md-5 col-sm-12 col-xs-12">
                     <article class="inner-box mb-md-60">
                         <h4 class="inner-title double-line line-left">EVENTOS</h4>
                         <div class="vertical-links-outer events-post">
@@ -96,22 +109,22 @@
 
                         </div>
                     </article>
-                </div>
+                </div> {% endcomment %}
 
                 <!--Featured Column-->
-                <div class="column default-featured-column blog-news-column  style-three col-lg-8 col-md-7 col-sm-12 col-xs-12">
+                <div class="column default-featured-column blog-news-column  style-three col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h4 class="inner-title double-line line-left">NOTICIAS RECIENTES</h4>
-                    <div class="featured-project owl-carousel owl-nav-style owl-nav3">
+                    <div class="featured-project-two owl-carousel owl-nav-style owl-nav3">
                         {% for nota in notas %}
                         <article class="inner-box mb-xs-60">
                             <figure class="image-box">
                                 <a href="{% url 'notas-detail' nota.id %}">
                                     {% if nota.foto %}
-                                        {% thumbnail nota.foto "640x480" as im %}
+                                        {% thumbnail nota.foto "640x480" crop="center" as im %}
                                             <img src="{{ im.url }}" alt="{{nota.titulo}}">
                                         {% endthumbnail %}
                                     {% elif nota.video %}
-                                        {% video nota.video '375x220' %}
+                                        {% video nota.video '375x282' %}
                                     {% elif nota.fotos.all %}
                                         {%for thumb in nota.fotos.all|slice:"1"%}
                                         <img src="{{thumb.foto.url_640x480}}" alt="{{nota.titulo}}">
@@ -124,7 +137,7 @@
                                 <div class="news-date">{{nota.fecha|date:'d'}}<span class="month">{{nota.fecha|date:'M'}}</span></div>
                             </figure>
                             <div class="content-box">
-                                <h3><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo}}</a></h3>
+                                <h3><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo|lower|capfirst}}</a></h3>
                                 <div class="post-info clearfix">
                                     <div class="post-author">Por <span class="theme_color">{{nota.user.get_full_name}}</span></div>
                                     <div class="post-options clearfix">
@@ -132,7 +145,7 @@
 
                                     </div>
                                 </div>
-                                <div class="text">{{nota.contenido|safe|striptags|truncatechars:130}}</div>
+                                <div class="text">{{nota.contenido|safe|striptags|truncatechars:160}}</div>
                                 <a href="{% url 'notas-detail' nota.id %}" class="theme-btn btn-style-four btn-sm">Leer más</a>
                             </div>
                         </article>
@@ -225,15 +238,15 @@
                             <figure class="image">
                                  {% if empresa.logo %}
                                         {% thumbnail empresa.logo "270x270" as im %}
-                                            <img src="{{ im.url }}" alt="{{empresa.siglas}}">
+                                         <a href="{% url 'detalle-contraparte' empresa.id %}"><img src="{{ im.url }}" alt="{{empresa.siglas}}"></a>
                                         {% endthumbnail %}
                                 {% else %}
-                                        <img src="https://via.placeholder.com/350x350" alt="{{empresa.siglas}}">
+                                        <a href="{% url 'detalle-contraparte' empresa.id %}"><img src="https://via.placeholder.com/350x350" alt="{{empresa.siglas}}"></a>
                                 {% endif %}
                             </figure>
                             <div class="member-info">
                                 <h3><a href="{% url 'detalle-contraparte' empresa.id %}">{{empresa.siglas}}</a><h3>
-                                <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" width="25px"> {{empresa.pais}}</div>
+                                <div class="designation"><img src="/static/images/{{empresa.pais.codigo}}-g.png" alt="" > <span>{{empresa.pais}}</span></div>
                             </div>
                             <div class="content">
                                 <div class="text cont_org"><p>{{empresa.generalidades|safe|striptags|truncatewords:20}}<p></div>

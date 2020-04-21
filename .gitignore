@@ -106,4 +106,7 @@ venv.bak/
 static_media/uploads/
 .DS_Store
 /datos
-uploads/
+/uploads/
+*.sql
+*.rar
+/media/

@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^$', list_notas,name='notas_list'),
     # url(r'^$', 'lista_notas', name="notas_list"),
     url(r'^pais/(?P<id>\d+)/$', lista_notas_pais, name="notas_list_pais"),
+    url(r'^coparte/(?P<id>\d+)/$', lista_notas_copartes, name="notas_list_copartes"),
     # url(r'^ver/(?P<id>\d+)/$', 'comentar_nota', name='comentar-nota'),
     url(r'^(?P<id>\d+)/$', nota_detail, name='notas-detail'),
     url(r'^crear/$', crear_nota, name="crear-nota"),

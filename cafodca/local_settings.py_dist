@@ -35,3 +35,5 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+#mysql -u root -p mytestdatabase < db-20090505.sql
