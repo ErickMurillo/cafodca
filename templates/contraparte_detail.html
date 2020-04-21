@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load thumbnail %}
+{% load embed_video_tags %}
 
 {% block title %}{{contra.nombre}}{% endblock %}
 {% block extra_js %}
@@ -23,15 +24,15 @@
     </div>
 </section>
 <section class="orgdetail-section pt-20 pb-20">
-    
+
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-8 col-md-8 col-sm-12">
-                
+
                 <div class="perfil">
                     <div class="container-fluid">
                         <div class="row">
-                        
+
                             <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 detalle-perfil ">
                                 <h3 class="theme_color"><b>{{contra.nombre}} </b></h3>
                                 <h3 class="theme_color_two"><b>{{contra.siglas}}</b></h3>
@@ -106,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <section class="welcome-section pb-60" >
                     <div class="auto-container" data-bac="#fff">
 
@@ -136,36 +137,40 @@
                 <div class="column default-featured-column style-three">
                     <h4 class="inner-title double-line line-left">Noticias recientes</h4>
                     <div class="featured-project owl-carousel owl-nav-style owl-nav3">
+                        {% for noticias in notas %}
                         <article class="inner-box mb-xs-60">
                             <figure class="image-box">
-                                <a href="#"><img src="https://via.placeholder.com/640x480" alt=""></a>
+                                {% if noticias.foto %}
+                                    {% thumbnail noticias.foto "640x480" crop="center" as im %}
+                                        <a href="{% url 'notas-detail' noticias.id %}"><img src="{{ im.url }}"></a>
+                                    {% endthumbnail %}
+                                {% elif noticias.video %}
+                                    {% video noticias.video '640x480' %}
+                                {% elif noticias.fotos.all %}
+                                    {%for thumb in noticias.fotos.all|slice:"1"%}
+                                        <a href="{% url 'notas-detail' noticias.id %}"><img src="{{thumb.foto.url_380x250}}" alt=""></a>
+                                    {% endfor %}
+                                {% else %}
+                                    <a href="{% url 'notas-detail' noticias.id %}"><img src="https://via.placeholder.com/640x480" alt=""></a>
+                                {% endif %}
                             </figure>
                             <div class="content-box">
-                                <h3><a href="#">Declaración En relación al Foro sobre el Desarrollo Sostenible en América Latina previsto para marzo de 2020</a></h3>
-                                <div class="text">Lorem ipsum dolor sit amet, eu qui modo expeten dis reformidans, ex sit appetere sententiae.. </div>
-                                <a href="#" class="theme-btn btn-style-four btn-sm">Read More</a>
+                                <h3><a href="{% url 'notas-detail' noticias.id %}">{{noticias.titulo}}</a></h3>
+                                <div class="text">{{noticias.contenido|safe|striptags|truncatewords:50}}</div>
+                                <a href="{% url 'notas-detail' noticias.id %}" class="theme-btn btn-style-four btn-sm">LEER MÁS</a>
                             </div>
                         </article>
-                        <article class="inner-box mb-xs-60">
-                            <figure class="image-box">
-                                <a href="#"><img src="https://via.placeholder.com/640x480" alt=""></a>
-                            </figure>
-                            <div class="content-box">
-                                <h3><a href="#">Valoraciones preliminares de Centro Humboldt ante la Pandemia del COVID-19 en Nicaragua</a></h3>
-                                <div class="text">Lorem ipsum dolor sit amet, eu qui modo expeten dis reformidans, ex sit appetere sententiae.. </div>
-                                <a href="#" class="theme-btn btn-style-four btn-sm">Read More</a>
-                            </div>
-                        </article>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="text-center">
                     <a class="theme-btn btn-style-two mt-20 text-center" href="http://monitoreo-finca.cafodca.org/">Todas las noticias</a>
                 </div>
-                
+
             </div>
         </div>
     </div>
-    
+
 </section>
 
 

@@ -44,7 +44,7 @@ def editar_contraparte(request, id, template='admin/editar_contraparte.html'):
 
 def detalle_contraparte(request,id):
     contra = get_object_or_404(Contraparte, id=id)
-    notas = Notas.objects.filter(user__userprofile__contraparte__id=id).order_by('-fecha')
+    notas = Notas.objects.filter(user__userprofile__contraparte__id=id).order_by('-fecha')[:5]
     return render(request, 'contraparte_detail.html', locals(),)
 
 @login_required

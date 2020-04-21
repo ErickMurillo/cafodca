@@ -50,7 +50,7 @@
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"><div class="text"></div></div> {% endcomment %}
-                                        
+
 
                     </li>
                     {% endfor %}
@@ -238,10 +238,10 @@
                             <figure class="image">
                                  {% if empresa.logo %}
                                         {% thumbnail empresa.logo "270x270" as im %}
-                                            <img src="{{ im.url }}" alt="{{empresa.siglas}}">
+                                         <a href="{% url 'detalle-contraparte' empresa.id %}"><img src="{{ im.url }}" alt="{{empresa.siglas}}"></a>
                                         {% endthumbnail %}
                                 {% else %}
-                                        <img src="https://via.placeholder.com/350x350" alt="{{empresa.siglas}}">
+                                        <a href="{% url 'detalle-contraparte' empresa.id %}"><img src="https://via.placeholder.com/350x350" alt="{{empresa.siglas}}"></a>
                                 {% endif %}
                             </figure>
                             <div class="member-info">
