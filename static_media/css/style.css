@@ -1579,9 +1579,7 @@ ul,li{
 	line-height:1.4em;
 	font-size:26px;
 	font-weight:700;
-	background:#a0a916;
 	color:#ffffff;
-	text-transform:uppercase;
 }
 
 .main-slider h2{
@@ -4010,7 +4008,7 @@ li.col-xs-12:before{
 	font-size:15px;
 	padding:15px 0px 10px;
 	border-bottom:1px solid #e9e9e9;
-	margin-bottom:25px;
+	margin-bottom:5px;
 }
 
 .no-border{

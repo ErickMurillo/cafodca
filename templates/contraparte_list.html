@@ -36,7 +36,7 @@
                                 </figure>
                                 <div class="member-info">
                                     <h3><a href="{% url 'detalle-contraparte' object.id %}">{{object.siglas}}</a></h3>
-                                    <div class="designation"><img src="/static/images/{{object.pais.codigo}}-g.png" alt="" width="25px"> {{object.pais}}</div>
+                                    <div class="designation"><img src="/static/images/{{object.pais.codigo}}-g.png" alt="" width="25px"> <span>{{object.pais}}</span></div>
                                 </div>
                                 <div class="content">
                                     <div class="text  cont_org"><p>{{object.generalidades|safe|striptags|truncatechars:130}}</p></div>

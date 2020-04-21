@@ -184,11 +184,11 @@
 				760:{
 					items:3
 				},
-				1024:{
+				1000:{
 					items:4
 				},
 				1100:{
-					items:4
+					items:5
 				}
 			}
 		});    		
@@ -225,6 +225,36 @@
 	}
 
 	//Sponsors Slider
+	if ($('.featured-project-two').length) {
+		$('.featured-project-two').owlCarousel({
+			loop:true,
+			margin:20,
+			dots:false,
+			nav:true,
+			smartSpeed: 500,
+			autoplay: false,
+			navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
+			responsive:{
+				0:{
+					items:1
+				},
+				480:{
+					items:1
+				},
+				600:{
+					items:2
+				},
+				800:{
+					items:2
+				},
+				1200:{
+					items:3
+				}
+			}
+		});    		
+	}
+
+	//Sponsors Slider
 	if ($('.featured-project').length) {
 		$('.featured-project').owlCarousel({
 			loop:true,
@@ -242,13 +272,13 @@
 					items:1
 				},
 				600:{
+					items:2
+				},
+				990:{
 					items:1
 				},
-				800:{
-					items:2
-				},
 				1200:{
-					items:2
+					items:1
 				}
 			}
 		});    		
