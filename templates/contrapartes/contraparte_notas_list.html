@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+{% load el_pagination_tags %}
+{% load embed_video_tags %}
+
+{% block content %}
+    <!--Page Title-->
+    <section class="page-title" style="background-image:url(/static/images/banner/2.jpg);">
+        <div class="auto-container">
+            <div class="sec-title">
+                <h1>Noticias</h1>
+                <div class="bread-crumb"><a href="/">Inicio</a> / <a href="/notas" class="current">Noticias</a></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--Sidebar Page-->
+    <div class="sidebar-page">
+        <div class="auto-container">
+
+            <div class="row clearfix">
+
+                <!--Content Side-->
+                <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+
+                    <!--Events Section / List View-->
+                    <section class="blog-news-section latest-news lista_noticias">
+                        <div class="auto-container">
+
+                            <div class="row clearfix">
+
+                                <!--News Column-->
+                                {% paginate 8 object_list %}
+                                {% for object in object_list %}
+                                <div class="column blog-news-column col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <article class="inner-box">
+                                        <figure class="image-box">
+                                            <a href="{% url 'notas-detail' object.id %}">
+                                                {% if object.foto %}
+                                                    {% thumbnail object.foto "640x480" crop="center" as im %}
+                                                        <img src="{{ im.url }}">
+                                                    {% endthumbnail %}
+                                                {% elif object.video %}
+                                                    {% video object.video '405x283' %}
+                                                {% elif object.fotos.all %}
+                                                    {%for thumb in object.fotos.all|slice:"1"%}
+                                                    <img src="{{thumb.foto.url_380x250}}" alt="">
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <img src="https://via.placeholder.com/380x250">
+                                                {% endif %}
+                                            </a>
+                                            <div class="news-date">{{object.fecha|date:'d'}}<span class="month">{{object.fecha|date:'M'}}</span></div>
+                                        </figure>
+                                        <div class="content-box">
+                                            <h3><a href="{% url 'notas-detail' object.id %}">{{object.titulo|truncatewords:10}}</a></h3>
+                                            <div class="post-info clearfix">
+                                                <div class="post-author">Por <span class="theme_color">{{object.user.get_full_name}}</span></div>
+                                                <div class="post-options clearfix">
+                                                    <a href="#" class="comments-count"><span class="icon fa fa-calendar"></span>{{object.fecha}}</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="text">{{object.contenido|safe|striptags|truncatechars:100}}</div>
+                                            <a href="{% url 'notas-detail' object.id %}" class="theme-btn read-more">Leer más</a>
+                                        </div>
+                                    </article>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
+                        <!-- Styled Pagination -->
+                        <div class="styled-pagination mb-20">
+                            <ul>
+                                {% show_pages %}
+                            </ul>
+                        </div>
+                    </section>
+
+
+                </div>
+                <!--Content Side-->
+
+                <!--Sidebar-->
+                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                    <aside class="sidebar">
+
+                        <!-- Search Form -->
+                        <div class="widget search-box">
+
+                            <form method="post" action="index.html">
+                                <div class="form-group">
+                                    <input type="search" name="search-field" value="" placeholder="Buscar">
+                                    <button type="submit"><span class="icon flaticon-tool-5"></span></button>
+                                </div>
+                            </form>
+
+                        </div>
+
+
+                        <!-- Popular Categories -->
+
+                        <!-- Recent Posts -->
+                        <div class="widget recent-posts wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="sidebar-title"><h3>Últimas Noticias</h3></div>
+
+                            {% for nota in ultimas_notas %}
+                            <article class="post">
+                                <figure class="post-thumb">
+                                    {% if nota.foto %}
+                                        {% thumbnail nota.foto "380x250" crop="center" as im %}
+                                            <img src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                    {% elif nota.fotos.all %}
+                                        {%for thumb in nota.fotos.all|slice:"1"%}
+                                        <img src="{{thumb.foto.url_380x250}}" alt="">
+                                        {% endfor %}
+                                    {% else %}
+                                    <img src="https://via.placeholder.com/380x250">
+                                    {% endif %}
+
+                                </figure>
+                                <h4><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo}}</a></h4>
+                                <div class="post-info"><span class="icon flaticon-people-1"></span> Por {{nota.user.get_full_name}} </div>
+                            </article>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- Archives -->
+                        <div class="widget archives-list wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="sidebar-title"><h3>Pais</h3></div>
+
+                            <ul class="list">
+                                {% for pais in paises %}
+                                    <li><a href="{% url 'notas_list_pais' pais.id %}">{{pais}}</a></li>
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+
+                        <!-- Popular Tags -->
+                        <div class="widget popular-tags">
+                            <div class="sidebar-title"><h3>Palabras claves</h3></div>
+
+                                <a href="#">acciones</a>
+                                <a href="#">agricultura</a>
+                                <a href="#">agua</a>
+                                <a href="#">cambio climatico</a>
+                                <a href="#">clima</a>
+                                <a href="#">cultivo</a>
+                                <a href="#">derechos</a>
+                                <a href="#">energia</a>
+                                <a href="#">familias</a>
+                                <a href="#">igualdad</a>
+
+                        </div>
+
+                    </aside>
+
+
+                </div>
+                <!--Sidebar-->
+
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

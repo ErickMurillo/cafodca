@@ -59,6 +59,13 @@ def lista_notas_pais(request,id, template='blog-list.html'):
 
 	return render(request, template, locals())
 
+def lista_notas_copartes(request,id, template='contrapartes/contraparte_notas_list.html'):
+	object_list = Notas.objects.filter(user__userprofile__contraparte__id = id).order_by('-id')
+	ultimas_notas = Notas.objects.order_by('-id')[:3]
+	paises = Pais.objects.all()
+
+	return render(request, template, locals())
+
 @login_required
 def crear_nota(request, template='admin/notas_form.html'):
 	if request.method == 'POST':
