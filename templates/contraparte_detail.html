@@ -145,7 +145,7 @@
                                         <a href="{% url 'notas-detail' noticias.id %}"><img src="{{ im.url }}"></a>
                                     {% endthumbnail %}
                                 {% elif noticias.video %}
-                                    {% video noticias.video '640x480' %}
+                                    {% video noticias.video '375x282' %}
                                 {% elif noticias.fotos.all %}
                                     {%for thumb in noticias.fotos.all|slice:"1"%}
                                         <a href="{% url 'notas-detail' noticias.id %}"><img src="{{thumb.foto.url_380x250}}" alt=""></a>
