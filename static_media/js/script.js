@@ -65,7 +65,7 @@
 		  
 		  delay:10000,
 		  startwidth:1200,
-		  startheight:720,
+		  startheight:500,
 		  hideThumbs:600,
 	
 		  thumbWidth:80,

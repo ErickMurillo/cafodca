@@ -1575,10 +1575,9 @@ ul,li{
 
 .main-slider .bg-color{
 	position:relative;
-	padding:5px 16px;
+	padding:5px 5px;
 	line-height:1.4em;
 	font-size:26px;
-	font-weight:700;
 	color:#ffffff;
 }
 
@@ -3403,12 +3402,12 @@ ul,li{
 	display:block;
 	float:left;
 	text-align:center;
-	width:28px;
-	height:28px;
-	line-height:26px;
+	width:45px;
+	height:45px;
+	line-height:43px;
 	border:1px solid #ffffff;
 	border-radius:50%;
-	font-size:12px;
+	font-size:22px;
 	margin-right:8px;
 	color:#ffffff !important;
 	transition:all 500ms ease;
