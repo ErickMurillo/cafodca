@@ -244,7 +244,7 @@ background: #ff6309;
 .btn-style-danger:hover{
   background:#ffffff;
   color:#c9302c !important;
-  border-color:#a0a916; 
+  border-color:#a0a916;
 }
 .column.blog-news-column.foro_content  .content-box{
   padding: 0px !important;
@@ -424,7 +424,7 @@ input[type=file]{
   }
   /* .lista_noticias .blog-news-column .inner-box .image-box iframe{
 
-    min-height: 300px; 
+    min-height: 300px;
   } */
    .btn-nav .glyphicon {
         padding-top: 12px;
@@ -439,7 +439,7 @@ input[type=file]{
     width: auto;
   }
   /* .lista_noticias .blog-news-column .inner-box .image-box iframe{
-    min-height: 450px; 
+    min-height: 450px;
   } */
   .form-inline  .textInput{
     min-width: 60% !important;
@@ -474,7 +474,7 @@ input[type=file]{
   height: 56px;
 }
 .default-featured-column.style-three h3 a{
-  text-transform: lowercase;
+  /*text-transform: lowercase; */
 }
 .default-featured-column.style-three .content-box .text{
   overflow: hidden;
@@ -509,7 +509,7 @@ input[type=file]{
   text-align: left;
   max-width: 1800px;
   background:rgba(69, 58, 54, 0.5);
-  
+
 }
 
 .main-slider h1{

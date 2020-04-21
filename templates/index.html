@@ -137,7 +137,7 @@
                                 <div class="news-date">{{nota.fecha|date:'d'}}<span class="month">{{nota.fecha|date:'M'}}</span></div>
                             </figure>
                             <div class="content-box">
-                                <h3><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo}}</a></h3>
+                                <h3><a href="{% url 'notas-detail' nota.id %}">{{nota.titulo|lower|capfirst}}</a></h3>
                                 <div class="post-info clearfix">
                                     <div class="post-author">Por <span class="theme_color">{{nota.user.get_full_name}}</span></div>
                                     <div class="post-options clearfix">
